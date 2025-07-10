@@ -1,4 +1,4 @@
-console.log('Script started - Version 1.5.4');
+console.log('Script started - Version 1.5.6');
 console.log('Node.js version:', process.version);
 console.log('Platform:', process.platform, process.arch);
 
