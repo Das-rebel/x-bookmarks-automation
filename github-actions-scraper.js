@@ -21,14 +21,23 @@ async function scrapeBookmarks() {
         await page.goto('https://x.com/login');
         
         // Wait for and fill in login form
-        await page.waitForSelector('input[type="text"]');
-        await page.type('input[type="text"]', process.env.X_USERNAME);
-        await page.type('input[type="password"]', process.env.X_PASSWORD);
+        await page.waitForSelector('input[autocomplete="username"]');
+        await page.type('input[autocomplete="username"]', process.env.X_USERNAME);
         
-        // Submit login form
+        // Click next button
         await Promise.all([
             page.waitForNavigation(),
-            page.click('button[type="submit"]')
+            page.click('div[data-testid="cellInnerDiv"] button')
+        ]);
+        
+        // Wait for password field
+        await page.waitForSelector('input[autocomplete="current-password"]');
+        await page.type('input[autocomplete="current-password"]', process.env.X_PASSWORD);
+        
+        // Submit password
+        await Promise.all([
+            page.waitForNavigation(),
+            page.click('div[data-testid="cellInnerDiv"] button')
         ]);
 
         // Wait for bookmarks page to load
