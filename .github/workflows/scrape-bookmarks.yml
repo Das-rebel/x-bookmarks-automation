@@ -12,6 +12,9 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+      with:
+        # Force fetch all history to ensure we get all changes
+        fetch-depth: 0
 
     - name: Setup Node.js
       uses: actions/setup-node@v3
@@ -21,6 +24,11 @@ jobs:
 
     - name: Install dependencies
       run: |
+        # Ensure we're using the latest version of the script
+        git pull origin main
+        # Verify script version
+        echo "Script version from file:" $(grep -m 1 'Script started - Version' github-actions-scraper.js)
+        # Install dependencies
         npm install
         npm list puppeteer
 
