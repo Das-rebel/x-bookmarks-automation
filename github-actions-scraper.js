@@ -24,18 +24,40 @@ async function scrapeBookmarks() {
         await page.waitForSelector('input[name="text"]', { timeout: 10000 });
         await page.type('input[name="text"]', process.env.X_USERNAME);
         
-        // Click next button
-        await page.waitForSelector('button:has-text("Next")', { timeout: 10000 });
-        await page.click('button:has-text("Next")');
+        // Log all button texts and click the first visible button after username
+        await page.waitForTimeout(1000);
+        const buttons = await page.$$('button');
+        for (const btn of buttons) {
+            const text = await page.evaluate(el => el.innerText, btn);
+            console.log('Button text after username:', text);
+        }
+        for (const btn of buttons) {
+            const isVisible = await btn.boundingBox() !== null;
+            if (isVisible) {
+                await btn.click();
+                break;
+            }
+        }
         await page.waitForNavigation({ waitUntil: 'networkidle0' });
         
         // Wait for password field
         await page.waitForSelector('input[name="password"]', { timeout: 10000 });
         await page.type('input[name="password"]', process.env.X_PASSWORD);
         
-        // Submit password
-        await page.waitForSelector('button:has-text("Log in")', { timeout: 10000 });
-        await page.click('button:has-text("Log in")');
+        // Log all button texts and click the first visible button after password
+        await page.waitForTimeout(1000);
+        const buttons2 = await page.$$('button');
+        for (const btn of buttons2) {
+            const text = await page.evaluate(el => el.innerText, btn);
+            console.log('Button text after password:', text);
+        }
+        for (const btn of buttons2) {
+            const isVisible = await btn.boundingBox() !== null;
+            if (isVisible) {
+                await btn.click();
+                break;
+            }
+        }
         await page.waitForNavigation({ waitUntil: 'networkidle0' });
         
         // Check for verification step
@@ -43,8 +65,21 @@ async function scrapeBookmarks() {
             await page.waitForSelector('input[name="text"]', { timeout: 5000 });
             console.log('Verification step detected');
             await page.type('input[name="text"]', process.env.X_USERNAME);
-            await page.waitForSelector('button:has-text("Next")', { timeout: 10000 });
-            await page.click('button:has-text("Next")');
+            
+            // Log all button texts and click the first visible button for verification
+            await page.waitForTimeout(1000);
+            const verifyButtons = await page.$$('button');
+            for (const btn of verifyButtons) {
+                const text = await page.evaluate(el => el.innerText, btn);
+                console.log('Button text in verification:', text);
+            }
+            for (const btn of verifyButtons) {
+                const isVisible = await btn.boundingBox() !== null;
+                if (isVisible) {
+                    await btn.click();
+                    break;
+                }
+            }
             await page.waitForNavigation({ waitUntil: 'networkidle0' });
         } catch (error) {
             console.log('No verification step required');
