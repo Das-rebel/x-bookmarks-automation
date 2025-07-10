@@ -17,9 +17,12 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '18'
+        cache: 'npm'
 
     - name: Install dependencies
-      run: npm install
+      run: |
+        npm install
+        npm list puppeteer
 
     - name: Run scraper
       env:
@@ -27,4 +30,18 @@ jobs:
         X_PASSWORD: ${{ secrets.X_PASSWORD }}
         N8N_WEBHOOK_URL: ${{ secrets.N8N_WEBHOOK_URL }}
         BROWSERLESS_TOKEN: ${{ secrets.BROWSERLESS_TOKEN }}
-      run: node github-actions-scraper.js
+      run: |
+        echo "Starting script execution..."
+        node github-actions-scraper.js || (
+          echo "Script failed with exit code $?"
+          exit 1
+        )
+        echo "Script completed successfully"
+    
+    - name: Upload bookmarks
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: bookmarks
+        path: bookmarks.json
+        retention-days: 1
