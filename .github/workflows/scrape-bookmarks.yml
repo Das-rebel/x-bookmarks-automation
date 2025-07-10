@@ -1,4 +1,4 @@
-name: Daily X.com Bookmark Scraper
+name: Daily X.com Bookmark Scraper (v2)
 
 on:
   schedule:
@@ -11,12 +11,15 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         # Force fetch all history to ensure we get all changes
         fetch-depth: 0
         # Force a fresh clone to avoid any caching issues
         clean: true
+        # Ensure we get the latest changes
+        fetch-tags: true
+        ref: ${{ github.sha }}
 
     - name: Setup Node.js
       uses: actions/setup-node@v3
@@ -27,24 +30,48 @@ jobs:
     - name: Install dependencies
       run: |
         # Print current directory and files for debugging
-        echo "Current directory: $(pwd)"
-        echo "Files in directory:"
+        echo "=== Current directory and files ==="
+        pwd
         ls -la
         
-        # Verify script version
-        echo "=== Script content (first 20 lines) ==="
-        head -n 20 github-actions-scraper.js
-        echo "=== End of script content ==="
+        # Print git information for debugging
+        echo "=== Git information ==="
+        git status
+        git log -n 3 --oneline
+        
+        # Verify script version and content
+        echo "=== Script content (github-actions-scraper.js) ==="
+        if [ -f "github-actions-scraper.js" ]; then
+            echo "File exists. First 20 lines:"
+            head -n 20 github-actions-scraper.js
+            
+            # Check for specific version string
+            if grep -q "Script started - Version 1.0.4" github-actions-scraper.js; then
+                echo "✅ Correct script version (1.0.4) found"
+            else
+                echo "❌ Incorrect script version found. Expected 1.0.4"
+                grep -A 2 -B 2 "Script started - Version" github-actions-scraper.js || echo "Version string not found"
+            fi
+        else
+            echo "❌ github-actions-scraper.js not found!"
+            exit 1
+        fi
         
         # Install dependencies using package-lock.json
-        echo "Installing dependencies using package-lock.json..."
+        echo "=== Installing dependencies ==="
         npm ci
+        
+        # Verify installations
         echo "=== Installed packages ==="
         npm list
         
         # Verify puppeteer version
         echo "=== Puppeteer version ==="
         npm list puppeteer
+        
+        # Verify file contents one more time after installation
+        echo "=== Final script verification ==="
+        head -n 5 github-actions-scraper.js
 
     - name: Run scraper
       env:
