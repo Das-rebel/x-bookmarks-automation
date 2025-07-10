@@ -15,6 +15,8 @@ jobs:
       with:
         # Force fetch all history to ensure we get all changes
         fetch-depth: 0
+        # Force a fresh clone to avoid any caching issues
+        clean: true
 
     - name: Setup Node.js
       uses: actions/setup-node@v3
@@ -24,12 +26,24 @@ jobs:
 
     - name: Install dependencies
       run: |
-        # Ensure we're using the latest version of the script
-        git pull origin main
+        # Print current directory and files for debugging
+        echo "Current directory: $(pwd)"
+        echo "Files in directory:"
+        ls -la
+        
         # Verify script version
-        echo "Script version from file:" $(grep -m 1 'Script started - Version' github-actions-scraper.js)
+        echo "=== Script content (first 20 lines) ==="
+        head -n 20 github-actions-scraper.js
+        echo "=== End of script content ==="
+        
         # Install dependencies
+        echo "Installing dependencies..."
         npm install
+        echo "=== Installed packages ==="
+        npm list
+        
+        # Verify puppeteer version
+        echo "=== Puppeteer version ==="
         npm list puppeteer
 
     - name: Run scraper
