@@ -1,4 +1,4 @@
-console.log('Script started - Version 1.0.1');
+console.log('Script started - Version 1.0.2');
 console.log('Node.js version:', process.version);
 console.log('Platform:', process.platform, process.arch);
 
@@ -32,7 +32,7 @@ async function scrapeBookmarks() {
         await page.type('input[name="text"]', process.env.X_USERNAME);
         
         // Log all button texts and click the first visible button after username
-        await page.waitForTimeout(1000);
+        await new Promise(resolve => setTimeout(resolve, 1000));
         const buttons = await page.$$('button');
         for (const btn of buttons) {
             const text = await page.evaluate(el => el.innerText, btn);
@@ -52,7 +52,7 @@ async function scrapeBookmarks() {
         await page.type('input[name="password"]', process.env.X_PASSWORD);
         
         // Log all button texts and click the first visible button after password
-        await page.waitForTimeout(1000);
+        await new Promise(resolve => setTimeout(resolve, 1000));
         const buttons2 = await page.$$('button');
         for (const btn of buttons2) {
             const text = await page.evaluate(el => el.innerText, btn);
@@ -74,7 +74,7 @@ async function scrapeBookmarks() {
             await page.type('input[name="text"]', process.env.X_USERNAME);
             
             // Log all button texts and click the first visible button for verification
-            await page.waitForTimeout(1000);
+            await new Promise(resolve => setTimeout(resolve, 1000));
             const verifyButtons = await page.$$('button');
             for (const btn of verifyButtons) {
                 const text = await page.evaluate(el => el.innerText, btn);
@@ -105,11 +105,11 @@ async function scrapeBookmarks() {
         }
 
         // Wait for bookmarks page to load
-        await page.waitForTimeout(5000);
+        await new Promise(resolve => setTimeout(resolve, 5000));
         
         // Navigate to bookmarks page
         await page.goto('https://x.com/bookmarks');
-        await page.waitForTimeout(5000);
+        await new Promise(resolve => setTimeout(resolve, 5000));
 
         // Extract bookmarks
         const bookmarks = await page.evaluate(() => {
