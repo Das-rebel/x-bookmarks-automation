@@ -1,4 +1,4 @@
-console.log('Script started - Version 1.0.2');
+console.log('Script started - Version 1.0.3');
 console.log('Node.js version:', process.version);
 console.log('Platform:', process.platform, process.arch);
 
@@ -8,64 +8,120 @@ const axios = require('axios');
 // Log Puppeteer version
 console.log('Puppeteer version:', require('puppeteer/package.json').version);
 
+async function clickButtonByText(page, text) {
+    console.log(`Looking for button with text: ${text}`);
+    const buttons = await page.$$('button');
+    let clicked = false;
+    
+    for (const btn of buttons) {
+        const btnText = await page.evaluate(el => el.innerText, btn);
+        console.log(`Found button with text: '${btnText}'`);
+        if (btnText.includes(text)) {
+            const isVisible = await btn.boundingBox() !== null;
+            if (isVisible) {
+                console.log(`Clicking button with text: '${btnText}'`);
+                await btn.click();
+                clicked = true;
+                // Wait for navigation or a short time to ensure the click is processed
+                try {
+                    await Promise.race([
+                        page.waitForNavigation({ waitUntil: 'networkidle0', timeout: 30000 }),
+                        new Promise(resolve => setTimeout(resolve, 2000))
+                    ]);
+                } catch (e) {
+                    console.log('Navigation timeout, continuing...');
+                }
+                break;
+            }
+        }
+    }
+    
+    if (!clicked) {
+        console.log(`No visible button with text '${text}' found`);
+    }
+    
+    return clicked;
+}
+
 async function scrapeBookmarks() {
     let browser;
     try {
+        const launchOptions = {
+            headless: true,
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-dev-shm-usage',
+                '--disable-accelerated-2d-canvas',
+                '--no-first-run',
+                '--no-zygote',
+                '--single-process',
+                '--disable-gpu'
+            ],
+            defaultViewport: {
+                width: 1920,
+                height: 1080
+            }
+        };
+
         if (process.env.BROWSERLESS_TOKEN) {
             browser = await puppeteer.connect({
-                browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BROWSERLESS_TOKEN}`
+                browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BROWSERLESS_TOKEN}`,
+                ...launchOptions
             });
         } else {
-            browser = await puppeteer.launch({
-                headless: true,
-                args: ['--no-sandbox', '--disable-setuid-sandbox']
-            });
+            browser = await puppeteer.launch(launchOptions);
         }
 
         const page = await browser.newPage();
         
-        // Navigate to X.com login page
-        await page.goto('https://x.com/login');
+        // Set a longer default navigation timeout (60 seconds)
+        page.setDefaultNavigationTimeout(60000);
+        page.setDefaultTimeout(30000);
         
-        // Wait for and fill in login form
-        await page.waitForSelector('input[name="text"]', { timeout: 10000 });
-        await page.type('input[name="text"]', process.env.X_USERNAME);
+        console.log('Navigating to X.com login page...');
+        await page.goto('https://x.com/login', { waitUntil: 'networkidle2', timeout: 60000 });
         
-        // Log all button texts and click the first visible button after username
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        const buttons = await page.$$('button');
-        for (const btn of buttons) {
-            const text = await page.evaluate(el => el.innerText, btn);
-            console.log('Button text after username:', text);
-        }
-        for (const btn of buttons) {
-            const isVisible = await btn.boundingBox() !== null;
-            if (isVisible) {
-                await btn.click();
-                break;
+        console.log('Filling in username...');
+        await page.waitForSelector('input[name="text"]', { visible: true, timeout: 10000 });
+        await page.type('input[name="text"]', process.env.X_USERNAME, { delay: 100 });
+        
+        console.log('Clicking Next button...');
+        await clickButtonByText(page, 'Next');
+        
+        // Wait for password field and fill it in
+        console.log('Waiting for password field...');
+        await page.waitForSelector('input[name="password"]', { visible: true, timeout: 10000 });
+        await page.type('input[name="password"]', process.env.X_PASSWORD, { delay: 100 });
+        
+        console.log('Clicking Log in button...');
+        await clickButtonByText(page, 'Log in');
+        
+        // Wait for login to complete by checking for the home timeline or bookmarks link
+        console.log('Waiting for login to complete...');
+        try {
+            await page.waitForSelector('[data-testid="AppTabBar_Bookmarks_Link"]', { visible: true, timeout: 30000 });
+            console.log('Successfully logged in!');
+        } catch (e) {
+            console.log('Timed out waiting for login to complete, checking current URL...');
+            const currentUrl = page.url();
+            console.log(`Current URL: ${currentUrl}`);
+            
+            // Check if we're on a verification page
+            if (currentUrl.includes('account/login_challenge') || await page.$('input[name="text"]') !== null) {
+                console.log('Verification step detected, attempting to handle...');
+                await page.type('input[name="text"]', process.env.X_USERNAME, { delay: 100 });
+                await clickButtonByText(page, 'Next');
+                
+                // Wait for login to complete after verification
+                await page.waitForSelector('[data-testid="AppTabBar_Bookmarks_Link"]', { visible: true, timeout: 30000 });
+            } else {
+                // Take a screenshot for debugging
+                await page.screenshot({ path: 'login-error.png' });
+                console.log('Screenshot saved as login-error.png');
+                throw new Error('Failed to log in - unknown page state');
             }
         }
-        await page.waitForNavigation({ waitUntil: 'networkidle0' });
-        
-        // Wait for password field
-        await page.waitForSelector('input[name="password"]', { timeout: 10000 });
-        await page.type('input[name="password"]', process.env.X_PASSWORD);
-        
-        // Log all button texts and click the first visible button after password
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        const buttons2 = await page.$$('button');
-        for (const btn of buttons2) {
-            const text = await page.evaluate(el => el.innerText, btn);
-            console.log('Button text after password:', text);
-        }
-        for (const btn of buttons2) {
-            const isVisible = await btn.boundingBox() !== null;
-            if (isVisible) {
-                await btn.click();
-                break;
-            }
-        }
-        await page.waitForNavigation({ waitUntil: 'networkidle0' });
         
         // Check for verification step
         try {
