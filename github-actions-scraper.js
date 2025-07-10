@@ -1,5 +1,12 @@
+console.log('Script started - Version 1.0.1');
+console.log('Node.js version:', process.version);
+console.log('Platform:', process.platform, process.arch);
+
 const puppeteer = require('puppeteer');
 const axios = require('axios');
+
+// Log Puppeteer version
+console.log('Puppeteer version:', require('puppeteer/package.json').version);
 
 async function scrapeBookmarks() {
     let browser;
