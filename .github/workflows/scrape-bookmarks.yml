@@ -60,10 +60,12 @@ jobs:
         )
         echo "Script completed successfully"
     
-    - name: Upload bookmarks
+    - name: Upload debug artifacts
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: bookmarks
-        path: bookmarks.json
+        name: debug-artifacts
+        path: |
+          *.png
+          bookmarks.json
         retention-days: 1

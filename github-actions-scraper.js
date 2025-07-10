@@ -1,4 +1,4 @@
-console.log('Script started - Version 1.0.3');
+console.log('Script started - Version 1.0.4');
 console.log('Node.js version:', process.version);
 console.log('Platform:', process.platform, process.arch);
 
@@ -14,30 +14,55 @@ async function clickButtonByText(page, text) {
     let clicked = false;
     
     for (const btn of buttons) {
-        const btnText = await page.evaluate(el => el.innerText, btn);
-        console.log(`Found button with text: '${btnText}'`);
-        if (btnText.includes(text)) {
-            const isVisible = await btn.boundingBox() !== null;
-            if (isVisible) {
-                console.log(`Clicking button with text: '${btnText}'`);
-                await btn.click();
-                clicked = true;
-                // Wait for navigation or a short time to ensure the click is processed
-                try {
-                    await Promise.race([
-                        page.waitForNavigation({ waitUntil: 'networkidle0', timeout: 30000 }),
-                        new Promise(resolve => setTimeout(resolve, 2000))
+        try {
+            const btnText = await page.evaluate(el => el.innerText, btn);
+            console.log(`Found button with text: '${btnText}'`);
+            
+            if (btnText && btnText.includes(text)) {
+                const isVisible = await btn.boundingBox() !== null;
+                if (isVisible) {
+                    console.log(`Clicking button with text: '${btnText}'`);
+                    
+                    // Take a screenshot before clicking for debugging
+                    await page.screenshot({ path: `before-click-${text.replace(/\s+/g, '-').toLowerCase()}.png` });
+                    
+                    // Click the button without waiting for navigation
+                    await Promise.all([
+                        btn.click(),
+                        // Wait for either navigation or a timeout
+                        new Promise(resolve => setTimeout(resolve, 5000)) // Wait 5 seconds
                     ]);
-                } catch (e) {
-                    console.log('Navigation timeout, continuing...');
+                    
+                    clicked = true;
+                    
+                    // Take a screenshot after clicking
+                    await page.screenshot({ path: `after-click-${text.replace(/\s+/g, '-').toLowerCase()}.png` });
+                    
+                    // Check if we need to handle any popups or dialogs
+                    try {
+                        const dialog = await new Promise(resolve => 
+                            page.once('dialog', resolve)
+                        );
+                        console.log('Dialog detected:', dialog.message());
+                        await dialog.dismiss();
+                    } catch (e) {
+                        // No dialog appeared, continue
+                    }
+                    
+                    break;
+                } else {
+                    console.log(`Button '${btnText}' is not visible`);
                 }
-                break;
             }
+        } catch (e) {
+            console.log('Error processing button:', e.message);
         }
     }
     
     if (!clicked) {
         console.log(`No visible button with text '${text}' found`);
+        // Take a screenshot of the current page for debugging
+        await page.screenshot({ path: `no-${text.replace(/\s+/g, '-').toLowerCase()}-button.png` });
     }
     
     return clicked;
