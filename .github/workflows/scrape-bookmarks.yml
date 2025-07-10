@@ -36,9 +36,9 @@ jobs:
         head -n 20 github-actions-scraper.js
         echo "=== End of script content ==="
         
-        # Install dependencies
-        echo "Installing dependencies..."
-        npm install
+        # Install dependencies using package-lock.json
+        echo "Installing dependencies using package-lock.json..."
+        npm ci
         echo "=== Installed packages ==="
         npm list
         
