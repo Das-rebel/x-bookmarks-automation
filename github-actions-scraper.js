@@ -1,4 +1,4 @@
-console.log('Script started - Version 1.0.4');
+console.log('Script started - Version 1.5.0');
 console.log('Node.js version:', process.version);
 console.log('Platform:', process.platform, process.arch);
 
@@ -10,67 +10,77 @@ console.log('Puppeteer version:', require('puppeteer/package.json').version);
 
 async function clickButtonByText(page, text) {
     console.log(`Looking for button with text: ${text}`);
-    const buttons = await page.$$('button');
-    let clicked = false;
     
-    for (const btn of buttons) {
+    try {
+        // First try to find and click using the exact text match
+        const button = await page.waitForXPath(
+            `//div[@role='button' and contains(., '${text}')] | //button[contains(., '${text}')]`, 
+            { visible: true, timeout: 10000 }
+        );
+        
+        if (button) {
+            console.log(`Clicking button with text: '${text}'`);
+            await button.click();
+            await page.waitForTimeout(2000); // Short delay after click
+            return true;
+        }
+    } catch (error) {
+        console.log(`Button with text '${text}' not found via XPath, trying alternative selectors...`);
+    }
+    
+    // Fallback to trying all buttons
+    const buttons = await page.$$('button, div[role="button"]');
+    console.log(`Found ${buttons.length} potential buttons`);
+    
+    for (const [index, btn] of buttons.entries()) {
         try {
             const btnText = await page.evaluate(el => el.innerText, btn);
-            console.log(`Found button with text: '${btnText}'`);
+            console.log(`Button ${index + 1} text: '${btnText}'`);
             
             if (btnText && btnText.includes(text)) {
-                const isVisible = await btn.boundingBox() !== null;
+                const isVisible = await btn.isVisible();
                 if (isVisible) {
                     console.log(`Clicking button with text: '${btnText}'`);
                     
                     // Take a screenshot before clicking for debugging
                     await page.screenshot({ path: `before-click-${text.replace(/\s+/g, '-').toLowerCase()}.png` });
                     
-                    // Click the button without waiting for navigation
-                    await Promise.all([
-                        btn.click(),
-                        // Wait for either navigation or a timeout
-                        new Promise(resolve => setTimeout(resolve, 5000)) // Wait 5 seconds
-                    ]);
+                    // Scroll the button into view and click
+                    await btn.scrollIntoViewIfNeeded();
+                    await btn.click({ delay: 100 });
                     
-                    clicked = true;
+                    // Wait a bit for any potential navigation or UI updates
+                    await page.waitForTimeout(3000);
                     
                     // Take a screenshot after clicking
                     await page.screenshot({ path: `after-click-${text.replace(/\s+/g, '-').toLowerCase()}.png` });
                     
-                    // Check if we need to handle any popups or dialogs
-                    try {
-                        const dialog = await new Promise(resolve => 
-                            page.once('dialog', resolve)
-                        );
-                        console.log('Dialog detected:', dialog.message());
-                        await dialog.dismiss();
-                    } catch (e) {
-                        // No dialog appeared, continue
-                    }
-                    
-                    break;
+                    return true;
                 } else {
                     console.log(`Button '${btnText}' is not visible`);
                 }
             }
         } catch (e) {
-            console.log('Error processing button:', e.message);
+            console.log(`Error processing button: ${e.message}`);
         }
     }
     
-    if (!clicked) {
-        console.log(`No visible button with text '${text}' found`);
-        // Take a screenshot of the current page for debugging
-        await page.screenshot({ path: `no-${text.replace(/\s+/g, '-').toLowerCase()}-button.png` });
-    }
-    
-    return clicked;
+    // If we get here, no matching button was found
+    console.log(`No visible button with text '${text}' found`);
+    await page.screenshot({ path: `no-${text.replace(/\s+/g, '-').toLowerCase()}-button.png` });
+    return false;
 }
 
 async function scrapeBookmarks() {
     let browser;
     try {
+        // Check if required environment variables are set
+        if (!process.env.X_USERNAME || !process.env.X_PASSWORD) {
+            console.error('Error: X_USERNAME and X_PASSWORD environment variables must be set');
+            process.exit(1);
+        }
+
+        // Configure browser launch options
         const launchOptions = {
             headless: true,
             args: [
@@ -81,47 +91,92 @@ async function scrapeBookmarks() {
                 '--no-first-run',
                 '--no-zygote',
                 '--single-process',
-                '--disable-gpu'
-            ],
-            defaultViewport: {
-                width: 1920,
-                height: 1080
-            }
+                '--disable-gpu',
+                '--window-size=1920,1080',
+                '--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+            ]
         };
 
+        // Use browserless if token is provided
         if (process.env.BROWSERLESS_TOKEN) {
-            browser = await puppeteer.connect({
-                browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BROWSERLESS_TOKEN}`,
-                ...launchOptions
-            });
-        } else {
-            browser = await puppeteer.launch(launchOptions);
+            console.log('Connecting to browserless.io...');
+            launchOptions.browserWSEndpoint = `wss://chrome.browserless.io?token=${process.env.BROWSERLESS_TOKEN}`;
         }
 
+        browser = await puppeteer.launch(launchOptions);
         const page = await browser.newPage();
+
+        // Set a reasonable default navigation timeout
+        page.setDefaultNavigationTimeout(90000); // Increased to 90 seconds
+        page.setDefaultTimeout(45000); // Increased to 45 seconds
+
+        // Enable request interception to block unnecessary resources
+        await page.setRequestInterception(true);
+        page.on('request', (request) => {
+            const resourceType = request.resourceType();
+            // Block images, styles, fonts, and media to speed up loading
+            if (['image', 'stylesheet', 'font', 'media'].includes(resourceType)) {
+                request.abort();
+            } else {
+                request.continue();
+            }
+        });
+
+        // Navigate to X.com login page
+        console.log('Navigating to X.com...');
+        await page.goto('https://x.com/login', { 
+            waitUntil: 'domcontentloaded',
+            timeout: 120000 // 2 minutes
+        });
+
+        // Take a screenshot of the initial page
+        await page.screenshot({ path: 'initial-page.png' });
         
-        // Set a longer default navigation timeout (60 seconds)
-        page.setDefaultNavigationTimeout(60000);
-        page.setDefaultTimeout(30000);
-        
-        console.log('Navigating to X.com login page...');
-        await page.goto('https://x.com/login', { waitUntil: 'networkidle2', timeout: 60000 });
-        
-        console.log('Filling in username...');
-        await page.waitForSelector('input[name="text"]', { visible: true, timeout: 10000 });
-        await page.type('input[name="text"]', process.env.X_USERNAME, { delay: 100 });
-        
-        console.log('Clicking Next button...');
-        await clickButtonByText(page, 'Next');
-        
-        // Wait for password field and fill it in
-        console.log('Waiting for password field...');
-        await page.waitForSelector('input[name="password"]', { visible: true, timeout: 10000 });
-        await page.type('input[name="password"]', process.env.X_PASSWORD, { delay: 100 });
-        
-        console.log('Clicking Log in button...');
-        await clickButtonByText(page, 'Log in');
-        
+        // Wait for and click the "Sign in with Google" button
+        console.log('Looking for Google Sign In button...');
+        try {
+            await page.waitForSelector('div[role="button"]:has-text("Sign in with Google")', { 
+                timeout: 30000,
+                visible: true
+            });
+            
+            console.log('Clicking Google Sign In button...');
+            await page.click('div[role="button"]:has-text("Sign in with Google")');
+            
+            // Wait for Google login page to load
+            console.log('Waiting for Google login page...');
+            await page.waitForNavigation({ waitUntil: 'networkidle0', timeout: 60000 });
+            
+            // Handle Google login
+            console.log('Filling Google login form...');
+            
+            // Wait for email input
+            await page.waitForSelector('input[type="email"]', { visible: true, timeout: 30000 });
+            await page.type('input[type="email"]', process.env.X_USERNAME);
+            
+            // Click Next
+            await page.click('#identifierNext');
+            
+            // Wait for password input
+            await page.waitForSelector('input[type="password"]', { visible: true, timeout: 30000 });
+            await page.type('input[type="password"]', process.env.X_PASSWORD);
+            
+            // Click Sign in
+            await page.click('#passwordNext');
+            
+            // Wait for navigation back to X.com
+            console.log('Waiting for X.com to load after Google login...');
+            await page.waitForNavigation({ waitUntil: 'networkidle0', timeout: 120000 });
+            
+            // Take a screenshot after login
+            await page.screenshot({ path: 'after-login.png' });
+            
+        } catch (error) {
+            console.error('Error during Google login flow:', error);
+            await page.screenshot({ path: 'login-error.png' });
+            throw error;
+        }
+
         // Wait for login to complete by checking for the home timeline or bookmarks link
         console.log('Waiting for login to complete...');
         try {
