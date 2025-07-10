@@ -25,27 +25,27 @@ async function scrapeBookmarks() {
         await page.type('input[name="text"]', process.env.X_USERNAME);
         
         // Click next button
-        await Promise.all([
-            page.waitForNavigation({ waitUntil: 'networkidle0' }),
-            page.click('div[data-testid="flowActions"] button[type="submit"]')
-        ]);
+        await page.waitForSelector('button:has-text("Next")', { timeout: 10000 });
+        await page.click('button:has-text("Next")');
+        await page.waitForNavigation({ waitUntil: 'networkidle0' });
         
         // Wait for password field
         await page.waitForSelector('input[name="password"]', { timeout: 10000 });
         await page.type('input[name="password"]', process.env.X_PASSWORD);
         
         // Submit password
-        await Promise.all([
-            page.waitForNavigation({ waitUntil: 'networkidle0' }),
-            page.click('div[data-testid="flowActions"] button[type="submit"]')
-        ]);
+        await page.waitForSelector('button:has-text("Log in")', { timeout: 10000 });
+        await page.click('button:has-text("Log in")');
+        await page.waitForNavigation({ waitUntil: 'networkidle0' });
         
         // Check for verification step
         try {
             await page.waitForSelector('input[name="text"]', { timeout: 5000 });
             console.log('Verification step detected');
             await page.type('input[name="text"]', process.env.X_USERNAME);
-            await page.click('div[data-testid="flowActions"] button[type="submit"]');
+            await page.waitForSelector('button:has-text("Next")', { timeout: 10000 });
+            await page.click('button:has-text("Next")');
+            await page.waitForNavigation({ waitUntil: 'networkidle0' });
         } catch (error) {
             console.log('No verification step required');
         }
