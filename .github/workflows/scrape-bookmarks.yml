@@ -1,0 +1,30 @@
+name: Daily X.com Bookmark Scraper
+
+on:
+  schedule:
+    - cron: '0 4 * * *'  # 9 AM UTC daily
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run scraper
+      env:
+        X_USERNAME: ${{ secrets.X_USERNAME }}
+        X_PASSWORD: ${{ secrets.X_PASSWORD }}
+        N8N_WEBHOOK_URL: ${{ secrets.N8N_WEBHOOK_URL }}
+        BROWSERLESS_TOKEN: ${{ secrets.BROWSERLESS_TOKEN }}
+      run: node github-actions-scraper.js

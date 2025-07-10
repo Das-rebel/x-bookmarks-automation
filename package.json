@@ -1,0 +1,13 @@
+{
+  "name": "x-bookmarks-automation",
+  "version": "1.0.0",
+  "description": "Automated X.com bookmark scraper using GitHub Actions",
+  "main": "github-actions-scraper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "puppeteer": "^21.7.0",
+    "axios": "^1.6.5"
+  }
+}
