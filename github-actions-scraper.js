@@ -21,24 +21,27 @@ async function scrapeBookmarks() {
         await page.goto('https://x.com/login');
         
         // Wait for and fill in login form
-        await page.waitForSelector('input[autocomplete="username"]');
+        await page.waitForSelector('input[autocomplete="username"]', { timeout: 10000 });
         await page.type('input[autocomplete="username"]', process.env.X_USERNAME);
         
         // Click next button
         await Promise.all([
-            page.waitForNavigation(),
-            page.click('div[data-testid="cellInnerDiv"] button')
+            page.waitForNavigation({ waitUntil: 'networkidle0' }),
+            page.click('button[type="submit"]')
         ]);
         
         // Wait for password field
-        await page.waitForSelector('input[autocomplete="current-password"]');
+        await page.waitForSelector('input[autocomplete="current-password"]', { timeout: 10000 });
         await page.type('input[autocomplete="current-password"]', process.env.X_PASSWORD);
         
         // Submit password
         await Promise.all([
-            page.waitForNavigation(),
-            page.click('div[data-testid="cellInnerDiv"] button')
+            page.waitForNavigation({ waitUntil: 'networkidle0' }),
+            page.click('button[type="submit"]')
         ]);
+        
+        // Wait for login to complete
+        await page.waitForSelector('[data-testid="AppTabBar"]', { timeout: 10000 });
 
         // Wait for bookmarks page to load
         await page.waitForTimeout(5000);
