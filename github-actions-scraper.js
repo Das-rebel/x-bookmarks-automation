@@ -1,4 +1,4 @@
-console.log('Script started - Version 1.5.8');
+console.log('Script started - Version 1.5.9');
 console.log('Node.js version:', process.version);
 console.log('Platform:', process.platform, process.arch);
 
@@ -257,25 +257,46 @@ async function scrapeBookmarks() {
                 if (!clicked) throw new Error('Log in button not found');
             });
             
-            // Wait for navigation after login with multiple conditions
+            // Wait for login to complete with more flexible conditions
             console.log('Waiting for login to complete...');
             try {
+                // First, check if we're already on the home page
+                const currentUrl = page.url();
+                if (currentUrl.includes('x.com/home') || currentUrl.includes('twitter.com/home')) {
+                    console.log('Already on home page, login successful');
+                    return; // Success!
+                }
+                
                 // Wait for either navigation or specific elements that indicate login success/failure
                 await Promise.race([
-                    // Wait for navigation
+                    // Wait for navigation to complete
                     page.waitForNavigation({ 
                         waitUntil: ['domcontentloaded', 'networkidle0'],
                         timeout: 30000 
                     }),
-                    // Or wait for home timeline or error message
-                    page.waitForSelector('[data-testid="primaryColumn"], [data-testid="error"], [href="/home"]', { 
-                        visible: true, 
-                        timeout: 30000 
-                    })
+                    // Or wait for home timeline, profile, or error message
+                    page.waitForFunction(
+                        () => {
+                            const url = window.location.href;
+                            return url.includes('/home') || 
+                                   document.querySelector('[data-testid="primaryColumn"], [href="/home"], [data-testid="error"]');
+                        },
+                        { timeout: 30000 }
+                    )
                 ]);
                 
                 // Take a screenshot after navigation
                 await page.screenshot({ path: 'after-navigation.png' });
+                
+                // Check current URL first
+                const finalUrl = page.url();
+                console.log('Current URL after login attempt:', finalUrl);
+                
+                // If we're on the home page, consider it a success
+                if (finalUrl.includes('x.com/home') || finalUrl.includes('twitter.com/home')) {
+                    console.log('Successfully navigated to home page');
+                    return; // Success!
+                }
                 
                 // Check for login errors
                 const loginError = await page.evaluate(() => {
@@ -287,21 +308,54 @@ async function scrapeBookmarks() {
                     throw new Error(`Login error: ${loginError}`);
                 }
                 
-                // Verify we're logged in by checking for home timeline or profile
+                // If we got here, we're not sure what page we're on
+                console.log('Login status unknown, checking for logged-in elements...');
+                await page.screenshot({ path: 'unknown-page-state.png' });
+                
+                // Verify we're logged in by checking for common logged-in elements
                 const isLoggedIn = await page.evaluate(() => {
-                    return !!document.querySelector('[data-testid="primaryColumn"], [href="/home"]');
+                    return !!document.querySelector(
+                        '[data-testid="primaryColumn"], ' +
+                        '[href="/home"], ' +
+                        '[data-testid="AppTabBar_Home_Link"], ' +
+                        '[aria-label="Home timeline"]'
+                    );
                 });
                 
-                if (!isLoggedIn) {
-                    throw new Error('Login verification failed - not on expected page after login');
+                if (isLoggedIn) {
+                    console.log('Login verified by presence of logged-in elements');
+                    return; // Success!
                 }
                 
-                console.log('Login successful');
+                // If we still can't verify, log some debug info
+                const pageContent = await page.content();
+                console.log('Page content (first 500 chars):', pageContent.substring(0, 500));
+                console.log('All cookies:', await page.cookies());
+                
+                throw new Error('Login verification failed - unknown page state');
                 
             } catch (error) {
-                console.error('Navigation error:', error);
+                // If we get a timeout but we're on the home page, it's still a success
+                const currentUrl = page.url();
+                if (currentUrl.includes('x.com/home') || currentUrl.includes('twitter.com/home')) {
+                    console.log('Login successful (detected home page after timeout)');
+                    return;
+                }
+                
+                console.error('Login error:', error);
                 await page.screenshot({ path: 'login-error.png' });
-                throw error;
+                
+                // Try to get more debug info
+                try {
+                    const pageContent = await page.content();
+                    console.log('Current URL:', currentUrl);
+                    console.log('Page title:', await page.title());
+                    console.log('Page content (first 500 chars):', pageContent.substring(0, 500));
+                } catch (e) {
+                    console.error('Could not get page info:', e);
+                }
+                
+                throw new Error(`Failed to log in: ${error.message}`);
             }
             
             // Take a screenshot after login

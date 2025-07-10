@@ -46,10 +46,10 @@ jobs:
             head -n 20 github-actions-scraper.js
             
             # Check for specific version string
-            if grep -q "Script started - Version 1.5.8" github-actions-scraper.js; then
-                echo "✅ Correct script version (1.5.8) found"
+            if grep -q "Script started - Version 1.5.9" github-actions-scraper.js; then
+                echo "✅ Correct script version (1.5.9) found"
             else
-                echo "❌ Incorrect script version found. Expected 1.5.8"
+                echo "❌ Incorrect script version found. Expected 1.5.9"
                 grep -A 2 -B 2 "Script started - Version" github-actions-scraper.js || echo "Version string not found"
                 exit 1
             fi
