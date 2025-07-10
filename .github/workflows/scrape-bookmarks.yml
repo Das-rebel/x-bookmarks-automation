@@ -62,7 +62,7 @@ jobs:
     
     - name: Upload bookmarks
       if: always()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: bookmarks
         path: bookmarks.json
