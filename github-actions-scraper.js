@@ -1,4 +1,4 @@
-console.log('Script started - Version 1.5.0');
+console.log('Script started - Version 1.5.1');
 console.log('Node.js version:', process.version);
 console.log('Platform:', process.platform, process.arch);
 
@@ -123,7 +123,7 @@ async function scrapeBookmarks() {
         });
 
         // Navigate to X.com login page
-        console.log('Navigating to X.com...');
+        console.log('Navigating to X.com login page...');
         await page.goto('https://x.com/login', { 
             waitUntil: 'domcontentloaded',
             timeout: 120000 // 2 minutes
@@ -132,47 +132,49 @@ async function scrapeBookmarks() {
         // Take a screenshot of the initial page
         await page.screenshot({ path: 'initial-page.png' });
         
-        // Wait for and click the "Sign in with Google" button
-        console.log('Looking for Google Sign In button...');
         try {
-            await page.waitForSelector('div[role="button"]:has-text("Sign in with Google")', { 
-                timeout: 30000,
-                visible: true
+            // Wait for the username input field
+            console.log('Waiting for username field...');
+            await page.waitForSelector('input[autocomplete="username"]', { 
+                visible: true,
+                timeout: 30000
             });
             
-            console.log('Clicking Google Sign In button...');
-            await page.click('div[role="button"]:has-text("Sign in with Google")');
+            // Type the username
+            console.log('Typing username...');
+            await page.type('input[autocomplete="username"]', process.env.X_USERNAME, { delay: 100 });
             
-            // Wait for Google login page to load
-            console.log('Waiting for Google login page...');
-            await page.waitForNavigation({ waitUntil: 'networkidle0', timeout: 60000 });
+            // Click the Next button
+            console.log('Clicking Next...');
+            await clickButtonByText(page, 'Next');
             
-            // Handle Google login
-            console.log('Filling Google login form...');
+            // Wait for the password field
+            console.log('Waiting for password field...');
+            await page.waitForSelector('input[type="password"]', { 
+                visible: true,
+                timeout: 30000
+            });
             
-            // Wait for email input
-            await page.waitForSelector('input[type="email"]', { visible: true, timeout: 30000 });
-            await page.type('input[type="email"]', process.env.X_USERNAME);
+            // Type the password
+            console.log('Typing password...');
+            await page.type('input[type="password"]', process.env.X_PASSWORD, { delay: 100 });
             
-            // Click Next
-            await page.click('#identifierNext');
+            // Click the Log in button
+            console.log('Clicking Log in...');
+            await clickButtonByText(page, 'Log in');
             
-            // Wait for password input
-            await page.waitForSelector('input[type="password"]', { visible: true, timeout: 30000 });
-            await page.type('input[type="password"]', process.env.X_PASSWORD);
-            
-            // Click Sign in
-            await page.click('#passwordNext');
-            
-            // Wait for navigation back to X.com
-            console.log('Waiting for X.com to load after Google login...');
-            await page.waitForNavigation({ waitUntil: 'networkidle0', timeout: 120000 });
+            // Wait for navigation after login
+            console.log('Waiting for login to complete...');
+            await page.waitForNavigation({ 
+                waitUntil: 'networkidle0', 
+                timeout: 120000 
+            });
             
             // Take a screenshot after login
             await page.screenshot({ path: 'after-login.png' });
             
         } catch (error) {
-            console.error('Error during Google login flow:', error);
+            console.error('Error during login flow:', error);
             await page.screenshot({ path: 'login-error.png' });
             throw error;
         }
