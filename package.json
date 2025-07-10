@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "puppeteer": "^22.8.2",
-    "axios": "^1.6.5"
+    "axios": "^1.6.5",
+    "fs": "^0.0.1-security"
   }
 }

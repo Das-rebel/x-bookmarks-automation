@@ -60,12 +60,16 @@ async function scrapeBookmarks() {
             }));
         });
 
-        // Send to n8n webhook
-        await axios.post(process.env.N8N_WEBHOOK_URL, {
+        // Save bookmarks to a local file
+        const fs = require('fs');
+        const data = {
             bookmarks: bookmarks,
             count: bookmarks.length,
             timestamp: new Date().toISOString()
-        });
+        };
+        
+        fs.writeFileSync('bookmarks.json', JSON.stringify(data, null, 2));
+        console.log(`Bookmarks saved to bookmarks.json`);
 
         console.log(`Successfully scraped ${bookmarks.length} bookmarks`);
         
