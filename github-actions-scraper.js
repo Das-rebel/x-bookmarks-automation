@@ -1,4 +1,4 @@
-console.log('Script started - Version 1.5.6');
+console.log('Script started - Version 1.5.7');
 console.log('Node.js version:', process.version);
 console.log('Platform:', process.platform, process.arch);
 
@@ -164,12 +164,49 @@ async function scrapeBookmarks() {
                 if (!clicked) throw new Error('Next button not found');
             });
             
-            // Wait for the password field to appear after clicking Next
-            console.log('Waiting for password field...');
-            await page.waitForSelector('input[name="password"]', { 
-                visible: true,
-                timeout: 30000
-            });
+            // After clicking Next, check if we're on verification or password screen
+            console.log('Checking for verification or password screen...');
+            
+            // Wait for either the verification input or password field to appear
+            const verificationOrPassword = await Promise.race([
+                page.waitForSelector('input[name="text"][data-testid="ocfEnterTextTextInput"]', { visible: true, timeout: 10000 })
+                    .then(() => 'verification'),
+                page.waitForSelector('input[name="password"]', { visible: true, timeout: 10000 })
+                    .then(() => 'password')
+            ]).catch(() => 'password'); // Default to password screen if neither is found
+            
+            if (verificationOrPassword === 'verification') {
+                console.log('Verification screen detected. Entering email...');
+                // Type the verification email
+                const verificationInput = await page.$('input[name="text"][data-testid="ocfEnterTextTextInput"]');
+                await verificationInput.type("sdas22@gmail.com", { delay: 50 });
+                
+                // Click the Next button
+                console.log('Clicking Next after verification...');
+                await page.$$eval('button, [role="button"]', (buttons, text) => {
+                    const button = Array.from(buttons).find(btn => 
+                        btn.textContent.includes(text) && 
+                        !btn.disabled &&
+                        btn.offsetParent !== null
+                    );
+                    if (button) {
+                        button.click();
+                        return true;
+                    }
+                    return false;
+                }, 'Next').then(clicked => {
+                    if (!clicked) throw new Error('Next button not found after verification');
+                });
+                
+                // Wait for the password field
+                console.log('Waiting for password field...');
+                await page.waitForSelector('input[name="password"]', { 
+                    visible: true,
+                    timeout: 30000
+                });
+            } else {
+                console.log('Password screen detected, proceeding with password entry...');
+            }
             
             // Type the password
             console.log('Typing password...');
