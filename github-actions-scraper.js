@@ -1,4 +1,4 @@
-console.log('Script started - Version 1.5.1');
+console.log('Script started - Version 1.5.2');
 console.log('Node.js version:', process.version);
 console.log('Platform:', process.platform, process.arch);
 
@@ -135,14 +135,17 @@ async function scrapeBookmarks() {
         try {
             // Wait for the username input field
             console.log('Waiting for username field...');
-            await page.waitForSelector('input[autocomplete="username"]', { 
+            await page.waitForSelector('input[data-testid="ocfEnterTextTextInput"]', { 
                 visible: true,
                 timeout: 30000
             });
             
             // Type the username
             console.log('Typing username...');
-            await page.type('input[autocomplete="username"]', process.env.X_USERNAME, { delay: 100 });
+            const usernameInput = await page.$('input[data-testid="ocfEnterTextTextInput"]');
+            await usernameInput.click({ clickCount: 3 }); // Select any existing text
+            await usernameInput.press('Backspace'); // Clear the field
+            await usernameInput.type(process.env.X_USERNAME, { delay: 50 });
             
             // Click the Next button
             console.log('Clicking Next...');
