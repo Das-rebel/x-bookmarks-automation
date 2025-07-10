@@ -21,27 +21,46 @@ async function scrapeBookmarks() {
         await page.goto('https://x.com/login');
         
         // Wait for and fill in login form
-        await page.waitForSelector('input[autocomplete="username"]', { timeout: 10000 });
-        await page.type('input[autocomplete="username"]', process.env.X_USERNAME);
+        await page.waitForSelector('input[name="text"]', { timeout: 10000 });
+        await page.type('input[name="text"]', process.env.X_USERNAME);
         
         // Click next button
         await Promise.all([
             page.waitForNavigation({ waitUntil: 'networkidle0' }),
-            page.click('button[type="submit"]')
+            page.click('div[data-testid="flowActions"] button[type="submit"]')
         ]);
         
         // Wait for password field
-        await page.waitForSelector('input[autocomplete="current-password"]', { timeout: 10000 });
-        await page.type('input[autocomplete="current-password"]', process.env.X_PASSWORD);
+        await page.waitForSelector('input[name="password"]', { timeout: 10000 });
+        await page.type('input[name="password"]', process.env.X_PASSWORD);
         
         // Submit password
         await Promise.all([
             page.waitForNavigation({ waitUntil: 'networkidle0' }),
-            page.click('button[type="submit"]')
+            page.click('div[data-testid="flowActions"] button[type="submit"]')
         ]);
+        
+        // Check for verification step
+        try {
+            await page.waitForSelector('input[name="text"]', { timeout: 5000 });
+            console.log('Verification step detected');
+            await page.type('input[name="text"]', process.env.X_USERNAME);
+            await page.click('div[data-testid="flowActions"] button[type="submit"]');
+        } catch (error) {
+            console.log('No verification step required');
+        }
         
         // Wait for login to complete
         await page.waitForSelector('[data-testid="AppTabBar"]', { timeout: 10000 });
+        
+        // Verify successful login
+        try {
+            await page.waitForSelector('[data-testid="sidebarNavigationItem-Bookmarks"]', { timeout: 5000 });
+            console.log('Successfully logged in');
+        } catch (error) {
+            console.error('Login verification failed');
+            throw error;
+        }
 
         // Wait for bookmarks page to load
         await page.waitForTimeout(5000);
