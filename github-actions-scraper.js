@@ -1,4 +1,4 @@
-console.log('Script started - Version 1.5.3');
+console.log('Script started - Version 1.5.4');
 console.log('Node.js version:', process.version);
 console.log('Platform:', process.platform, process.arch);
 
@@ -149,12 +149,20 @@ async function scrapeBookmarks() {
             
             // Click the Next button
             console.log('Clicking Next...');
-            const nextButton = await page.$x('//span[contains(text(), "Next")]/ancestor::button');
-            if (nextButton.length > 0) {
-                await nextButton[0].click();
-            } else {
-                throw new Error('Next button not found');
-            }
+            await page.$$eval('button, [role="button"]', (buttons, text) => {
+                const button = Array.from(buttons).find(btn => 
+                    btn.textContent.includes(text) && 
+                    !btn.disabled &&
+                    btn.offsetParent !== null
+                );
+                if (button) {
+                    button.click();
+                    return true;
+                }
+                return false;
+            }, 'Next').then(clicked => {
+                if (!clicked) throw new Error('Next button not found');
+            });
             
             // Wait for the password field to appear after clicking Next
             console.log('Waiting for password field...');
@@ -170,12 +178,20 @@ async function scrapeBookmarks() {
             
             // Click the Log in button
             console.log('Clicking Log in...');
-            const loginButton = await page.$x('//span[contains(text(), "Log in")]/ancestor::button');
-            if (loginButton.length > 0) {
-                await loginButton[0].click();
-            } else {
-                throw new Error('Log in button not found');
-            }
+            await page.$$eval('button, [role="button"]', (buttons, text) => {
+                const button = Array.from(buttons).find(btn => 
+                    btn.textContent.includes(text) && 
+                    !btn.disabled &&
+                    btn.offsetParent !== null
+                );
+                if (button) {
+                    button.click();
+                    return true;
+                }
+                return false;
+            }, 'Log in').then(clicked => {
+                if (!clicked) throw new Error('Log in button not found');
+            });
             
             // Wait for navigation after login
             console.log('Waiting for login to complete...');
