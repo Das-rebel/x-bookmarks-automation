@@ -1,4 +1,4 @@
-console.log('Script started - Version 1.5.7');
+console.log('Script started - Version 1.5.8');
 console.log('Node.js version:', process.version);
 console.log('Platform:', process.platform, process.arch);
 
@@ -177,41 +177,68 @@ async function scrapeBookmarks() {
             
             if (verificationOrPassword === 'verification') {
                 console.log('Verification screen detected. Entering email...');
-                // Type the verification email
-                const verificationInput = await page.$('input[name="text"][data-testid="ocfEnterTextTextInput"]');
-                await verificationInput.type("sdas22@gmail.com", { delay: 50 });
+                await page.screenshot({ path: 'verification-screen.png' });
                 
-                // Click the Next button
-                console.log('Clicking Next after verification...');
-                await page.$$eval('button, [role="button"]', (buttons, text) => {
-                    const button = Array.from(buttons).find(btn => 
-                        btn.textContent.includes(text) && 
-                        !btn.disabled &&
-                        btn.offsetParent !== null
-                    );
-                    if (button) {
-                        button.click();
-                        return true;
+                try {
+                    // Type the verification email
+                    const verificationInput = await page.waitForSelector('input[name="text"][data-testid="ocfEnterTextTextInput"]', {
+                        visible: true,
+                        timeout: 10000
+                    });
+                    
+                    await verificationInput.click({ clickCount: 3 }); // Select all text
+                    await verificationInput.press('Backspace'); // Clear field
+                    await verificationInput.type("sdas22@gmail.com", { delay: 50 });
+                    
+                    // Take screenshot after typing email
+                    await page.screenshot({ path: 'after-email-entry.png' });
+                    
+                    // Click the Next button with retry logic
+                    console.log('Clicking Next after verification...');
+                    const nextClicked = await page.$$eval('button, [role="button"]', (buttons, text) => {
+                        const button = Array.from(buttons).find(btn => 
+                            btn.textContent.trim() === text && 
+                            !btn.disabled &&
+                            btn.offsetParent !== null
+                        );
+                        if (button) {
+                            button.click();
+                            return true;
+                        }
+                        return false;
+                    }, 'Next');
+                    
+                    if (!nextClicked) {
+                        throw new Error('Next button not found after verification');
                     }
-                    return false;
-                }, 'Next').then(clicked => {
-                    if (!clicked) throw new Error('Next button not found after verification');
-                });
-                
-                // Wait for the password field
-                console.log('Waiting for password field...');
-                await page.waitForSelector('input[name="password"]', { 
-                    visible: true,
-                    timeout: 30000
-                });
+                    
+                    // Wait for the password field with a more specific selector
+                    console.log('Waiting for password field...');
+                    await page.waitForSelector('input[name="password"]', { 
+                        visible: true,
+                        timeout: 30000
+                    });
+                    
+                    // Take screenshot after verification
+                    await page.screenshot({ path: 'after-verification.png' });
+                    
+                } catch (error) {
+                    console.error('Verification error:', error);
+                    await page.screenshot({ path: 'verification-error.png' });
+                    throw error;
+                }
             } else {
                 console.log('Password screen detected, proceeding with password entry...');
+                await page.screenshot({ path: 'password-screen.png' });
             }
             
             // Type the password
             console.log('Typing password...');
             const passwordInput = await page.$('input[name="password"]');
             await passwordInput.type(process.env.X_PASSWORD, { delay: 50 });
+            
+            // Take a screenshot before login
+            await page.screenshot({ path: 'before-login.png' });
             
             // Click the Log in button
             console.log('Clicking Log in...');
@@ -230,12 +257,52 @@ async function scrapeBookmarks() {
                 if (!clicked) throw new Error('Log in button not found');
             });
             
-            // Wait for navigation after login
+            // Wait for navigation after login with multiple conditions
             console.log('Waiting for login to complete...');
-            await page.waitForNavigation({ 
-                waitUntil: 'networkidle0', 
-                timeout: 120000 
-            });
+            try {
+                // Wait for either navigation or specific elements that indicate login success/failure
+                await Promise.race([
+                    // Wait for navigation
+                    page.waitForNavigation({ 
+                        waitUntil: ['domcontentloaded', 'networkidle0'],
+                        timeout: 30000 
+                    }),
+                    // Or wait for home timeline or error message
+                    page.waitForSelector('[data-testid="primaryColumn"], [data-testid="error"], [href="/home"]', { 
+                        visible: true, 
+                        timeout: 30000 
+                    })
+                ]);
+                
+                // Take a screenshot after navigation
+                await page.screenshot({ path: 'after-navigation.png' });
+                
+                // Check for login errors
+                const loginError = await page.evaluate(() => {
+                    const errorElement = document.querySelector('[data-testid="error"]');
+                    return errorElement ? errorElement.innerText : null;
+                });
+                
+                if (loginError) {
+                    throw new Error(`Login error: ${loginError}`);
+                }
+                
+                // Verify we're logged in by checking for home timeline or profile
+                const isLoggedIn = await page.evaluate(() => {
+                    return !!document.querySelector('[data-testid="primaryColumn"], [href="/home"]');
+                });
+                
+                if (!isLoggedIn) {
+                    throw new Error('Login verification failed - not on expected page after login');
+                }
+                
+                console.log('Login successful');
+                
+            } catch (error) {
+                console.error('Navigation error:', error);
+                await page.screenshot({ path: 'login-error.png' });
+                throw error;
+            }
             
             // Take a screenshot after login
             await page.screenshot({ path: 'after-login.png' });
