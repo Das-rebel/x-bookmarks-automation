@@ -1,4 +1,4 @@
-console.log('Script started - Version 1.5.2');
+console.log('Script started - Version 1.5.3');
 console.log('Node.js version:', process.version);
 console.log('Platform:', process.platform, process.arch);
 
@@ -133,38 +133,49 @@ async function scrapeBookmarks() {
         await page.screenshot({ path: 'initial-page.png' });
         
         try {
-            // Wait for the username input field
+            // Wait for the username input field to be visible and ready
             console.log('Waiting for username field...');
-            await page.waitForSelector('input[data-testid="ocfEnterTextTextInput"]', { 
+            await page.waitForSelector('input[name="text"]', { 
                 visible: true,
                 timeout: 30000
             });
             
             // Type the username
             console.log('Typing username...');
-            const usernameInput = await page.$('input[data-testid="ocfEnterTextTextInput"]');
+            const usernameInput = await page.$('input[name="text"]');
             await usernameInput.click({ clickCount: 3 }); // Select any existing text
             await usernameInput.press('Backspace'); // Clear the field
             await usernameInput.type(process.env.X_USERNAME, { delay: 50 });
             
             // Click the Next button
             console.log('Clicking Next...');
-            await clickButtonByText(page, 'Next');
+            const nextButton = await page.$x('//span[contains(text(), "Next")]/ancestor::button');
+            if (nextButton.length > 0) {
+                await nextButton[0].click();
+            } else {
+                throw new Error('Next button not found');
+            }
             
-            // Wait for the password field
+            // Wait for the password field to appear after clicking Next
             console.log('Waiting for password field...');
-            await page.waitForSelector('input[type="password"]', { 
+            await page.waitForSelector('input[name="password"]', { 
                 visible: true,
                 timeout: 30000
             });
             
             // Type the password
             console.log('Typing password...');
-            await page.type('input[type="password"]', process.env.X_PASSWORD, { delay: 100 });
+            const passwordInput = await page.$('input[name="password"]');
+            await passwordInput.type(process.env.X_PASSWORD, { delay: 50 });
             
             // Click the Log in button
             console.log('Clicking Log in...');
-            await clickButtonByText(page, 'Log in');
+            const loginButton = await page.$x('//span[contains(text(), "Log in")]/ancestor::button');
+            if (loginButton.length > 0) {
+                await loginButton[0].click();
+            } else {
+                throw new Error('Log in button not found');
+            }
             
             // Wait for navigation after login
             console.log('Waiting for login to complete...');
