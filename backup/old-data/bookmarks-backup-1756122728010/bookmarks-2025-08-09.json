@@ -1,0 +1,62 @@
+[
+  {
+    "id": "1954272037976842547",
+    "text": "You can now track your Claude Code token use in the new status line with ccusage Add to your ~/.claude/settings.json: { \"statusLine\": { \"type\": \"command\", \"command\": \"bun x ccusage statusline\" } }",
+    "author": "Ian Nuttall",
+    "authorHandle": "iannuttall·Aug 10",
+    "timestamp": "2025-08-09T20:02:17.000Z",
+    "replyCount": "86",
+    "retweetCount": "92",
+    "likeCount": "1.2K",
+    "hasMedia": false,
+    "url": "https://twitter.com/iannuttall·Aug 10/status/1954272037976842547",
+    "extractedAt": "2025-08-25T11:42:03.287Z",
+    "textLength": 196,
+    "wordCount": 32
+  },
+  {
+    "id": "1954310022374322377",
+    "text": "The Ibiza Final Boss... Doing dumb internet stuff. With Weavy + Minimax-02. TOOLS: + Weavy: Workflow Build + Flux Kontext: Image Gen + Minimax-02: Video gen + Runway Act-2: MoCap + Runway Aleph: Vid edits (More details in thread) #minimax #promptshare",
+    "author": "Rory Flynn",
+    "authorHandle": "Ror_Fly·Aug 10",
+    "timestamp": "2025-08-09T22:33:13.000Z",
+    "replyCount": "20",
+    "retweetCount": "47",
+    "likeCount": "413",
+    "hasMedia": true,
+    "url": "https://twitter.com/Ror_Fly·Aug 10/status/1954310022374322377",
+    "extractedAt": "2025-08-25T11:42:03.300Z",
+    "textLength": 251,
+    "wordCount": 41
+  },
+  {
+    "id": "1953995170212442594",
+    "text": "This is the first time a protagonist has ever said these words. #nukitashi_anime #ぬきたし",
+    "author": "Otaku Spirit",
+    "authorHandle": "OtakuSpirited·Aug 9",
+    "timestamp": "2025-08-09T01:42:06.000Z",
+    "replyCount": "679",
+    "retweetCount": "6.8K",
+    "likeCount": "127K",
+    "hasMedia": true,
+    "url": "https://twitter.com/OtakuSpirited·Aug 9/status/1953995170212442594",
+    "extractedAt": "2025-08-25T11:42:03.307Z",
+    "textLength": 86,
+    "wordCount": 14
+  },
+  {
+    "id": "1954182457286095043",
+    "text": "How to get real value from AI tools (save this)",
+    "author": "Nozz",
+    "authorHandle": "NoahEpstein_·Aug 9",
+    "timestamp": "2025-08-09T14:06:19.000Z",
+    "replyCount": "3",
+    "retweetCount": "3",
+    "likeCount": "45",
+    "hasMedia": false,
+    "url": "https://twitter.com/NoahEpstein_·Aug 9/status/1954182457286095043",
+    "extractedAt": "2025-08-25T11:42:03.313Z",
+    "textLength": 47,
+    "wordCount": 10
+  }
+]

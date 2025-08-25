@@ -1,0 +1,14 @@
+{
+  "status": "init",
+  "executionArgs": {
+    "projectName": "x-bookmarks-automation",
+    "projectPath": "/Users/Subho/CascadeProjects/x-bookmarks-automation",
+    "testIds": [],
+    "additionalInstruction": "",
+    "envs": {}
+  },
+  "scope": "codebase",
+  "type": "backend",
+  "localEndpoint": "http://localhost:3000",
+  "serverPort": 50782
+}

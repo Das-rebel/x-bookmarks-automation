@@ -1,0 +1,62 @@
+[
+  {
+    "id": "1953568045668135283",
+    "text": "At last: mouse selection ! Available now in Crush v0.3.0 in your terminal and OS of choice (yes, even on Windows )",
+    "author": "Charm",
+    "authorHandle": "charmcli·Aug 8",
+    "timestamp": "2025-08-07T21:24:52.000Z",
+    "replyCount": "26",
+    "retweetCount": "11",
+    "likeCount": "289",
+    "hasMedia": true,
+    "url": "https://twitter.com/charmcli·Aug 8/status/1953568045668135283",
+    "extractedAt": "2025-08-25T11:42:06.403Z",
+    "textLength": 114,
+    "wordCount": 22
+  },
+  {
+    "id": "1953568079176225131",
+    "text": "A client of mine had a wild idea today: “Let’s sell milk udders.” naturally, I used Veo 3 and this new AI sourcing tool called Accio to bring it to life here’s how I went from utter nonsense to full production in a few steps:",
+    "author": "Salma",
+    "authorHandle": "Salmaaboukarr·Aug 8",
+    "timestamp": "2025-08-07T21:25:00.000Z",
+    "replyCount": "25",
+    "retweetCount": "36",
+    "likeCount": "398",
+    "hasMedia": true,
+    "url": "https://twitter.com/Salmaaboukarr·Aug 8/status/1953568079176225131",
+    "extractedAt": "2025-08-25T11:42:06.428Z",
+    "textLength": 225,
+    "wordCount": 45
+  },
+  {
+    "id": "1953360224137416966",
+    "text": "Many of you asked how to create these stunning animations. It's actually insanely simple: 1. Draw the illustrations in Figma 2. Animate in AE/Rive 3. Export to lottie if using AE 4. Implement onto the website Hope it helps",
+    "author": "Marcel Kargul",
+    "authorHandle": "marcelkargul·Aug 7",
+    "timestamp": "2025-08-07T07:39:03.000Z",
+    "replyCount": "74",
+    "retweetCount": "271",
+    "likeCount": "5.6K",
+    "hasMedia": true,
+    "url": "https://twitter.com/marcelkargul·Aug 7/status/1953360224137416966",
+    "extractedAt": "2025-08-25T11:42:09.522Z",
+    "textLength": 222,
+    "wordCount": 39
+  },
+  {
+    "id": "1953317346174456281",
+    "text": "A new Wan 2.2 LoRA just dropped: Instagirl v2.0. AI-generated, hyper-realistic Instagram girls... What even is real anymore?",
+    "author": "Miguel | AP",
+    "authorHandle": "angrypenguinPNG·Aug 7",
+    "timestamp": "2025-08-07T04:48:40.000Z",
+    "replyCount": "174",
+    "retweetCount": "296",
+    "likeCount": "3.7K",
+    "hasMedia": false,
+    "url": "https://twitter.com/angrypenguinPNG·Aug 7/status/1953317346174456281",
+    "extractedAt": "2025-08-25T11:42:09.560Z",
+    "textLength": 124,
+    "wordCount": 18
+  }
+]

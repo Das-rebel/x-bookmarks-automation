@@ -1,0 +1,373 @@
+{
+  "totalBookmarks": 2002,
+  "processedBookmarks": 2002,
+  "outputDirectory": "processed-bookmarks-1756163390132",
+  "executionTime": 104181,
+  "sessionId": "1756163390132",
+  "timestamp": "2025-08-25T23:11:34.313Z",
+  "summary": {
+    "totalBookmarks": 2002,
+    "processingTimestamp": "2025-08-25T23:11:34.246Z",
+    "sessionId": "1756163390132",
+    "byContentType": [
+      {
+        "type": "General",
+        "count": 956,
+        "percentage": 48
+      },
+      {
+        "type": "AI/ML",
+        "count": 813,
+        "percentage": 41
+      },
+      {
+        "type": "Programming",
+        "count": 84,
+        "percentage": 4
+      },
+      {
+        "type": "Business",
+        "count": 71,
+        "percentage": 4
+      },
+      {
+        "type": "Science",
+        "count": 38,
+        "percentage": 2
+      },
+      {
+        "type": "Technology",
+        "count": 28,
+        "percentage": 1
+      },
+      {
+        "type": "Finance",
+        "count": 12,
+        "percentage": 1
+      }
+    ],
+    "byPriority": {
+      "high": 0,
+      "medium": 6,
+      "low": 1996
+    },
+    "bySentiment": {
+      "positive": 515,
+      "neutral": 1391,
+      "negative": 96
+    },
+    "byLanguage": {
+      "english": 245,
+      "spanish": 1585,
+      "unknown": 172
+    },
+    "byThreadInfo": {
+      "standalone": 644,
+      "threadParts": 1358,
+      "threadStarts": 533,
+      "byThreadLength": {
+        "2-3 tweets": 986,
+        "4-5 tweets": 300,
+        "6-10 tweets": 72,
+        "10+ tweets": 0
+      },
+      "byThreadComplexity": {
+        "low": 1311,
+        "medium": 619,
+        "high": 72,
+        "very-high": 0
+      }
+    },
+    "byAI": {
+      "byKnowledgeCategory": [
+        {
+          "category": "General",
+          "count": 943
+        },
+        {
+          "category": "Technology",
+          "count": 938
+        },
+        {
+          "category": "Business",
+          "count": 121
+        }
+      ],
+      "byContentValue": {
+        "high": 1029,
+        "medium": 467,
+        "low": 506
+      },
+      "byTargetAudience": [
+        {
+          "audience": "general",
+          "count": 1596
+        },
+        {
+          "audience": "technical",
+          "count": 188
+        },
+        {
+          "audience": "business",
+          "count": 218
+        }
+      ],
+      "actionable": 363,
+      "discussionWorthy": 797,
+      "referenceWorthy": 331,
+      "averageRelevanceScore": 0.66,
+      "averageQualityScore": 0.65,
+      "averageLearningValue": 0.64
+    },
+    "topHashtags": [
+      {
+        "hashtag": "#1",
+        "count": 5
+      },
+      {
+        "hashtag": "#Dalit",
+        "count": 3
+      },
+      {
+        "hashtag": "#ai",
+        "count": 2
+      },
+      {
+        "hashtag": "#srefcode",
+        "count": 2
+      },
+      {
+        "hashtag": "#3",
+        "count": 2
+      },
+      {
+        "hashtag": "#stockmarketindia",
+        "count": 2
+      },
+      {
+        "hashtag": "#stockstowatch",
+        "count": 2
+      },
+      {
+        "hashtag": "#Europe",
+        "count": 2
+      },
+      {
+        "hashtag": "#DakuFlightDeals",
+        "count": 2
+      },
+      {
+        "hashtag": "#Trump",
+        "count": 2
+      }
+    ],
+    "topMentions": [
+      {
+        "mention": "@a16z",
+        "count": 6
+      },
+      {
+        "mention": "@cursor_ai",
+        "count": 5
+      },
+      {
+        "mention": "@huggingface",
+        "count": 4
+      },
+      {
+        "mention": "@LangChainAI",
+        "count": 4
+      },
+      {
+        "mention": "@lovable_dev",
+        "count": 4
+      },
+      {
+        "mention": "@n8n_io",
+        "count": 4
+      },
+      {
+        "mention": "@threejs",
+        "count": 4
+      },
+      {
+        "mention": "@firecrawl_dev",
+        "count": 3
+      },
+      {
+        "mention": "@AnthropicAI",
+        "count": 3
+      },
+      {
+        "mention": "@Hailuo_AI",
+        "count": 3
+      }
+    ],
+    "topEngaged": [
+      {
+        "id": "1960018170774720624",
+        "text": "This is the project that got me into Google. Genetic Algorithms are underrated af....",
+        "engagementScore": 0.5
+      },
+      {
+        "id": "1959973681037226195",
+        "text": "Massive H1-B visa scandal. \n\nWalmart executive was getting rid of American tech works and accepting ...",
+        "engagementScore": 0.5
+      },
+      {
+        "id": "1959647652322357589",
+        "text": "postgres MCP + mermaid/notebooks have completely replaced database clients for my ad-hoc data analys...",
+        "engagementScore": 0.5
+      },
+      {
+        "id": "1959905034717831334",
+        "text": "Bipasha basu's call recording with amar singh...",
+        "engagementScore": 0.5
+      },
+      {
+        "id": "1959617987721486543",
+        "text": "These are extremely good textbooks. \n\nPedagogically unique--very different from most mathematics tex...",
+        "engagementScore": 0.5
+      },
+      {
+        "id": "1959169905573400636",
+        "text": "webgi - realistic rendering for three.js is now free! \nWith a new website for developers.\n\nInstantly...",
+        "engagementScore": 0.5
+      },
+      {
+        "id": "1958982526875181475",
+        "text": "The secret? LLMs already know when they're uncertain - we just weren't listening!\nPrevious methods u...",
+        "engagementScore": 0.5
+      },
+      {
+        "id": "1959083315878928808",
+        "text": "Congrats to Eric and the team at @genspark_ai for launching Genspark AI Developer!\n\nIt's a zero-setu...",
+        "engagementScore": 0.5
+      },
+      {
+        "id": "1959414096589422619",
+        "text": "FAANG software engineer tells how they vibe code at FAANG\n\n---\n\nreddit. com/r/vibecoding/comments/1m...",
+        "engagementScore": 0.5
+      },
+      {
+        "id": "1959376943884706091",
+        "text": "This is why the bars and clubs in New York are empty. This was 10 pm on Friday night:\n\nNot bars and ...",
+        "engagementScore": 0.5
+      }
+    ],
+    "topPriority": [
+      {
+        "id": "1955312558652760266",
+        "text": "If you're a designer vibe coding software with Cursor, Windsurf, or Claude code and you're tired of ...",
+        "priorityScore": 40
+      },
+      {
+        "id": "1953953944985567699",
+        "text": "Ok this is a big upgrade to @TaskmasterAI! They have wired it up to @claudeai code subagents to crea...",
+        "priorityScore": 40
+      },
+      {
+        "id": "1953832799133159534",
+        "text": "Most infra startups stay invisible.\nAt @dodopayments, we will be the default payment infra for the n...",
+        "priorityScore": 40
+      },
+      {
+        "id": "1952048356710039700",
+        "text": "Every tech company can and should train their own deepseek R1, Llama or GPT5, just like every tech c...",
+        "priorityScore": 40
+      },
+      {
+        "id": "1952029877185712393",
+        "text": "Just built a Voice AI Chatbot that lets customers talk to your business and get real answers from yo...",
+        "priorityScore": 40
+      },
+      {
+        "id": "1949543129369006155",
+        "text": "I just spent 3 weeks building this.\n\nOur new multi-agent architecture is live.\n\nWe now support:\n• 10...",
+        "priorityScore": 40
+      },
+      {
+        "id": "1959083315878928808",
+        "text": "Congrats to Eric and the team at @genspark_ai for launching Genspark AI Developer!\n\nIt's a zero-setu...",
+        "priorityScore": 35
+      },
+      {
+        "id": "1958862253958037831",
+        "text": "BREAKING: Canva is now in Claude AI.  \n\nYou can now create and edit your Canva designs directly in C...",
+        "priorityScore": 35
+      },
+      {
+        "id": "1958554823562866940",
+        "text": "BREAKING :  Alibaba released Qoder - a new AI Code Editor which is now available for Free during the...",
+        "priorityScore": 35
+      },
+      {
+        "id": "1957847823585820937",
+        "text": "Big update: we’re building an AI device that looks like jewelry, not another screen or plastic gadge...",
+        "priorityScore": 35
+      }
+    ],
+    "topThreads": [
+      {
+        "id": "1930707591648493730",
+        "text": "1/8 The Illusion of Thinking: Are reasoning models like o1/o3, DeepSeek-R1, and Claude 3.7 Sonnet re...",
+        "threadLength": 7,
+        "threadEngagement": 0.5
+      },
+      {
+        "id": "1939571538375946513",
+        "text": "This developer built DeepCrawler - an AI tool that finds API endpoints on any website in under 60 se...",
+        "threadLength": 6,
+        "threadEngagement": 0.5
+      },
+      {
+        "id": "1931726977670750583",
+        "text": "We're dropping an open source Clay competitor next week \n\nJust upload a CSV with emails and empty co...",
+        "threadLength": 6,
+        "threadEngagement": 0.5
+      },
+      {
+        "id": "1958136090939826354",
+        "text": "Most people think going viral on TikTok is about luck.\n\nThe real growth hackers? They run TikTok far...",
+        "threadLength": 6,
+        "threadEngagement": 0.5
+      },
+      {
+        "id": "1952764709268037653",
+        "text": "2 of my last 3 investments are in solo founders!\n\nWe are looking to do 5 more deals this year. Nothi...",
+        "threadLength": 6,
+        "threadEngagement": 0.5
+      },
+      {
+        "id": "1943658854832599358",
+        "text": "one shotted by kimi k2\n\nguys this is deepseek moment\n\nnon reasoning coding model i repeat this is su...",
+        "threadLength": 6,
+        "threadEngagement": 0.5
+      },
+      {
+        "id": "1943678723930112313",
+        "text": "THIS APP IS CRAZY\n\nSleepway is making $250K/month, and they launched less than a year ago.\n\nThey tur...",
+        "threadLength": 6,
+        "threadEngagement": 0.5
+      },
+      {
+        "id": "1943656145605874124",
+        "text": "model:...",
+        "threadLength": 6,
+        "threadEngagement": 0.5
+      },
+      {
+        "id": "1943656143143801203",
+        "text": "what a time to be alive: a local 4B model (Jan-nano) + Web Search tool is already amazing to get the...",
+        "threadLength": 6,
+        "threadEngagement": 0.5
+      },
+      {
+        "id": "1943674212008571104",
+        "text": "This $153K WhatsApp Sales Agent is replacing entire SDR teams.\n\nIt scrapes leads, researches prospec...",
+        "threadLength": 6,
+        "threadEngagement": 0.5
+      }
+    ]
+  }
+}

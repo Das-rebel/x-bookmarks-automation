@@ -1,0 +1,369 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": "001",
+        "title": "Fix Puppeteer API Compatibility Issues",
+        "description": "Update scraper to use current Puppeteer API patterns and replace deprecated methods",
+        "category": "core-fixes",
+        "priority": "high",
+        "status": "pending",
+        "estimated_hours": 4,
+        "details": [
+          "Replace deprecated waitForTimeout with setTimeout/sleep patterns",
+          "Replace waitForXPath with waitForFunction + evaluate combinations",
+          "Update to latest Puppeteer API patterns and best practices",
+          "Test compatibility with current Puppeteer version"
+        ],
+        "files_affected": [
+          "github-actions-scraper.js",
+          "improved-scraper.js",
+          "scraper-batch.js"
+        ],
+        "acceptance_criteria": [
+          "No deprecated API warnings in console",
+          "Scraper runs without API compatibility errors",
+          "All wait functions work correctly"
+        ]
+      },
+      {
+        "id": "002",
+        "title": "Enhance Navigation Robustness",
+        "description": "Improve scraper's ability to handle various Twitter page states and loading conditions",
+        "category": "core-fixes",
+        "priority": "high",
+        "status": "pending",
+        "estimated_hours": 6,
+        "details": [
+          "Add multiple navigation strategies for different Twitter states",
+          "Implement intelligent loading state detection",
+          "Add screenshot debugging for navigation failures",
+          "Handle login redirects, rate limits, and error pages",
+          "Add timeout handling with graceful fallbacks"
+        ],
+        "files_affected": [
+          "github-actions-scraper.js",
+          "improved-scraper.js"
+        ],
+        "acceptance_criteria": [
+          "Successfully navigates to bookmarks page 95% of attempts",
+          "Properly handles loading states and timeouts",
+          "Takes diagnostic screenshots on failures"
+        ]
+      },
+      {
+        "id": "003",
+        "title": "Update Twitter UI Selectors",
+        "description": "Modernize DOM selectors to work with current Twitter interface",
+        "category": "core-fixes",
+        "priority": "high",
+        "status": "pending",
+        "estimated_hours": 3,
+        "details": [
+          "Audit current Twitter bookmark page structure",
+          "Update selectors for bookmark containers and content",
+          "Add multiple fallback selectors for robustness",
+          "Test extraction with various bookmark types (text, media, threads)"
+        ],
+        "files_affected": [
+          "github-actions-scraper.js",
+          "cron-bookmark-processor.js"
+        ],
+        "acceptance_criteria": [
+          "Extracts bookmarks from current Twitter UI",
+          "Works with text, media, and thread bookmarks",
+          "Fallback selectors work when primary ones fail"
+        ]
+      },
+      {
+        "id": "004",
+        "title": "Implement Smart Retry Framework",
+        "description": "Create intelligent retry mechanisms with exponential backoff and circuit breaker patterns",
+        "category": "reliability",
+        "priority": "medium",
+        "status": "pending",
+        "estimated_hours": 5,
+        "details": [
+          "Build retry framework with exponential backoff",
+          "Implement circuit breaker for persistent failures",
+          "Add different retry strategies (new session, different user agent, etc.)",
+          "Create retry configuration and limits",
+          "Add retry attempt logging and metrics"
+        ],
+        "files_affected": [
+          "retry-framework.js",
+          "cron-bookmark-processor.js"
+        ],
+        "acceptance_criteria": [
+          "Automatically retries failed operations with backoff",
+          "Stops retrying after configured failure threshold",
+          "Logs retry attempts and success/failure rates"
+        ]
+      },
+      {
+        "id": "005",
+        "title": "Build Health Monitoring System",
+        "description": "Create automated monitoring and alerting for pipeline health",
+        "category": "monitoring",
+        "priority": "medium",
+        "status": "pending",
+        "estimated_hours": 4,
+        "details": [
+          "Create health check endpoints and scripts",
+          "Implement success/failure metrics tracking",
+          "Add automated email/notification alerts",
+          "Build monitoring dashboard or status page",
+          "Track key metrics: scraping success rate, processing time, API response times"
+        ],
+        "files_affected": [
+          "health-monitor.js",
+          "alert-system.js",
+          "monitoring-dashboard.html"
+        ],
+        "acceptance_criteria": [
+          "Daily health checks run automatically",
+          "Alerts sent when failures detected",
+          "Metrics tracked and viewable in dashboard"
+        ]
+      },
+      {
+        "id": "006",
+        "title": "Add Backup Scraping Methods",
+        "description": "Implement alternative extraction approaches for when primary scraper fails",
+        "category": "reliability",
+        "priority": "medium",
+        "status": "pending",
+        "estimated_hours": 6,
+        "details": [
+          "Research alternative Twitter bookmark access methods",
+          "Implement backup scraping approach (different browser engine, API calls, etc.)",
+          "Create fallback data source integration",
+          "Add manual data entry interface for emergency use",
+          "Implement graceful degradation when backups are used"
+        ],
+        "files_affected": [
+          "backup-scraper.js",
+          "manual-entry-interface.html",
+          "fallback-data-sources.js"
+        ],
+        "acceptance_criteria": [
+          "Backup method works when primary scraper fails",
+          "Manual entry interface functional for emergency use",
+          "System continues operating with partial functionality"
+        ]
+      },
+      {
+        "id": "007",
+        "title": "Enhance AI Analysis Pipeline",
+        "description": "Improve AI analysis quality and add more analysis providers",
+        "category": "enhancement",
+        "priority": "medium",
+        "status": "pending",
+        "estimated_hours": 4,
+        "details": [
+          "Add support for additional AI providers (Claude, Gemini, etc.)",
+          "Improve analysis prompt engineering for better insights",
+          "Add analysis quality validation and scoring",
+          "Implement provider failover and load balancing",
+          "Add batch processing optimizations"
+        ],
+        "files_affected": [
+          "cron-bookmark-processor.js",
+          "ai-providers.js"
+        ],
+        "acceptance_criteria": [
+          "Multiple AI providers configured and working",
+          "Analysis quality scores improved",
+          "Faster processing through batching and optimization"
+        ]
+      },
+      {
+        "id": "008",
+        "title": "Improve Database Schema and Operations",
+        "description": "Optimize database structure and add performance improvements",
+        "category": "enhancement",
+        "priority": "low",
+        "status": "pending",
+        "estimated_hours": 3,
+        "details": [
+          "Review and optimize Supabase table schema",
+          "Add proper indexing for query performance",
+          "Implement database connection pooling",
+          "Add data archival and cleanup procedures",
+          "Create database backup and recovery procedures"
+        ],
+        "files_affected": [
+          "enhanced-schema-modifications.sql",
+          "database-operations.js"
+        ],
+        "acceptance_criteria": [
+          "Optimized database queries with proper indexing",
+          "Connection pooling implemented",
+          "Backup and archival procedures documented and tested"
+        ]
+      },
+      {
+        "id": "009",
+        "title": "Create Comprehensive Testing Suite",
+        "description": "Build automated test coverage for all critical components",
+        "category": "testing",
+        "priority": "medium",
+        "status": "pending",
+        "estimated_hours": 8,
+        "details": [
+          "Write unit tests for scraper functions",
+          "Create integration tests for end-to-end pipeline",
+          "Add failure simulation and recovery testing",
+          "Implement performance and load testing",
+          "Add continuous integration test automation"
+        ],
+        "files_affected": [
+          "tests/unit/scraper.test.js",
+          "tests/integration/pipeline.test.js",
+          "tests/performance/load.test.js"
+        ],
+        "acceptance_criteria": [
+          "Unit test coverage >80% for critical functions",
+          "Integration tests cover full pipeline flow",
+          "Failure recovery tests pass consistently"
+        ]
+      },
+      {
+        "id": "010",
+        "title": "Implement Advanced Anti-Detection",
+        "description": "Add sophisticated measures to avoid Twitter automation detection",
+        "category": "reliability",
+        "priority": "low",
+        "status": "pending",
+        "estimated_hours": 6,
+        "details": [
+          "Implement browser fingerprint randomization",
+          "Add proxy rotation capabilities",
+          "Create human-like interaction patterns",
+          "Add request timing randomization",
+          "Implement session management and rotation"
+        ],
+        "files_affected": [
+          "anti-detection.js",
+          "proxy-manager.js",
+          "session-manager.js"
+        ],
+        "acceptance_criteria": [
+          "Reduced detection by Twitter anti-automation systems",
+          "Successful operation over extended periods",
+          "Configurable anti-detection strategies"
+        ]
+      },
+      {
+        "id": "011",
+        "title": "Update Documentation and Setup Guides",
+        "description": "Comprehensive documentation update for project setup and maintenance",
+        "category": "documentation",
+        "priority": "medium",
+        "status": "pending",
+        "estimated_hours": 4,
+        "details": [
+          "Update README with current setup instructions",
+          "Create troubleshooting guide for common issues",
+          "Document all environment variables and configuration",
+          "Add architecture diagrams and flow charts",
+          "Create maintenance and monitoring procedures"
+        ],
+        "files_affected": [
+          "README.md",
+          "SETUP_GUIDE.md",
+          "TROUBLESHOOTING.md",
+          "ARCHITECTURE.md"
+        ],
+        "acceptance_criteria": [
+          "New users can set up project following documentation",
+          "Common issues covered in troubleshooting guide",
+          "All configuration options documented"
+        ]
+      },
+      {
+        "id": "012",
+        "title": "Optimize Performance and Resource Usage",
+        "description": "Improve system performance and reduce resource consumption",
+        "category": "enhancement",
+        "priority": "low",
+        "status": "pending",
+        "estimated_hours": 5,
+        "details": [
+          "Optimize memory usage in scraper processes",
+          "Implement parallel processing for batch operations",
+          "Add caching for frequently accessed data",
+          "Optimize database queries and batch operations",
+          "Reduce startup time and resource initialization"
+        ],
+        "files_affected": [
+          "cron-bookmark-processor.js",
+          "batch-processor.js",
+          "cache-manager.js"
+        ],
+        "acceptance_criteria": [
+          "Reduced memory usage by 30%",
+          "Faster processing through parallelization",
+          "Improved startup time and responsiveness"
+        ]
+      },
+      {
+        "id": "013",
+        "title": "Add Configuration Management System",
+        "description": "Create centralized configuration management with environment-specific settings",
+        "category": "enhancement",
+        "priority": "low",
+        "status": "pending",
+        "estimated_hours": 3,
+        "details": [
+          "Create configuration schema and validation",
+          "Add environment-specific config files",
+          "Implement configuration hot-reloading",
+          "Add configuration backup and versioning",
+          "Create configuration management CLI tools"
+        ],
+        "files_affected": [
+          "config/index.js",
+          "config/schemas.js",
+          "config/environments/"
+        ],
+        "acceptance_criteria": [
+          "Centralized configuration management",
+          "Environment-specific configurations working",
+          "Configuration validation prevents errors"
+        ]
+      },
+      {
+        "id": "014",
+        "title": "7-Day Reliability Validation Test",
+        "description": "Run comprehensive 7-day test to validate pipeline reliability and recovery",
+        "category": "testing",
+        "priority": "high",
+        "status": "pending",
+        "estimated_hours": 12,
+        "details": [
+          "Set up automated daily pipeline execution",
+          "Monitor all success/failure metrics for 7 consecutive days",
+          "Test failure recovery mechanisms during test period",
+          "Validate external API access (ChatGPT/artifacts) daily",
+          "Document any issues and verify they auto-resolve"
+        ],
+        "files_affected": [
+          "validation-test-runner.js",
+          "7-day-test-report.md"
+        ],
+        "acceptance_criteria": [
+          "Pipeline runs successfully for 7 consecutive days",
+          "Automatic recovery from at least 2 different failure types",
+          "External APIs consistently accessible",
+          "Zero manual intervention required"
+        ]
+      }
+    ],
+    "metadata": {
+      "created": "2025-07-23T14:15:03.642Z",
+      "updated": "2025-07-23T14:15:03.644Z",
+      "description": "Tasks for master context"
+    }
+  }
+}

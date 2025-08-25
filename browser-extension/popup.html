@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            width: 350px;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .header h1 {
+            color: #1da1f2;
+            margin: 0;
+            font-size: 18px;
+        }
+        
+        .status {
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .status.info {
+            background: #e3f2fd;
+            color: #1976d2;
+            border: 1px solid #bbdefb;
+        }
+        
+        .status.success {
+            background: #e8f5e8;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+        
+        .status.error {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+        }
+        
+        .button {
+            background: #1da1f2;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            width: 100%;
+            margin-bottom: 10px;
+            transition: background 0.2s;
+        }
+        
+        .button:hover {
+            background: #1991db;
+        }
+        
+        .button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .progress {
+            margin: 15px 0;
+            display: none;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #1da1f2;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        .progress-text {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .stats {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 12px;
+        }
+        
+        .stat-value {
+            font-weight: 500;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🐦 Bookmark Extractor</h1>
+    </div>
+    
+    <div id="status" class="status info">
+        Navigate to Twitter bookmarks page to start extraction
+    </div>
+    
+    <button id="extractBtn" class="button" disabled>
+        Extract Bookmarks
+    </button>
+    
+    <button id="stopBtn" class="button" style="display: none;">
+        Stop Extraction
+    </button>
+    
+    <div id="progress" class="progress">
+        <div class="progress-bar">
+            <div id="progressFill" class="progress-fill"></div>
+        </div>
+        <div id="progressText" class="progress-text">0%</div>
+    </div>
+    
+    <div id="stats" class="stats">
+        <div class="stat-row">
+            <span class="stat-label">Extracted:</span>
+            <span id="extractedCount" class="stat-value">0</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Progress:</span>
+            <span id="progressCount" class="stat-value">0%</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Status:</span>
+            <span id="extractionStatus" class="stat-value">Ready</span>
+        </div>
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>

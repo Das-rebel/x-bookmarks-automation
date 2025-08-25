@@ -1,0 +1,345 @@
+{
+  "name": "Personal Bookmark Retriever",
+  "description": "Retrieve and search through your AI-analyzed Twitter bookmarks",
+  "version": "1.0.0",
+  "schema": {
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Personal Bookmark API",
+      "version": "1.0.0",
+      "description": "API to retrieve and search through analyzed Twitter bookmarks"
+    },
+    "servers": [
+      {
+        "url": "https://your-supabase-url.supabase.co",
+        "description": "Supabase API endpoint"
+      }
+    ],
+    "paths": {
+      "/rest/v1/bookmarks": {
+        "get": {
+          "summary": "Get bookmarks with optional filtering",
+          "description": "Retrieve bookmarks with optional filtering by category, tags, or quality score",
+          "parameters": [
+            {
+              "name": "categories",
+              "in": "query",
+              "description": "Filter by categories (e.g., Technology, Business)",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "tags",
+              "in": "query",
+              "description": "Filter by tags (e.g., ai, development)",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "quality_score",
+              "in": "query",
+              "description": "Minimum quality score (0-1)",
+              "schema": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            },
+            {
+              "name": "relevance_score",
+              "in": "query",
+              "description": "Minimum relevance score (0-1)",
+              "schema": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            },
+            {
+              "name": "reference_worthy",
+              "in": "query",
+              "description": "Filter by reference-worthy bookmarks",
+              "schema": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "actionable",
+              "in": "query",
+              "description": "Filter by actionable bookmarks",
+              "schema": {
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "content_type",
+              "in": "query",
+              "description": "Filter by content type (tutorial, news, opinion, etc.)",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "Number of results to return",
+              "schema": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100,
+                "default": 10
+              }
+            },
+            {
+              "name": "order",
+              "in": "query",
+              "description": "Sort order",
+              "schema": {
+                "type": "string",
+                "enum": ["created_at.desc", "quality_score.desc", "relevance_score.desc", "composite_score.desc"]
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "List of bookmarks",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Bookmark"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/rest/v1/rpc/get_bookmarks_by_category": {
+        "post": {
+          "summary": "Get bookmarks by specific category",
+          "description": "Retrieve bookmarks filtered by a specific category",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "category_name": {
+                      "type": "string",
+                      "description": "Category name to filter by"
+                    }
+                  },
+                  "required": ["category_name"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Bookmarks in the specified category",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/BookmarkSummary"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/rest/v1/rpc/get_top_insights": {
+        "post": {
+          "summary": "Get top insights from bookmarks",
+          "description": "Retrieve the most common insights from analyzed bookmarks",
+          "requestBody": {
+            "required": false,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "limit_count": {
+                      "type": "integer",
+                      "default": 10,
+                      "description": "Number of insights to return"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Top insights from bookmarks",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "insight": {
+                          "type": "string"
+                        },
+                        "bookmark_count": {
+                          "type": "integer"
+                        },
+                        "avg_quality_score": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Bookmark": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "bookmark_id": {
+              "type": "string"
+            },
+            "content": {
+              "type": "string"
+            },
+            "reason": {
+              "type": "string"
+            },
+            "tags": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "categories": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "content_type": {
+              "type": "string"
+            },
+            "sentiment_label": {
+              "type": "string"
+            },
+            "relevance_score": {
+              "type": "number"
+            },
+            "quality_score": {
+              "type": "number"
+            },
+            "value_score": {
+              "type": "number"
+            },
+            "composite_score": {
+              "type": "number"
+            },
+            "actionable": {
+              "type": "boolean"
+            },
+            "reference_worthy": {
+              "type": "boolean"
+            },
+            "key_insights": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "created_at": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        },
+        "BookmarkSummary": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "bookmark_id": {
+              "type": "string"
+            },
+            "content": {
+              "type": "string"
+            },
+            "relevance_score": {
+              "type": "number"
+            },
+            "quality_score": {
+              "type": "number"
+            },
+            "created_at": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        }
+      },
+      "securitySchemes": {
+        "ApiKeyAuth": {
+          "type": "apiKey",
+          "in": "header",
+          "name": "apikey"
+        },
+        "BearerAuth": {
+          "type": "http",
+          "scheme": "bearer"
+        }
+      }
+    },
+    "security": [
+      {
+        "ApiKeyAuth": []
+      },
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  "authentication": {
+    "type": "api_key",
+    "api_key": {
+      "header": "apikey",
+      "value": "YOUR_SUPABASE_ANON_KEY"
+    }
+  },
+  "instructions": {
+    "setup": [
+      "1. Create a Custom GPT in ChatGPT",
+      "2. Copy the OpenAPI schema above into the Actions configuration",
+      "3. Replace 'your-supabase-url' with your actual Supabase URL",
+      "4. Add your Supabase anon key to the authentication section",
+      "5. Test the actions to ensure they work correctly"
+    ],
+    "usage": [
+      "You can now ask your GPT questions like:",
+      "- 'Show me my recent AI-related bookmarks'",
+      "- 'Find bookmarks about business with high quality scores'",
+      "- 'What are the top insights from my bookmarks?'",
+      "- 'Show me actionable bookmarks from this week'",
+      "- 'Find reference-worthy content about development'"
+    ]
+  }
+}

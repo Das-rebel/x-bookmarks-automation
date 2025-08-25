@@ -1,0 +1,47 @@
+[
+  {
+    "id": "1956308126858453474",
+    "text": "Note it it's \"Bandemataram\" not \"Vandemataram\"",
+    "author": "রিমিতা ❁",
+    "authorHandle": "BombagorerRani·Aug 15",
+    "timestamp": "2025-08-15T10:52:58.000Z",
+    "replyCount": "79",
+    "retweetCount": "123",
+    "likeCount": "810",
+    "hasMedia": false,
+    "url": "https://twitter.com/BombagorerRani·Aug 15/status/1956308126858453474",
+    "extractedAt": "2025-08-25T11:41:53.703Z",
+    "textLength": 46,
+    "wordCount": 6
+  },
+  {
+    "id": "1956438605427356084",
+    "text": "Observations from a project at work: Imagine you maintain a business-process system (say Amazon's warehouse ordering, or a health data system at NHS, or the system that generates payouts for US Social Security) The core system is just a business logic, a massive database with",
+    "author": "Arnav Gupta",
+    "authorHandle": "championswimmer·Aug 16",
+    "timestamp": "2025-08-15T19:31:27.000Z",
+    "replyCount": "16",
+    "retweetCount": "12",
+    "likeCount": "207",
+    "hasMedia": false,
+    "url": "https://twitter.com/championswimmer·Aug 16/status/1956438605427356084",
+    "extractedAt": "2025-08-25T11:41:53.710Z",
+    "textLength": 276,
+    "wordCount": 45
+  },
+  {
+    "id": "1956334767613542731",
+    "text": "Load the model We start by loading the Gemma 3 270M and its tokenizer using Unsloth. Check this",
+    "author": "Akshay",
+    "authorHandle": "akshay_pachaar·Aug 15",
+    "timestamp": "2025-08-15T12:38:50.000Z",
+    "replyCount": "4",
+    "retweetCount": "6",
+    "likeCount": "319",
+    "hasMedia": false,
+    "url": "https://twitter.com/akshay_pachaar·Aug 15/status/1956334767613542731",
+    "extractedAt": "2025-08-25T11:41:53.716Z",
+    "textLength": 95,
+    "wordCount": 18
+  }
+]

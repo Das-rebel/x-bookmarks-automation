@@ -1,0 +1,17 @@
+[
+  {
+    "id": "1809086412991705550",
+    "text": "Introducing Expert-Specialized Fine-Tuning (ESFT) for Customizing LLMs with Sparse Architectures! Highlights: - Train only task-relevant experts for LLM customization. - Reduces storage by up to 90% and training time by up to 30%. Performance: - Customizes LLMs",
+    "author": "DeepSeek",
+    "authorHandle": "deepseek_ai·Jul 5, 2024",
+    "timestamp": "2024-07-05T04:46:26.000Z",
+    "replyCount": "9",
+    "retweetCount": "132",
+    "likeCount": "619",
+    "hasMedia": false,
+    "url": "https://twitter.com/deepseek_ai·Jul 5, 2024/status/1809086412991705550",
+    "extractedAt": "2025-08-25T11:42:12.776Z",
+    "textLength": 261,
+    "wordCount": 37
+  }
+]

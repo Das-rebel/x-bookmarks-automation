@@ -1,0 +1,113 @@
+{
+  "timestamp": "2025-07-12T15:33:50.056Z",
+  "environment": {
+    "supabase_url": "https://czkkzstoejzcejearcth.supabase.co",
+    "api_key_configured": true,
+    "node_version": "v22.17.0"
+  },
+  "summary": {
+    "total_tests": 15,
+    "passed": 15,
+    "failed": 0,
+    "success_rate": "100.0%"
+  },
+  "test_details": [
+    {
+      "test": "Database Connection",
+      "status": "PASSED",
+      "duration": 692,
+      "message": "Connected successfully. Sample data: Available"
+    },
+    {
+      "test": "chatgpt_bookmarks_with_threads View",
+      "status": "PASSED",
+      "duration": 146,
+      "message": "View accessible. Found 5 bookmark records"
+    },
+    {
+      "test": "Thread-Enhanced Bookmark Query",
+      "status": "PASSED",
+      "duration": 80,
+      "message": "Thread-enhanced data accessible. 0/9 have thread context"
+    },
+    {
+      "test": "Quality Score Filtering",
+      "status": "PASSED",
+      "duration": 71,
+      "message": "Quality filtering works. Found 4 high-quality bookmarks (≥0.8)"
+    },
+    {
+      "test": "Thread Status Filtering",
+      "status": "PASSED",
+      "duration": 80,
+      "message": "Thread filtering works. Found 0 threaded bookmarks"
+    },
+    {
+      "test": "get_bookmark_with_thread_context",
+      "status": "PASSED",
+      "duration": 243,
+      "message": "Context retrieval works. Retrieved bookmark with no thread context"
+    },
+    {
+      "test": "search_threaded_bookmarks",
+      "status": "PASSED",
+      "duration": 90,
+      "message": "Thread search works. Found 2 bookmarks matching 'AI'"
+    },
+    {
+      "test": "get_high_value_bookmarks_with_threads",
+      "status": "PASSED",
+      "duration": 83,
+      "message": "High-value query works. Found 4 high-quality bookmarks"
+    },
+    {
+      "test": "get_thread_statistics",
+      "status": "PASSED",
+      "duration": 97,
+      "message": "Statistics available. Threads: 0, Bookmarked: 0"
+    },
+    {
+      "test": "API Key Authentication",
+      "status": "PASSED",
+      "duration": 82,
+      "message": "API key authentication successful"
+    },
+    {
+      "test": "Read Permissions",
+      "status": "PASSED",
+      "duration": 313,
+      "message": "Read access to 3/4 tables"
+    },
+    {
+      "test": "Response Time Performance",
+      "status": "PASSED",
+      "duration": 65,
+      "message": "Response time: 65ms (Good)"
+    },
+    {
+      "test": "Large Dataset Query",
+      "status": "PASSED",
+      "duration": 85,
+      "message": "Large query successful. Retrieved 9 records"
+    },
+    {
+      "test": "Invalid Query Handling",
+      "status": "PASSED",
+      "duration": 68,
+      "message": "Invalid queries are properly rejected (good error handling)"
+    },
+    {
+      "test": "Rate Limiting",
+      "status": "PASSED",
+      "duration": 135,
+      "message": "Rate limiting test: 5/5 requests succeeded"
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "high",
+      "action": "proceed_with_chatgpt_setup",
+      "message": "All tests passed - ready for ChatGPT Custom GPT implementation"
+    }
+  ]
+}

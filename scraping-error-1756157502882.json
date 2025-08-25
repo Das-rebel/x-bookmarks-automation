@@ -1,0 +1,97 @@
+{
+  "timestamp": "2025-08-25T21:31:42.882Z",
+  "error": "Failed to execute 'querySelector' on 'Document': 'div[role=\"button\"]:has-text(\"Next\")' is not a valid selector.",
+  "stack": "DOMException: Failed to execute 'querySelector' on 'Document': 'div[role=\"button\"]:has-text(\"Next\")' is not a valid selector.\n    at evaluateHandle (evaluateHandle at CSSQueryHandler.queryOne (file:///Users/Subho/CascadeProjects/x-bookmarks-automation/node_modules/puppeteer-core/lib/esm/puppeteer/common/QueryHandler.js:127:73), <anonymous>:1:15)\n    at #evaluate (file:///Users/Subho/CascadeProjects/x-bookmarks-automation/node_modules/puppeteer-core/lib/esm/puppeteer/cdp/ExecutionContext.js:383:19)\n    at async ExecutionContext.evaluateHandle (file:///Users/Subho/CascadeProjects/x-bookmarks-automation/node_modules/puppeteer-core/lib/esm/puppeteer/cdp/ExecutionContext.js:322:16)\n    at async IsolatedWorld.evaluateHandle (file:///Users/Subho/CascadeProjects/x-bookmarks-automation/node_modules/puppeteer-core/lib/esm/puppeteer/cdp/IsolatedWorld.js:85:16)\n    at async CdpJSHandle.evaluateHandle (file:///Users/Subho/CascadeProjects/x-bookmarks-automation/node_modules/puppeteer-core/lib/esm/puppeteer/api/JSHandle.js:147:20)\n    at async CdpElementHandle.evaluateHandle (file:///Users/Subho/CascadeProjects/x-bookmarks-automation/node_modules/puppeteer-core/lib/esm/puppeteer/api/ElementHandle.js:341:20)\n    at async CSSQueryHandler.queryOne (file:///Users/Subho/CascadeProjects/x-bookmarks-automation/node_modules/puppeteer-core/lib/esm/puppeteer/common/QueryHandler.js:127:59)\n    at async CdpElementHandle.$ (file:///Users/Subho/CascadeProjects/x-bookmarks-automation/node_modules/puppeteer-core/lib/esm/puppeteer/api/ElementHandle.js:396:21)\n    at async CdpElementHandle.<anonymous> (file:///Users/Subho/CascadeProjects/x-bookmarks-automation/node_modules/puppeteer-core/lib/esm/puppeteer/api/ElementHandle.js:265:32)\n    at async CdpFrame.$ (file:///Users/Subho/CascadeProjects/x-bookmarks-automation/node_modules/puppeteer-core/lib/esm/puppeteer/api/Frame.js:373:20)",
+  "sessionId": "1756157494008",
+  "logs": [
+    {
+      "timestamp": "2025-08-25T21:31:34.008Z",
+      "message": "🚀 Web Login Scraper initialized",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:31:34.009Z",
+      "message": "📋 Environment Status:",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:31:34.009Z",
+      "message": "   Supabase URL: ✅ Set",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:31:34.009Z",
+      "message": "   Supabase Key: ✅ Set",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:31:34.009Z",
+      "message": "   OpenAI API: ✅ Available",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:31:34.009Z",
+      "message": "   X Username: ✅ Set",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:31:34.009Z",
+      "message": "   X Password: ✅ Set",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:31:34.009Z",
+      "message": "🚀 Starting Web Login Scraper...",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:31:34.010Z",
+      "message": "🌐 Initializing browser...",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:31:38.487Z",
+      "message": "✅ Browser initialized successfully",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:31:38.489Z",
+      "message": "🔐 Starting manual login process...",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:31:42.122Z",
+      "message": "📸 Screenshot saved: web-scraper-login-page-2025-08-25T21-31-42-047Z.png",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:31:42.122Z",
+      "message": "👤 Entering username...",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:31:42.776Z",
+      "message": "➡️ Clicking Next button...",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:31:42.782Z",
+      "message": "❌ Login failed: Failed to execute 'querySelector' on 'Document': 'div[role=\"button\"]:has-text(\"Next\")' is not a valid selector.",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:31:42.882Z",
+      "message": "📸 Screenshot saved: web-scraper-login-error-2025-08-25T21-31-42-782Z.png",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:31:42.882Z",
+      "message": "❌ Scraping failed: Failed to execute 'querySelector' on 'Document': 'div[role=\"button\"]:has-text(\"Next\")' is not a valid selector.",
+      "data": null
+    }
+  ],
+  "screenshots": [
+    "/Users/Subho/CascadeProjects/x-bookmarks-automation/src/scrapers/web-scraper-login-page-2025-08-25T21-31-42-047Z.png",
+    "/Users/Subho/CascadeProjects/x-bookmarks-automation/src/scrapers/web-scraper-login-error-2025-08-25T21-31-42-782Z.png"
+  ]
+}

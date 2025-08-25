@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Twitter Bookmark Extractor",
+  "version": "1.0.0",
+  "description": "Extract Twitter bookmarks for data analysis and storage",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://twitter.com/*",
+    "https://x.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Extract Bookmarks"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://twitter.com/i/bookmarks*", "https://x.com/i/bookmarks*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}

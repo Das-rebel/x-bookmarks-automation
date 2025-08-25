@@ -1,0 +1,385 @@
+{
+  "totalBookmarks": 507,
+  "processedBookmarks": 507,
+  "outputDirectory": "processed-bookmarks-1756132080525",
+  "executionTime": 26101,
+  "sessionId": "1756132080525",
+  "timestamp": "2025-08-25T14:28:26.626Z",
+  "summary": {
+    "totalBookmarks": 507,
+    "processingTimestamp": "2025-08-25T14:28:26.607Z",
+    "sessionId": "1756132080525",
+    "byContentType": [
+      {
+        "type": "General",
+        "count": 177,
+        "percentage": 35
+      },
+      {
+        "type": "Programming",
+        "count": 54,
+        "percentage": 11
+      },
+      {
+        "type": "AI/ML",
+        "count": 240,
+        "percentage": 47
+      },
+      {
+        "type": "Business",
+        "count": 11,
+        "percentage": 2
+      },
+      {
+        "type": "Technology",
+        "count": 9,
+        "percentage": 2
+      },
+      {
+        "type": "Science",
+        "count": 15,
+        "percentage": 3
+      },
+      {
+        "type": "Finance",
+        "count": 1,
+        "percentage": 0
+      }
+    ],
+    "byPriority": {
+      "high": 0,
+      "medium": 133,
+      "low": 374
+    },
+    "bySentiment": {
+      "positive": 127,
+      "neutral": 355,
+      "negative": 25
+    },
+    "byLanguage": {
+      "english": 45,
+      "spanish": 437,
+      "unknown": 25
+    },
+    "byThreadInfo": {
+      "standalone": 499,
+      "threadParts": 8,
+      "threadStarts": 4,
+      "byThreadLength": {
+        "2-3 tweets": 8,
+        "4-5 tweets": 0,
+        "6-10 tweets": 0,
+        "10+ tweets": 0
+      },
+      "byThreadComplexity": {
+        "low": 507,
+        "medium": 0,
+        "high": 0,
+        "very-high": 0
+      }
+    },
+    "byAI": {
+      "byKnowledgeCategory": [
+        {
+          "category": "General",
+          "count": 187
+        },
+        {
+          "category": "Technology",
+          "count": 306
+        },
+        {
+          "category": "Business",
+          "count": 14
+        }
+      ],
+      "byContentValue": {
+        "high": 276,
+        "medium": 123,
+        "low": 108
+      },
+      "byTargetAudience": [
+        {
+          "audience": "general",
+          "count": 375
+        },
+        {
+          "audience": "technical",
+          "count": 99
+        },
+        {
+          "audience": "business",
+          "count": 33
+        }
+      ],
+      "actionable": 140,
+      "discussionWorthy": 197,
+      "referenceWorthy": 83,
+      "averageRelevanceScore": 0.69,
+      "averageQualityScore": 0.67,
+      "averageLearningValue": 0.68
+    },
+    "topHashtags": [
+      {
+        "hashtag": "#1",
+        "count": 2
+      },
+      {
+        "hashtag": "#aftereffects",
+        "count": 1
+      },
+      {
+        "hashtag": "#motionGraphics",
+        "count": 1
+      },
+      {
+        "hashtag": "#minimax",
+        "count": 1
+      },
+      {
+        "hashtag": "#promptshare",
+        "count": 1
+      },
+      {
+        "hashtag": "#nukitashi_anime",
+        "count": 1
+      },
+      {
+        "hashtag": "#ai",
+        "count": 1
+      },
+      {
+        "hashtag": "#robot",
+        "count": 1
+      },
+      {
+        "hashtag": "#2",
+        "count": 1
+      },
+      {
+        "hashtag": "#GeminiCLI",
+        "count": 1
+      }
+    ],
+    "topMentions": [
+      {
+        "mention": "@latest",
+        "count": 5
+      },
+      {
+        "mention": "@southpkcommons",
+        "count": 3
+      },
+      {
+        "mention": "@firecrawl_dev",
+        "count": 2
+      },
+      {
+        "mention": "@TaskmasterAI",
+        "count": 2
+      },
+      {
+        "mention": "@UnslothAI",
+        "count": 2
+      },
+      {
+        "mention": "@huggingface",
+        "count": 2
+      },
+      {
+        "mention": "@ycombinator",
+        "count": 2
+      },
+      {
+        "mention": "@claude_code",
+        "count": 2
+      },
+      {
+        "mention": "@rive_app",
+        "count": 2
+      },
+      {
+        "mention": "@IamEmily2050",
+        "count": 2
+      }
+    ],
+    "topEngaged": [
+      {
+        "id": "1958541347906023710",
+        "text": "We just shipped Qoder and wow, this feels good. You know how Al tools nail the demo then completely ...",
+        "author": "qoder_ai_ide·Aug 21",
+        "engagementScore": 1,
+        "url": "https://twitter.com/qoder_ai_ide·Aug 21/status/1958541347906023710"
+      },
+      {
+        "id": "1957792907269927230",
+        "text": "In 6 months, running a business without AI having full context will seem insane. I built mine last w...",
+        "author": "tomcrawshaw01·Aug 19",
+        "engagementScore": 1,
+        "url": "https://twitter.com/tomcrawshaw01·Aug 19/status/1957792907269927230"
+      },
+      {
+        "id": "1957474173472969108",
+        "text": "You spot an unsigned band destined to break out. Instead of cold-calling labels, what if you could b...",
+        "author": "_Dave__White_·Aug 18",
+        "engagementScore": 1,
+        "url": "https://twitter.com/_Dave__White_·Aug 18/status/1957474173472969108"
+      },
+      {
+        "id": "1956719149314461787",
+        "text": "Can’t believe how we cracked both the design and the code for this idea...",
+        "author": "heysatya_·Aug 16",
+        "engagementScore": 1,
+        "url": "https://twitter.com/heysatya_·Aug 16/status/1956719149314461787"
+      },
+      {
+        "id": "1956538069311500514",
+        "text": "ByteDance just opensourced a desktop automation AI Agent. This agent can use any desktop app, open f...",
+        "author": "unwind_ai_·Aug 16",
+        "engagementScore": 1,
+        "url": "https://twitter.com/unwind_ai_·Aug 16/status/1956538069311500514"
+      },
+      {
+        "id": "1953914547011825903",
+        "text": "BREAKING: You can now build AI agents that remember you. MemU is the first memory system designed fo...",
+        "author": "hasantoxr·Aug 9",
+        "engagementScore": 1,
+        "url": "https://twitter.com/hasantoxr·Aug 9/status/1953914547011825903"
+      },
+      {
+        "id": "1953150102366757327",
+        "text": "Claude Code / vibe coding hacks that are working extremely well for me right now 1) split terminal O...",
+        "author": "boringmarketer·Aug 6",
+        "engagementScore": 1,
+        "url": "https://twitter.com/boringmarketer·Aug 6/status/1953150102366757327"
+      },
+      {
+        "id": "1952029877185712393",
+        "text": "Just built a Voice AI Chatbot that lets customers talk to your business and get real answers from yo...",
+        "author": "SubhaghV·Aug 3",
+        "engagementScore": 1,
+        "url": "https://twitter.com/SubhaghV·Aug 3/status/1952029877185712393"
+      },
+      {
+        "id": "1950940092186370549",
+        "text": "today, i'm excited to release cloudy -- a platform which enables you to sync & mount storage volumes...",
+        "author": "naklecha·Jul 31",
+        "engagementScore": 1,
+        "url": "https://twitter.com/naklecha·Jul 31/status/1950940092186370549"
+      },
+      {
+        "id": "1950020203490005135",
+        "text": "This guy literally built a web UI for Claude Code. You can see real-time conversations between Claud...",
+        "author": "Saboo_Shubham_·Jul 29",
+        "engagementScore": 1,
+        "url": "https://twitter.com/Saboo_Shubham_·Jul 29/status/1950020203490005135"
+      }
+    ],
+    "topPriority": [
+      {
+        "id": "1957792907269927230",
+        "text": "In 6 months, running a business without AI having full context will seem insane. I built mine last w...",
+        "author": "tomcrawshaw01·Aug 19",
+        "priorityScore": 65,
+        "url": "https://twitter.com/tomcrawshaw01·Aug 19/status/1957792907269927230"
+      },
+      {
+        "id": "1952029877185712393",
+        "text": "Just built a Voice AI Chatbot that lets customers talk to your business and get real answers from yo...",
+        "author": "SubhaghV·Aug 3",
+        "priorityScore": 60,
+        "url": "https://twitter.com/SubhaghV·Aug 3/status/1952029877185712393"
+      },
+      {
+        "id": "1949818572429017453",
+        "text": "Add Semantic Search to Claude Code! Code Context is an MCP plugin that adds semantic code search to ...",
+        "author": "Sumanth_077·Jul 28",
+        "priorityScore": 60,
+        "url": "https://twitter.com/Sumanth_077·Jul 28/status/1949818572429017453"
+      },
+      {
+        "id": "1955312558652760266",
+        "text": "If you're a designer vibe coding software with Cursor, Windsurf, or Claude code and you're tired of ...",
+        "author": "Sam_Lane96·Aug 12",
+        "priorityScore": 60,
+        "url": "https://twitter.com/Sam_Lane96·Aug 12/status/1955312558652760266"
+      },
+      {
+        "id": "1958558278008586519",
+        "text": "We're open sourcing v2 of our Perplexity clone in 24 hours Ask any question and get AI-powered answe...",
+        "author": "ericciarla·Aug 21",
+        "priorityScore": 55,
+        "url": "https://twitter.com/ericciarla·Aug 21/status/1958558278008586519"
+      },
+      {
+        "id": "1957850628299837667",
+        "text": "What if you could watch a UI generate in real-time as you work with AI? Now you can, with Real Time ...",
+        "author": "skirano·Aug 19",
+        "priorityScore": 55,
+        "url": "https://twitter.com/skirano·Aug 19/status/1957850628299837667"
+      },
+      {
+        "id": "1957847823585820937",
+        "text": "Big update: we’re building an AI device that looks like jewelry, not another screen or plastic gadge...",
+        "author": "eleelenawa·Aug 19",
+        "priorityScore": 55,
+        "url": "https://twitter.com/eleelenawa·Aug 19/status/1957847823585820937"
+      },
+      {
+        "id": "1957783710457020772",
+        "text": "Here's what @browsercompany's AI eng & ML teams are working on for @diabrowser right now: (This is a...",
+        "author": "joshm·Aug 19",
+        "priorityScore": 55,
+        "url": "https://twitter.com/joshm·Aug 19/status/1957783710457020772"
+      },
+      {
+        "id": "1948065575185584446",
+        "text": "CopyCat is the AI RPA. Companies, from enterprises to startups, are saving thousands of hours buildi...",
+        "author": "ycombinator·Jul 23",
+        "priorityScore": 55,
+        "url": "https://twitter.com/ycombinator·Jul 23/status/1948065575185584446"
+      },
+      {
+        "id": "1943686987795382577",
+        "text": "I think i cracked the code on how to make real looking AI UGC for mobile apps Concept for Flo app (h...",
+        "author": "MugoScales·Jul 11",
+        "priorityScore": 55,
+        "url": "https://twitter.com/MugoScales·Jul 11/status/1943686987795382577"
+      }
+    ],
+    "topThreads": [
+      {
+        "id": "1949885142547464689",
+        "text": "2. Rice needs 2x more work per hectare than wheat This has influenced the cultures of rice vs wheat ...",
+        "author": "tomaspueyo·Jul 28",
+        "threadLength": 2,
+        "threadEngagement": 0.5,
+        "url": "https://twitter.com/tomaspueyo·Jul 28/status/1949885142547464689"
+      },
+      {
+        "id": "1952861177731793324",
+        "text": "I thought this must be hard to build LLM-over-DNS A real DNS server that you can send LLM queries an...",
+        "author": "levelsio",
+        "threadLength": 2,
+        "threadEngagement": 0.5,
+        "url": "https://twitter.com/levelsio/status/1952861177731793324"
+      },
+      {
+        "id": "1953116281407701064",
+        "text": "LangChain literally reverse-engineered Claude Code, Manus, and Deep Research. They packaged detailed...",
+        "author": "unwind_ai_·Aug 6",
+        "threadLength": 2,
+        "threadEngagement": 0.5,
+        "url": "https://twitter.com/unwind_ai_·Aug 6/status/1953116281407701064"
+      },
+      {
+        "id": "1941494308709990671",
+        "text": "Telling the agent to keep track of the work in a markdown is so effective, especially once you autom...",
+        "author": "steipete·Jul 5",
+        "threadLength": 2,
+        "threadEngagement": 0.5,
+        "url": "https://twitter.com/steipete·Jul 5/status/1941494308709990671"
+      }
+    ]
+  }
+}

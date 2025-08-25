@@ -1,0 +1,8 @@
+name: bookmark-processing
+description: "Process and email new bookmarks using the cron‐processor"
+extends: default-settings
+
+steps:
+  - name: Run batch processor
+    task: bookmark-processing
+    description: "Fetch, analyze and save latest bookmarks, then send summary emails"

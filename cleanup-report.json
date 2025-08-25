@@ -1,0 +1,59 @@
+{
+  "timestamp": "2025-08-25T13:46:45.904Z",
+  "backupDirectories": {
+    "deprecated": "/Users/Subho/CascadeProjects/x-bookmarks-automation/backup/deprecated-files",
+    "oldData": "/Users/Subho/CascadeProjects/x-bookmarks-automation/backup/old-data",
+    "oldDocs": "/Users/Subho/CascadeProjects/x-bookmarks-automation/backup/old-docs",
+    "oldConfigs": "/Users/Subho/CascadeProjects/x-bookmarks-automation/backup/old-configs"
+  },
+  "filesMoved": {
+    "deprecated": [
+      "github-actions-scraper.cjs",
+      "direct-scraper.cjs",
+      "openai_wrapper.py",
+      "cli_ai",
+      "debug_openai_client.py",
+      "debug_openai.py",
+      "verify_openai_key.py",
+      "direct_kimi_k2.py",
+      "kimi_k2_client.py",
+      "direct_moonshot.py",
+      "moonshot_client.py",
+      "run_model.py",
+      "haiku_openrouter.py",
+      "requirements-db.txt",
+      "cline_wrapper.sh"
+    ],
+    "oldDocs": [
+      "MANUAL_EXTRACTION_GUIDE.md",
+      "FUTURE_AUTOMATION_FIX_PLAN.md",
+      "url-configuration-fix-summary.md",
+      "TEST-SUITE-SUMMARY.md",
+      "MIGRATION.md"
+    ],
+    "oldConfigs": [
+      "chatgpt-action-config.json",
+      "claude_desktop_config.json",
+      "chatgpt-agent-openapi.json",
+      "chatgpt-agent-setup-guide.md",
+      "chatgpt-thread-enhanced-config.json"
+    ]
+  },
+  "directoriesMoved": [
+    "test",
+    "testsprite_tests",
+    "python"
+  ],
+  "optimization": {
+    "newStructure": [
+      "src/scrapers - Core scraping logic",
+      "src/processors - Bookmark processing",
+      "src/database - Database operations",
+      "src/api - API endpoints",
+      "src/utils - Utility functions",
+      "config - Configuration files",
+      "scripts - Automation scripts",
+      "logs - System logs"
+    ]
+  }
+}

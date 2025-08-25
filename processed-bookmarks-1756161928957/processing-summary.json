@@ -1,0 +1,360 @@
+{
+  "totalBookmarks": 394,
+  "processingTimestamp": "2025-08-25T22:45:49.274Z",
+  "sessionId": "1756161928957",
+  "byContentType": [
+    {
+      "type": "General",
+      "count": 142,
+      "percentage": 36
+    },
+    {
+      "type": "AI/ML",
+      "count": 176,
+      "percentage": 45
+    },
+    {
+      "type": "Programming",
+      "count": 52,
+      "percentage": 13
+    },
+    {
+      "type": "Business",
+      "count": 7,
+      "percentage": 2
+    },
+    {
+      "type": "Technology",
+      "count": 9,
+      "percentage": 2
+    },
+    {
+      "type": "Science",
+      "count": 8,
+      "percentage": 2
+    }
+  ],
+  "byPriority": {
+    "high": 0,
+    "medium": 14,
+    "low": 380
+  },
+  "bySentiment": {
+    "positive": 93,
+    "neutral": 279,
+    "negative": 22
+  },
+  "byLanguage": {
+    "english": 40,
+    "spanish": 323,
+    "unknown": 31
+  },
+  "byThreadInfo": {
+    "standalone": 6,
+    "threadParts": 388,
+    "threadStarts": 68,
+    "byThreadLength": {
+      "2-3 tweets": 76,
+      "4-5 tweets": 106,
+      "6-10 tweets": 196,
+      "10+ tweets": 10
+    },
+    "byThreadComplexity": {
+      "low": 37,
+      "medium": 151,
+      "high": 196,
+      "very-high": 10
+    }
+  },
+  "byAI": {
+    "byKnowledgeCategory": [
+      {
+        "category": "General",
+        "count": 148
+      },
+      {
+        "category": "Technology",
+        "count": 238
+      },
+      {
+        "category": "Business",
+        "count": 8
+      }
+    ],
+    "byContentValue": {
+      "high": 210,
+      "medium": 97,
+      "low": 87
+    },
+    "byTargetAudience": [
+      {
+        "audience": "general",
+        "count": 280
+      },
+      {
+        "audience": "technical",
+        "count": 95
+      },
+      {
+        "audience": "business",
+        "count": 19
+      }
+    ],
+    "actionable": 122,
+    "discussionWorthy": 143,
+    "referenceWorthy": 62,
+    "averageRelevanceScore": 0.69,
+    "averageQualityScore": 0.66,
+    "averageLearningValue": 0.68
+  },
+  "topHashtags": [
+    {
+      "hashtag": "#1",
+      "count": 3
+    },
+    {
+      "hashtag": "#ai",
+      "count": 2
+    },
+    {
+      "hashtag": "#aftereffects",
+      "count": 1
+    },
+    {
+      "hashtag": "#motionGraphics",
+      "count": 1
+    },
+    {
+      "hashtag": "#minimax",
+      "count": 1
+    },
+    {
+      "hashtag": "#promptshare",
+      "count": 1
+    },
+    {
+      "hashtag": "#nukitashi_anime",
+      "count": 1
+    },
+    {
+      "hashtag": "#robot",
+      "count": 1
+    },
+    {
+      "hashtag": "#2",
+      "count": 1
+    },
+    {
+      "hashtag": "#GeminiCLI",
+      "count": 1
+    }
+  ],
+  "topMentions": [
+    {
+      "mention": "@huggingface",
+      "count": 3
+    },
+    {
+      "mention": "@chesterzelaya",
+      "count": 2
+    },
+    {
+      "mention": "@firecrawl_dev",
+      "count": 2
+    },
+    {
+      "mention": "@aisdk",
+      "count": 2
+    },
+    {
+      "mention": "@livekit",
+      "count": 2
+    },
+    {
+      "mention": "@CodeGuidedev",
+      "count": 2
+    },
+    {
+      "mention": "@TaskmasterAI",
+      "count": 2
+    },
+    {
+      "mention": "@latest",
+      "count": 2
+    },
+    {
+      "mention": "@southpkcommons",
+      "count": 2
+    },
+    {
+      "mention": "@openai",
+      "count": 1
+    }
+  ],
+  "topEngaged": [
+    {
+      "id": "1960018170774720624",
+      "text": "This is the project that got me into Google. Genetic Algorithms are underrated af....",
+      "engagementScore": 0.5
+    },
+    {
+      "id": "1959973681037226195",
+      "text": "Massive H1-B visa scandal. \n\nWalmart executive was getting rid of American tech works and accepting ...",
+      "engagementScore": 0.5
+    },
+    {
+      "id": "1959647652322357589",
+      "text": "postgres MCP + mermaid/notebooks have completely replaced database clients for my ad-hoc data analys...",
+      "engagementScore": 0.5
+    },
+    {
+      "id": "1959905034717831334",
+      "text": "Bipasha basu's call recording with amar singh...",
+      "engagementScore": 0.5
+    },
+    {
+      "id": "1959617987721486543",
+      "text": "These are extremely good textbooks. \n\nPedagogically unique--very different from most mathematics tex...",
+      "engagementScore": 0.5
+    },
+    {
+      "id": "1959594558012227974",
+      "text": "Same prompt, different universes....",
+      "engagementScore": 0.5
+    },
+    {
+      "id": "1959629615909278149",
+      "text": "Programming has quietly turned into a practice of making micro-wishes to a genie. The art is making ...",
+      "engagementScore": 0.5
+    },
+    {
+      "id": "1959865832546467987",
+      "text": "I removed 74% of neurons from a neural network.\n\nIt dropped the accuracy by just 0.50%.\n\nHere's a br...",
+      "engagementScore": 0.5
+    },
+    {
+      "id": "1959610913134133549",
+      "text": "I saw a photo of a new U.S. reshoring factory.\n\nThe #1 robot brand powering Trump’s \n“Make America G...",
+      "engagementScore": 0.5
+    },
+    {
+      "id": "1959354274775023897",
+      "text": "New era of science \n\narXiv but for papers/science/research done by autonomous AIs.\n\naiXiv - A Next G...",
+      "engagementScore": 0.5
+    }
+  ],
+  "topPriority": [
+    {
+      "id": "1958670510902190486",
+      "text": "Juicy startup idea:\n\nYour toilet breaks at 2am. Who do you call?\n\nThe property manager isn’t picking...",
+      "priorityScore": 45
+    },
+    {
+      "id": "1957792907269927230",
+      "text": "In 6 months, running a business without AI having full context will seem insane.\n\nI built mine last ...",
+      "priorityScore": 45
+    },
+    {
+      "id": "1949139753095573566",
+      "text": "New banger startup listing live on @acquiredotcom. No-code AI chatbot SaaS built for speed, scale, a...",
+      "priorityScore": 45
+    },
+    {
+      "id": "1955312558652760266",
+      "text": "If you're a designer vibe coding software with Cursor, Windsurf, or Claude code and you're tired of ...",
+      "priorityScore": 40
+    },
+    {
+      "id": "1953953944985567699",
+      "text": "Ok this is a big upgrade to @TaskmasterAI! They have wired it up to @claudeai code subagents to crea...",
+      "priorityScore": 40
+    },
+    {
+      "id": "1953832799133159534",
+      "text": "Most infra startups stay invisible.\nAt @dodopayments, we will be the default payment infra for the n...",
+      "priorityScore": 40
+    },
+    {
+      "id": "1953116283383263591",
+      "text": "Check it out: https://github.com/hwchase17/deepagents…\n\nMore such projects in http://theunwindai.com...",
+      "priorityScore": 40
+    },
+    {
+      "id": "1952048356710039700",
+      "text": "Every tech company can and should train their own deepseek R1, Llama or GPT5, just like every tech c...",
+      "priorityScore": 40
+    },
+    {
+      "id": "1952029877185712393",
+      "text": "Just built a Voice AI Chatbot that lets customers talk to your business and get real answers from yo...",
+      "priorityScore": 40
+    },
+    {
+      "id": "1950514331231412514",
+      "text": "I built a simple voice assistant in 70 lines of Python code.\n\nIt uses:\n\n• @livekit - The voice agent...",
+      "priorityScore": 40
+    }
+  ],
+  "topThreads": [
+    {
+      "id": "1949657878169800949",
+      "text": "Firecrawl just dropped an opensource AI web monitoring tool.\n\nTrack any website for changes & get in...",
+      "threadLength": 10,
+      "threadEngagement": 0.5
+    },
+    {
+      "id": "1949805660318711911",
+      "text": "Huge update from n8n\n\nAbout 25+ verified new nodes released. This makes things much more easier for ...",
+      "threadLength": 10,
+      "threadEngagement": 0.5
+    },
+    {
+      "id": "1949493529895677995",
+      "text": "they’re working on e-ink hardware + software, POS + payments stack in Indonesia, and lots of other c...",
+      "threadLength": 10,
+      "threadEngagement": 0.5
+    },
+    {
+      "id": "1949811055724515545",
+      "text": "Make Claude Code 10x more powerful!\n\nCode Context is an MCP plugin that brings semantic code search ...",
+      "threadLength": 9,
+      "threadEngagement": 0.5
+    },
+    {
+      "id": "1954942431058915620",
+      "text": "Which Ultra Microcap stock do you feel has huge potential in the next 5 years?...",
+      "threadLength": 8,
+      "threadEngagement": 0.5
+    },
+    {
+      "id": "1957847823585820937",
+      "text": "Big update: we’re building an AI device that looks like jewelry, not another screen or plastic gadge...",
+      "threadLength": 7,
+      "threadEngagement": 0.5
+    },
+    {
+      "id": "1952980512794132805",
+      "text": "Function calling & MCP for LLMs\n\nBefore MCPs became popular, AI workflows relied on traditional Func...",
+      "threadLength": 7,
+      "threadEngagement": 0.5
+    },
+    {
+      "id": "1950572449025650733",
+      "text": "Introducing `AutoRL` \n\nThe world's simplest way to train a task-specific LLM with RL.\n\n*Just write a...",
+      "threadLength": 7,
+      "threadEngagement": 0.5
+    },
+    {
+      "id": "1958136090939826354",
+      "text": "Most people think going viral on TikTok is about luck.\n\nThe real growth hackers? They run TikTok far...",
+      "threadLength": 7,
+      "threadEngagement": 0.5
+    },
+    {
+      "id": "1957912985709531408",
+      "text": "So Alibaba Qwen has released the best image editing model... 100% open source!\n\nYou can edit any pho...",
+      "threadLength": 7,
+      "threadEngagement": 0.5
+    }
+  ]
+}

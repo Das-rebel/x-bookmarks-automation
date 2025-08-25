@@ -1,0 +1,308 @@
+{
+  "name": "Personal Bookmark Assistant with Threads",
+  "description": "AI assistant that searches and analyzes your Twitter bookmarks with full thread context support",
+  "version": "3.0.0",
+  "schema": {
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Thread-Enhanced Bookmark API",
+      "version": "3.0.0",
+      "description": "Advanced API to retrieve and search through analyzed Twitter bookmarks with complete thread context"
+    },
+    "servers": [
+      {
+        "url": "https://czkkzstoejzcejearcth.supabase.co",
+        "description": "Supabase API endpoint"
+      }
+    ],
+    "paths": {
+      "/rest/v1/chatgpt_bookmarks_with_threads": {
+        "get": {
+          "summary": "Get thread-enhanced bookmarks",
+          "description": "Retrieve bookmarks with complete thread analysis and context",
+          "parameters": [
+            {
+              "name": "quality_score",
+              "in": "query",
+              "description": "Filter by minimum quality score (e.g., gte.0.8)",
+              "schema": { "type": "string" }
+            },
+            {
+              "name": "has_thread_context",
+              "in": "query",
+              "description": "Filter for bookmarks with thread context (eq.true)",
+              "schema": { "type": "string" }
+            },
+            {
+              "name": "is_thread",
+              "in": "query",
+              "description": "Filter for thread bookmarks only (eq.true)",
+              "schema": { "type": "string" }
+            },
+            {
+              "name": "thread_theme",
+              "in": "query",
+              "description": "Filter by thread theme (e.g., ilike.*AI*)",
+              "schema": { "type": "string" }
+            },
+            {
+              "name": "knowledge_category",
+              "in": "query",
+              "description": "Filter by knowledge category",
+              "schema": { "type": "string" }
+            },
+            {
+              "name": "reference_worthy",
+              "in": "query",
+              "description": "Filter reference-worthy bookmarks (eq.true)",
+              "schema": { "type": "string" }
+            },
+            {
+              "name": "actionable",
+              "in": "query",
+              "description": "Filter actionable bookmarks (eq.true)",
+              "schema": { "type": "string" }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "Number of results (default 10)",
+              "schema": { "type": "integer", "default": 10 }
+            },
+            {
+              "name": "order",
+              "in": "query",
+              "description": "Sort order (e.g., quality_score.desc, thread_coherence.desc)",
+              "schema": { "type": "string", "default": "quality_score.desc" }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "List of thread-enhanced bookmarks",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ThreadEnhancedBookmark"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/rest/v1/rpc/get_bookmark_with_thread_context": {
+        "post": {
+          "summary": "Get complete thread context for a bookmark",
+          "description": "Retrieve a bookmark with its complete thread context and related tweets",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "bookmark_id": {
+                      "type": "string",
+                      "description": "The bookmark ID to get thread context for"
+                    }
+                  },
+                  "required": ["bookmark_id"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Bookmark with complete thread context"
+            }
+          }
+        }
+      },
+      "/rest/v1/rpc/search_threaded_bookmarks": {
+        "post": {
+          "summary": "Search bookmarks with thread awareness",
+          "description": "Advanced search across bookmarks with thread context prioritization",
+          "requestBody": {
+            "required": false,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "search_query": {
+                      "type": "string",
+                      "description": "Text to search for in bookmark content"
+                    },
+                    "min_quality": {
+                      "type": "number",
+                      "default": 0.0,
+                      "description": "Minimum quality score threshold"
+                    },
+                    "include_threads_only": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "Only return bookmarks that are part of threads"
+                    },
+                    "limit_count": {
+                      "type": "integer",
+                      "default": 10,
+                      "description": "Maximum number of results"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Search results with thread context"
+            }
+          }
+        }
+      },
+      "/rest/v1/rpc/get_high_value_bookmarks_with_threads": {
+        "post": {
+          "summary": "Get high-value bookmarks with thread enhancement",
+          "description": "Retrieve top-quality bookmarks with thread coherence scoring",
+          "requestBody": {
+            "required": false,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "min_quality": {
+                      "type": "number",
+                      "default": 0.7,
+                      "description": "Minimum quality score threshold"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "High-value bookmarks with thread analysis"
+            }
+          }
+        }
+      },
+      "/rest/v1/rpc/get_thread_statistics": {
+        "post": {
+          "summary": "Get thread analytics and statistics",
+          "description": "Retrieve comprehensive statistics about thread usage and analysis",
+          "requestBody": {
+            "required": false,
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Thread statistics and analytics"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "ThreadEnhancedBookmark": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string", "description": "Bookmark ID" },
+            "text": { "type": "string", "description": "Bookmark content" },
+            "author": { "type": "string", "description": "Original author" },
+            "url": { "type": "string", "description": "Tweet URL" },
+            "created_at": { "type": "string", "format": "date-time" },
+            "bookmark_extracted_at": { "type": "string", "format": "date-time" },
+            "quality_score": { "type": "number", "description": "AI quality assessment" },
+            "relevance_score": { "type": "number", "description": "Relevance score" },
+            "learning_value": { "type": "number", "description": "Educational value" },
+            "composite_score": { "type": "number", "description": "Overall score" },
+            "categories": { "type": "array", "items": { "type": "string" } },
+            "tags": { "type": "array", "items": { "type": "string" } },
+            "key_insights": { "type": "array", "items": { "type": "string" } },
+            "knowledge_category": { "type": "string", "description": "Knowledge domain" },
+            "sentiment": { "type": "string", "description": "Sentiment analysis" },
+            "reference_worthy": { "type": "boolean", "description": "Reference quality" },
+            "actionable": { "type": "boolean", "description": "Contains actionable content" },
+            "is_thread": { "type": "boolean", "description": "Part of a thread" },
+            "thread_id": { "type": "string", "description": "Thread identifier" },
+            "thread_position": { "type": "integer", "description": "Position in thread" },
+            "thread_total_tweets": { "type": "integer", "description": "Total tweets in thread" },
+            "thread_theme": { "type": "string", "description": "Overall thread theme" },
+            "thread_coherence": { "type": "number", "description": "Thread coherence score" },
+            "thread_summary": { "type": "string", "description": "Thread summary" },
+            "key_thread_insights": { "type": "array", "items": { "type": "string" } },
+            "thread_length": { "type": "integer", "description": "Number of tweets in thread" },
+            "thread_status": { "type": "string", "description": "Thread completion status" },
+            "has_thread_context": { "type": "boolean", "description": "Has complete thread data" }
+          }
+        }
+      },
+      "securitySchemes": {
+        "ApiKeyAuth": {
+          "type": "apiKey",
+          "in": "header",
+          "name": "apikey"
+        }
+      }
+    },
+    "security": [{ "ApiKeyAuth": [] }]
+  },
+  "authentication": {
+    "type": "api_key",
+    "api_key": {
+      "header": "apikey",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN6a2t6c3RvZWp6Y2VqZWFyY3RoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE0MDU2NTIsImV4cCI6MjA2Njk4MTY1Mn0.TsEIp7nRpfPSBl52VyHmT_FFr8KoGY2Tp1YprAqL5G8"
+    }
+  },
+  "instructions": {
+    "setup": [
+      "1. Create a new Custom GPT in ChatGPT",
+      "2. Use title: 'Personal Bookmark Assistant with Threads'",
+      "3. Copy this complete OpenAPI schema into Actions",
+      "4. Authentication is pre-configured with your Supabase key",
+      "5. Test with thread-aware queries"
+    ],
+    "thread_features": [
+      "🧵 Complete thread context retrieval",
+      "📊 Thread coherence and quality scoring", 
+      "🔍 Thread-aware search and filtering",
+      "📈 Thread analytics and statistics",
+      "🎯 Priority ranking for threaded content"
+    ],
+    "usage_examples": [
+      "Show me my bookmarked threads about AI development",
+      "Find high-quality threads with good coherence scores",
+      "Get the complete thread context for this bookmark: [bookmark_id]",
+      "Search for threads containing 'machine learning' with quality > 0.8",
+      "Show me actionable bookmarks that are part of threads",
+      "What are my thread statistics and most common themes?",
+      "Find reference-worthy content with thread context",
+      "Show me the best threads I've bookmarked this month"
+    ],
+    "thread_queries": [
+      "GET /chatgpt_bookmarks_with_threads?is_thread=eq.true&quality_score=gte.0.8",
+      "GET /chatgpt_bookmarks_with_threads?has_thread_context=eq.true&limit=5",
+      "POST /rpc/search_threaded_bookmarks with {'search_query': 'AI', 'include_threads_only': true}",
+      "POST /rpc/get_bookmark_with_thread_context with {'bookmark_id': 'your_id'}",
+      "POST /rpc/get_thread_statistics"
+    ],
+    "enhanced_capabilities": [
+      "Thread-aware relevance scoring (threads get 1.2x quality boost)",
+      "Complete thread context in responses",
+      "Thread theme and summary analysis", 
+      "Coherence scoring for thread quality",
+      "Advanced filtering by thread properties",
+      "Analytics on your threading patterns"
+    ]
+  }
+}

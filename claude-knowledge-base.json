@@ -1,0 +1,423 @@
+{
+  "title": "Personal Bookmark Knowledge Base",
+  "description": "AI-analyzed Twitter bookmarks for second brain",
+  "created_at": "2025-07-16T22:02:28.066Z",
+  "total_bookmarks": 6,
+  "categories": {
+    "research": 1,
+    "theory": 1,
+    "business": 3,
+    "finance": 1,
+    "entrepreneurship": 1,
+    "technology": 2,
+    "software development": 1,
+    "programming": 1,
+    "healthcare": 1,
+    "communication": 1,
+    "workplace strategies": 1,
+    "career development": 1
+  },
+  "tags": {
+    "model": 1,
+    "original": 1,
+    "reference": 1,
+    "funding": 1,
+    "MSME": 1,
+    "CGTMSE": 1,
+    "CII": 1,
+    "app development": 1,
+    "workflow": 1,
+    "Claude Code": 1,
+    "AI": 1,
+    "healthcare": 1,
+    "investment": 1,
+    "technology": 1,
+    "business": 1,
+    "leadership": 1,
+    "communication": 1,
+    "workplace culture": 1,
+    "productivity": 1,
+    "career advice": 1
+  },
+  "insights": [
+    "Understanding the original model is crucial for further development.",
+    "There is a need for support in raising funds for MSMEs.",
+    "CGTMSE and MSME schemes can be viable funding options.",
+    "Offering help can foster community support.",
+    "Understanding the Claude Code workflow can enhance app development efficiency.",
+    "OpenEvidence raised $210M at a $3.5B valuation.",
+    "40% of US doctors are using OpenEvidence.",
+    "The company launched DeepConsult for advanced evidence synthesis.",
+    "Importance of direct communication with leadership.",
+    "Potential for networking or collaboration.",
+    "Emphasizes the importance of versatility over specialization.",
+    "Suggests unconventional tactics for asserting dominance in a corporate environment."
+  ],
+  "bookmarks": [
+    {
+      "id": "bookmark_1752703309407_0",
+      "text": "original model",
+      "analysis": {
+        "provider": "OpenAI",
+        "reason": "To revisit the original model for reference or further understanding.",
+        "tags": [
+          "model",
+          "original",
+          "reference"
+        ],
+        "entities": [],
+        "concepts": [
+          "modeling",
+          "originality"
+        ],
+        "sentiment": {
+          "label": "neutral",
+          "confidence": 0.8
+        },
+        "content_type": "article",
+        "relevance_score": 0.7,
+        "value_score": 0.6,
+        "actionable": false,
+        "categories": [
+          "research",
+          "theory"
+        ],
+        "quality_score": 0.7,
+        "key_insights": [
+          "Understanding the original model is crucial for further development."
+        ],
+        "reference_worthy": true,
+        "composite_score": 0.64
+      },
+      "timestamp": "2025-07-15T15:20:03.000Z",
+      "quality_score": 0.7,
+      "relevance_score": 0.7,
+      "categories": [
+        "research",
+        "theory"
+      ],
+      "tags": [
+        "model",
+        "original",
+        "reference"
+      ],
+      "key_insights": [
+        "Understanding the original model is crucial for further development."
+      ],
+      "reference_worthy": true
+    },
+    {
+      "id": "bookmark_1752703319792_1",
+      "text": "I keep seeing posts of people struggling to raise funds for new factory/MSME, I have raised funds through CGTMSE and MSME schemes and will be glad to help, I am also a part of CII council for MSME, just DM me your queries and I will provide all possible help",
+      "analysis": {
+        "provider": "OpenAI",
+        "reason": "To offer assistance and share knowledge on raising funds for MSMEs.",
+        "tags": [
+          "funding",
+          "MSME",
+          "CGTMSE",
+          "CII"
+        ],
+        "entities": {
+          "people": [],
+          "organizations": [
+            "CII"
+          ],
+          "products": [
+            "CGTMSE"
+          ]
+        },
+        "concepts": [
+          "fundraising",
+          "MSME schemes",
+          "financial assistance"
+        ],
+        "sentiment": {
+          "label": "positive",
+          "confidence": 0.9
+        },
+        "content_type": "opinion",
+        "relevance_score": 0.85,
+        "value_score": 0.9,
+        "actionable": true,
+        "categories": [
+          "business",
+          "finance",
+          "entrepreneurship"
+        ],
+        "quality_score": 0.8,
+        "key_insights": [
+          "There is a need for support in raising funds for MSMEs.",
+          "CGTMSE and MSME schemes can be viable funding options.",
+          "Offering help can foster community support."
+        ],
+        "reference_worthy": true,
+        "composite_score": 0.875
+      },
+      "timestamp": "2025-07-16T05:24:17.000Z",
+      "quality_score": 0.8,
+      "relevance_score": 0.85,
+      "categories": [
+        "business",
+        "finance",
+        "entrepreneurship"
+      ],
+      "tags": [
+        "funding",
+        "MSME",
+        "CGTMSE",
+        "CII"
+      ],
+      "key_insights": [
+        "There is a need for support in raising funds for MSMEs.",
+        "CGTMSE and MSME schemes can be viable funding options.",
+        "Offering help can foster community support."
+      ],
+      "reference_worthy": true
+    },
+    {
+      "id": "bookmark_1752703325853_2",
+      "text": "the Claude Code workflow I used \nto ship an entire app:",
+      "analysis": {
+        "provider": "OpenAI",
+        "reason": "To learn about the workflow used to develop and ship an app.",
+        "tags": [
+          "app development",
+          "workflow",
+          "Claude Code"
+        ],
+        "entities": [
+          "Claude Code"
+        ],
+        "concepts": [
+          "app shipping",
+          "development process",
+          "workflow management"
+        ],
+        "sentiment": {
+          "label": "positive",
+          "confidence": 0.85
+        },
+        "content_type": "tutorial",
+        "relevance_score": 0.9,
+        "value_score": 0.8,
+        "actionable": true,
+        "categories": [
+          "technology",
+          "software development",
+          "programming"
+        ],
+        "quality_score": 0.8,
+        "key_insights": [
+          "Understanding the Claude Code workflow can enhance app development efficiency."
+        ],
+        "reference_worthy": true,
+        "composite_score": 0.87
+      },
+      "timestamp": "2025-07-15T20:22:56.000Z",
+      "quality_score": 0.8,
+      "relevance_score": 0.9,
+      "categories": [
+        "technology",
+        "software development",
+        "programming"
+      ],
+      "tags": [
+        "app development",
+        "workflow",
+        "Claude Code"
+      ],
+      "key_insights": [
+        "Understanding the Claude Code workflow can enhance app development efficiency."
+      ],
+      "reference_worthy": true
+    },
+    {
+      "id": "bookmark_1752703333510_3",
+      "text": "NEW: OpenEvidence, the AI medical assistant, just raised $210M at a $3.5B valuation led by GV & Kleiner Perkins.\n\nNow used by 40% of US doctors, it handles 8.5M clinical consults/month. The company also launched DeepConsult, an AI agent for PhD-level evidence syntheses.",
+      "analysis": {
+        "provider": "OpenAI",
+        "reason": "To stay updated on advancements in AI in healthcare and investment news.",
+        "tags": [
+          "AI",
+          "healthcare",
+          "investment",
+          "technology"
+        ],
+        "entities": {
+          "people": [],
+          "organizations": [
+            "OpenEvidence",
+            "GV",
+            "Kleiner Perkins"
+          ],
+          "products": [
+            "DeepConsult"
+          ]
+        },
+        "concepts": [
+          "AI medical assistant",
+          "clinical consults",
+          "evidence synthesis"
+        ],
+        "sentiment": {
+          "label": "positive",
+          "confidence": 0.85
+        },
+        "content_type": "news",
+        "relevance_score": 0.9,
+        "value_score": 0.85,
+        "actionable": false,
+        "categories": [
+          "technology",
+          "healthcare",
+          "business"
+        ],
+        "quality_score": 0.9,
+        "key_insights": [
+          "OpenEvidence raised $210M at a $3.5B valuation.",
+          "40% of US doctors are using OpenEvidence.",
+          "The company launched DeepConsult for advanced evidence synthesis."
+        ],
+        "reference_worthy": true,
+        "composite_score": 0.81
+      },
+      "timestamp": "2025-07-15T19:00:03.000Z",
+      "quality_score": 0.9,
+      "relevance_score": 0.9,
+      "categories": [
+        "technology",
+        "healthcare",
+        "business"
+      ],
+      "tags": [
+        "AI",
+        "healthcare",
+        "investment",
+        "technology"
+      ],
+      "key_insights": [
+        "OpenEvidence raised $210M at a $3.5B valuation.",
+        "40% of US doctors are using OpenEvidence.",
+        "The company launched DeepConsult for advanced evidence synthesis."
+      ],
+      "reference_worthy": true
+    },
+    {
+      "id": "bookmark_1752703340695_4",
+      "text": "The man sitting is the CEO..\nAnswer and check your DM",
+      "analysis": {
+        "provider": "OpenAI",
+        "reason": "To follow up on a potential business opportunity or communication with the CEO.",
+        "tags": [
+          "business",
+          "leadership",
+          "communication"
+        ],
+        "entities": {
+          "people": [
+            "CEO"
+          ],
+          "organizations": [],
+          "products": []
+        },
+        "concepts": [
+          "leadership",
+          "direct messaging",
+          "business communication"
+        ],
+        "sentiment": {
+          "label": "neutral",
+          "confidence": 0.8
+        },
+        "content_type": "opinion",
+        "relevance_score": 0.7,
+        "value_score": 0.6,
+        "actionable": true,
+        "categories": [
+          "business",
+          "communication"
+        ],
+        "quality_score": 0.5,
+        "key_insights": [
+          "Importance of direct communication with leadership.",
+          "Potential for networking or collaboration."
+        ],
+        "reference_worthy": false,
+        "composite_score": 0.58
+      },
+      "timestamp": "2025-07-15T15:02:41.000Z",
+      "quality_score": 0.5,
+      "relevance_score": 0.7,
+      "categories": [
+        "business",
+        "communication"
+      ],
+      "tags": [
+        "business",
+        "leadership",
+        "communication"
+      ],
+      "key_insights": [
+        "Importance of direct communication with leadership.",
+        "Potential for networking or collaboration."
+      ],
+      "reference_worthy": false
+    },
+    {
+      "id": "bookmark_1752703347941_5",
+      "text": "corporate majdoori hack.\n> never be good at anything \n> don't sit continuously on your seat more than 45 min\n> be jack of all trades master of none\n> they shouldn't associate you with a work that \" yeh kaam to usse achhe se aata hai\"\n> be late once a week to assert dominance",
+      "analysis": {
+        "provider": "OpenAI",
+        "reason": "To highlight unconventional workplace strategies and behaviors.",
+        "tags": [
+          "workplace culture",
+          "productivity",
+          "career advice"
+        ],
+        "entities": [],
+        "concepts": [
+          "corporate behavior",
+          "work-life balance",
+          "dominance in the workplace"
+        ],
+        "sentiment": {
+          "label": "neutral",
+          "confidence": 0.8
+        },
+        "content_type": "opinion",
+        "relevance_score": 0.7,
+        "value_score": 0.6,
+        "actionable": true,
+        "categories": [
+          "workplace strategies",
+          "career development"
+        ],
+        "quality_score": 0.5,
+        "key_insights": [
+          "Emphasizes the importance of versatility over specialization.",
+          "Suggests unconventional tactics for asserting dominance in a corporate environment."
+        ],
+        "reference_worthy": true,
+        "composite_score": 0.6799999999999999
+      },
+      "timestamp": "2025-07-15T10:13:49.000Z",
+      "quality_score": 0.5,
+      "relevance_score": 0.7,
+      "categories": [
+        "workplace strategies",
+        "career development"
+      ],
+      "tags": [
+        "workplace culture",
+        "productivity",
+        "career advice"
+      ],
+      "key_insights": [
+        "Emphasizes the importance of versatility over specialization.",
+        "Suggests unconventional tactics for asserting dominance in a corporate environment."
+      ],
+      "reference_worthy": true
+    }
+  ]
+}

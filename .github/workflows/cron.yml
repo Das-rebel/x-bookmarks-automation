@@ -1,0 +1,52 @@
+name: Daily Bookmark Scraping
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # Daily at 6 AM UTC
+  workflow_dispatch:      # Manual trigger option
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    name: Scrape X.com Bookmarks
+    
+    steps:
+      - name: Scrape Bookmarks
+        run: |
+          echo "🚀 Starting daily bookmark scraping..."
+          echo "⏰ Time: $(date -u)"
+          
+          # Call your ngrok endpoint
+          RESPONSE=$(curl -s -X POST "https://60511f1f851c.ngrok-free.app/api/scrape" \
+            -H "Content-Type: application/json" \
+            -d '{"action":"scrape_bookmarks","source":"github_actions"}' \
+            -w "\nHTTP_STATUS:%{http_code}")
+          
+          # Extract response and status
+          HTTP_STATUS=$(echo "$RESPONSE" | tail -n1 | sed 's/.*HTTP_STATUS://')
+          RESPONSE_BODY=$(echo "$RESPONSE" | head -n -1)
+          
+          echo "📊 Response: $RESPONSE_BODY"
+          echo "🔢 HTTP Status: $HTTP_STATUS"
+          
+          if [ "$HTTP_STATUS" = "200" ]; then
+            echo "✅ Scraping initiated successfully!"
+            exit 0
+          else
+            echo "❌ Scraping failed with status $HTTP_STATUS"
+            exit 1
+          fi
+      
+      - name: Notify Success
+        if: success()
+        run: |
+          echo "🎉 Daily bookmark scraping completed successfully!"
+          echo "📅 Date: $(date -u)"
+          echo "🌐 Endpoint: https://60511f1f851c.ngrok-free.app/api/scrape"
+      
+      - name: Notify Failure
+        if: failure()
+        run: |
+          echo "🚨 Daily bookmark scraping failed!"
+          echo "📅 Date: $(date -u)"
+          echo "🔍 Check the logs above for details"

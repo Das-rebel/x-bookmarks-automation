@@ -1,0 +1,97 @@
+{
+  "timestamp": "2025-08-25T21:59:05.354Z",
+  "error": "Next button not found",
+  "stack": "Error: Next button not found\n    at evaluate (evaluate at WebLoginScraper.handleManualLogin (file:///Users/Subho/CascadeProjects/x-bookmarks-automation/src/scrapers/web-login-scraper.js:118:29), <anonymous>:6:26)\n    at #evaluate (file:///Users/Subho/CascadeProjects/x-bookmarks-automation/node_modules/puppeteer-core/lib/esm/puppeteer/cdp/ExecutionContext.js:383:19)\n    at async ExecutionContext.evaluate (file:///Users/Subho/CascadeProjects/x-bookmarks-automation/node_modules/puppeteer-core/lib/esm/puppeteer/cdp/ExecutionContext.js:270:16)\n    at async IsolatedWorld.evaluate (file:///Users/Subho/CascadeProjects/x-bookmarks-automation/node_modules/puppeteer-core/lib/esm/puppeteer/cdp/IsolatedWorld.js:96:16)\n    at async CdpFrame.evaluate (file:///Users/Subho/CascadeProjects/x-bookmarks-automation/node_modules/puppeteer-core/lib/esm/puppeteer/api/Frame.js:335:20)\n    at async CdpPage.evaluate (file:///Users/Subho/CascadeProjects/x-bookmarks-automation/node_modules/puppeteer-core/lib/esm/puppeteer/api/Page.js:799:20)\n    at async WebLoginScraper.handleManualLogin (file:///Users/Subho/CascadeProjects/x-bookmarks-automation/src/scrapers/web-login-scraper.js:118:13)\n    at async WebLoginScraper.run (file:///Users/Subho/CascadeProjects/x-bookmarks-automation/src/scrapers/web-login-scraper.js:529:18)\n    at async main (file:///Users/Subho/CascadeProjects/x-bookmarks-automation/src/scrapers/web-login-scraper.js:591:24)",
+  "sessionId": "1756159138448",
+  "logs": [
+    {
+      "timestamp": "2025-08-25T21:58:58.448Z",
+      "message": "🚀 Web Login Scraper initialized",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:58:58.449Z",
+      "message": "📋 Environment Status:",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:58:58.449Z",
+      "message": "   Supabase URL: ✅ Set",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:58:58.449Z",
+      "message": "   Supabase Key: ✅ Set",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:58:58.449Z",
+      "message": "   OpenAI API: ✅ Available",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:58:58.449Z",
+      "message": "   X Username: ✅ Set",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:58:58.449Z",
+      "message": "   X Password: ✅ Set",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:58:58.449Z",
+      "message": "🚀 Starting Web Login Scraper...",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:58:58.450Z",
+      "message": "🌐 Initializing browser...",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:59:01.383Z",
+      "message": "✅ Browser initialized successfully",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:59:01.385Z",
+      "message": "🔐 Starting manual login process...",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:59:04.932Z",
+      "message": "📸 Screenshot saved: web-scraper-login-page-2025-08-25T21-59-04-869Z.png",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:59:04.932Z",
+      "message": "👤 Entering username...",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:59:05.282Z",
+      "message": "➡️ Clicking Next button...",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:59:05.284Z",
+      "message": "❌ Login failed: Next button not found",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:59:05.354Z",
+      "message": "📸 Screenshot saved: web-scraper-login-error-2025-08-25T21-59-05-284Z.png",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T21:59:05.354Z",
+      "message": "❌ Scraping failed: Next button not found",
+      "data": null
+    }
+  ],
+  "screenshots": [
+    "/Users/Subho/CascadeProjects/x-bookmarks-automation/src/scrapers/web-scraper-login-page-2025-08-25T21-59-04-869Z.png",
+    "/Users/Subho/CascadeProjects/x-bookmarks-automation/src/scrapers/web-scraper-login-error-2025-08-25T21-59-05-284Z.png"
+  ]
+}

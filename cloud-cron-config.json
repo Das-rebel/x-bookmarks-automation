@@ -1,0 +1,28 @@
+{
+  "cronJobOrg": {
+    "name": "X-Bookmarks-Automation",
+    "url": "https://60511f1f851c.ngrok-free.app/api/scrape",
+    "schedule": "0 6 * * *",
+    "timezone": "UTC",
+    "retryCount": 3,
+    "retryDelay": 300,
+    "headers": {
+      "Content-Type": "application/json",
+      "User-Agent": "CloudCron/1.0"
+    },
+    "body": "{\"action\":\"scrape_bookmarks\",\"timestamp\":\"2025-08-25T14:08:34.314Z\"}"
+  },
+  "easyCron": {
+    "name": "X-Bookmarks-Scraper",
+    "url": "https://60511f1f851c.ngrok-free.app/api/scrape",
+    "cron": "0 6 * * *",
+    "timezone": "UTC",
+    "retry": 3,
+    "retry_interval": 300
+  },
+  "manualCron": {
+    "command": "curl -X POST \"https://60511f1f851c.ngrok-free.app/api/scrape\" -H \"Content-Type: application/json\" -d '{\"action\":\"scrape_bookmarks\"}'",
+    "schedule": "0 6 * * *",
+    "description": "Daily bookmark scraping at 6 AM UTC"
+  }
+}

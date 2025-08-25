@@ -1,0 +1,29 @@
+name: default-settings
+description: "Recommended defaults for all Taskmaster jobs"
+
+defaults:
+  schedule:
+    # Run daily at 2 AM server time
+    cron: "0 2 * * *"
+    timezone: "UTC"
+    retry:
+      # Retry up to 3 times on failure with exponential backoff
+      attempts: 3
+      backoff:
+        type: exponential
+        initialDelay: "30s"
+        maxDelay: "5m"
+  logging:
+    level: INFO              # Capture informational logs and above
+    format: json             # Structured JSON output for easy parsing
+    retention: 7d            # Keep logs for 7 days
+    onError:
+      notify:
+        channels:
+          - email            # Send alert email
+          - webhook          # POST a JSON payload to your monitoring endpoint
+  resources:
+    cpu: 1                   # Single core
+    memory: 512Mi            # 512 MB RAM
+    timeout: "15m"           # Kill job if running longer than 15 minutes
+    disk: 1Gi                # 1 GB ephemeral storage

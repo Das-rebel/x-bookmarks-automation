@@ -1,0 +1,17 @@
+[
+  {
+    "id": "1951038459160007074",
+    "text": "git clone https://github.com/dnakov/qwen-mlx-server… cd qwen-mlx-server pip install -r requirements.txt python qwen_server_with_tools.py --model mlx-community/Qwen3-Coder-30B-A3B-Instruct-4bit --chat-template \"$(cat qwen3_coder_chat_template.jinja)\" --port 1234",
+    "author": "SIGKITTEN",
+    "authorHandle": "SIGKITTEN·Aug 1",
+    "timestamp": "2025-07-31T21:53:11.000Z",
+    "replyCount": "2",
+    "retweetCount": "1",
+    "likeCount": "45",
+    "hasMedia": false,
+    "url": "https://twitter.com/SIGKITTEN·Aug 1/status/1951038459160007074",
+    "extractedAt": "2025-08-25T11:42:15.940Z",
+    "textLength": 261,
+    "wordCount": 18
+  }
+]

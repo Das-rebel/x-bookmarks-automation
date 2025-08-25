@@ -1,0 +1,41 @@
+[
+  {
+    "id": "1234567890123456789",
+    "text": "This is a test tweet about AI and machine learning. Great insights on the future of technology!",
+    "author": "Tech Expert",
+    "authorHandle": "techexpert",
+    "timestamp": "2025-08-17T10:00:00.000Z",
+    "replyCount": "5",
+    "retweetCount": "12",
+    "likeCount": "45",
+    "hasMedia": false,
+    "url": "https://twitter.com/techexpert/status/1234567890123456789",
+    "extractedAt": "2025-08-17T15:45:00.000Z"
+  },
+  {
+    "id": "1234567890123456790",
+    "text": "Another test tweet about data science and analytics. The importance of clean data cannot be overstated.",
+    "author": "Data Scientist",
+    "authorHandle": "datascientist",
+    "timestamp": "2025-08-17T09:30:00.000Z",
+    "replyCount": "3",
+    "retweetCount": "8",
+    "likeCount": "23",
+    "hasMedia": true,
+    "url": "https://twitter.com/datascientist/status/1234567890123456790",
+    "extractedAt": "2025-08-17T15:45:00.000Z"
+  },
+  {
+    "id": "1234567890123456791",
+    "text": "Third test tweet about web development and modern frameworks. React, Vue, and Angular are all excellent choices.",
+    "author": "Web Developer",
+    "authorHandle": "webdev",
+    "timestamp": "2025-08-17T08:15:00.000Z",
+    "replyCount": "7",
+    "retweetCount": "15",
+    "likeCount": "67",
+    "hasMedia": false,
+    "url": "https://twitter.com/webdev/status/1234567890123456791",
+    "extractedAt": "2025-08-17T15:45:00.000Z"
+  }
+]

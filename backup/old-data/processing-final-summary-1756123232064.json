@@ -1,0 +1,293 @@
+{
+  "totalBookmarks": 510,
+  "processedBookmarks": 510,
+  "outputDirectory": "processed-bookmarks-1756123232064",
+  "executionTime": 51,
+  "sessionId": "1756123232064",
+  "timestamp": "2025-08-25T12:00:32.115Z",
+  "summary": {
+    "totalBookmarks": 510,
+    "processingTimestamp": "2025-08-25T12:00:32.104Z",
+    "sessionId": "1756123232064",
+    "byContentType": [
+      {
+        "type": "General",
+        "count": 176,
+        "percentage": 35
+      },
+      {
+        "type": "Programming",
+        "count": 57,
+        "percentage": 11
+      },
+      {
+        "type": "AI/ML",
+        "count": 253,
+        "percentage": 50
+      },
+      {
+        "type": "Business",
+        "count": 7,
+        "percentage": 1
+      },
+      {
+        "type": "Technology",
+        "count": 5,
+        "percentage": 1
+      },
+      {
+        "type": "Science",
+        "count": 11,
+        "percentage": 2
+      },
+      {
+        "type": "Finance",
+        "count": 1,
+        "percentage": 0
+      }
+    ],
+    "byPriority": {
+      "high": 0,
+      "medium": 135,
+      "low": 375
+    },
+    "bySentiment": {
+      "positive": 128,
+      "neutral": 359,
+      "negative": 23
+    },
+    "byLanguage": {
+      "english": 36,
+      "spanish": 443,
+      "unknown": 31
+    },
+    "topHashtags": [
+      {
+        "hashtag": "#1",
+        "count": 4
+      },
+      {
+        "hashtag": "#minimax",
+        "count": 1
+      },
+      {
+        "hashtag": "#promptshare",
+        "count": 1
+      },
+      {
+        "hashtag": "#nukitashi_anime",
+        "count": 1
+      },
+      {
+        "hashtag": "#ai",
+        "count": 1
+      },
+      {
+        "hashtag": "#research",
+        "count": 1
+      },
+      {
+        "hashtag": "#google",
+        "count": 1
+      },
+      {
+        "hashtag": "#pose",
+        "count": 1
+      },
+      {
+        "hashtag": "#midjourneyv7",
+        "count": 1
+      },
+      {
+        "hashtag": "#srefcode",
+        "count": 1
+      }
+    ],
+    "topMentions": [
+      {
+        "mention": "@latest",
+        "count": 4
+      },
+      {
+        "mention": "@claude_code",
+        "count": 3
+      },
+      {
+        "mention": "@aisdk",
+        "count": 2
+      },
+      {
+        "mention": "@livekit",
+        "count": 2
+      },
+      {
+        "mention": "@CodeGuidedev",
+        "count": 2
+      },
+      {
+        "mention": "@ycombinator",
+        "count": 2
+      },
+      {
+        "mention": "@hyperbrowser",
+        "count": 2
+      },
+      {
+        "mention": "@IamEmily2050",
+        "count": 2
+      },
+      {
+        "mention": "@lovable_dev",
+        "count": 2
+      },
+      {
+        "mention": "@firecrawl_dev",
+        "count": 1
+      }
+    ],
+    "topEngaged": [
+      {
+        "id": "1959905034717831334",
+        "text": "Bipasha basu's call recording with amar singh...",
+        "author": "Mr_LoLwa·2h",
+        "engagementScore": 1,
+        "url": "https://twitter.com/Mr_LoLwa·2h/status/1959905034717831334"
+      },
+      {
+        "id": "1959610913134133549",
+        "text": "I saw a photo of a new U.S. reshoring factory. The #1 robot brand powering Trump’s “Make America Gre...",
+        "author": "IlirAliu_·22h",
+        "engagementScore": 1,
+        "url": "https://twitter.com/IlirAliu_·22h/status/1959610913134133549"
+      },
+      {
+        "id": "1958541347906023710",
+        "text": "We just shipped Qoder and wow, this feels good. You know how Al tools nail the demo then completely ...",
+        "author": "qoder_ai_ide·Aug 21",
+        "engagementScore": 1,
+        "url": "https://twitter.com/qoder_ai_ide·Aug 21/status/1958541347906023710"
+      },
+      {
+        "id": "1958670510902190486",
+        "text": "Juicy startup idea: Your toilet breaks at 2am. Who do you call? The property manager isn’t picking u...",
+        "author": "startupideaspod·Aug 22",
+        "engagementScore": 1,
+        "url": "https://twitter.com/startupideaspod·Aug 22/status/1958670510902190486"
+      },
+      {
+        "id": "1958582645140357272",
+        "text": "New Agentic Coding Platform from China to compete with Cursor and Windsurf. And it's 100% free in pu...",
+        "author": "Saboo_Shubham_·Aug 21",
+        "engagementScore": 1,
+        "url": "https://twitter.com/Saboo_Shubham_·Aug 21/status/1958582645140357272"
+      },
+      {
+        "id": "1957474173472969108",
+        "text": "You spot an unsigned band destined to break out. Instead of cold-calling labels, what if you could b...",
+        "author": "_Dave__White_·Aug 18",
+        "engagementScore": 1,
+        "url": "https://twitter.com/_Dave__White_·Aug 18/status/1957474173472969108"
+      },
+      {
+        "id": "1956308126858453474",
+        "text": "Note it it's \"Bandemataram\" not \"Vandemataram\"...",
+        "author": "BombagorerRani·Aug 15",
+        "engagementScore": 1,
+        "url": "https://twitter.com/BombagorerRani·Aug 15/status/1956308126858453474"
+      },
+      {
+        "id": "1955928216335736921",
+        "text": "BREAKING: AI now lets you create UNLIMITED-length videos from your own laptop. (OPEN SOURCE) also, t...",
+        "author": "samuraipreneur·Aug 14",
+        "engagementScore": 1,
+        "url": "https://twitter.com/samuraipreneur·Aug 14/status/1955928216335736921"
+      },
+      {
+        "id": "1953914547011825903",
+        "text": "BREAKING: You can now build AI agents that remember you. MemU is the first memory system designed fo...",
+        "author": "hasantoxr·Aug 9",
+        "engagementScore": 1,
+        "url": "https://twitter.com/hasantoxr·Aug 9/status/1953914547011825903"
+      },
+      {
+        "id": "1952665568487579861",
+        "text": "We turned 3 assets into 100 using generative AI texturing for our 3D models. All with free, local to...",
+        "author": "mickmumpitz·Aug 5",
+        "engagementScore": 1,
+        "url": "https://twitter.com/mickmumpitz·Aug 5/status/1952665568487579861"
+      }
+    ],
+    "topPriority": [
+      {
+        "id": "1958670510902190486",
+        "text": "Juicy startup idea: Your toilet breaks at 2am. Who do you call? The property manager isn’t picking u...",
+        "author": "startupideaspod·Aug 22",
+        "priorityScore": 65,
+        "url": "https://twitter.com/startupideaspod·Aug 22/status/1958670510902190486"
+      },
+      {
+        "id": "1952029877185712393",
+        "text": "Just built a Voice AI Chatbot that lets customers talk to your business and get real answers from yo...",
+        "author": "SubhaghV·Aug 3",
+        "priorityScore": 60,
+        "url": "https://twitter.com/SubhaghV·Aug 3/status/1952029877185712393"
+      },
+      {
+        "id": "1950514331231412514",
+        "text": "I built a simple voice assistant in 70 lines of Python code. It uses: • @livekit - The voice agent •...",
+        "author": "svpino·Jul 30",
+        "priorityScore": 60,
+        "url": "https://twitter.com/svpino·Jul 30/status/1950514331231412514"
+      },
+      {
+        "id": "1949818572429017453",
+        "text": "Add Semantic Search to Claude Code! Code Context is an MCP plugin that adds semantic code search to ...",
+        "author": "Sumanth_077·Jul 28",
+        "priorityScore": 60,
+        "url": "https://twitter.com/Sumanth_077·Jul 28/status/1949818572429017453"
+      },
+      {
+        "id": "1955312558652760266",
+        "text": "If you're a designer vibe coding software with Cursor, Windsurf, or Claude code and you're tired of ...",
+        "author": "Sam_Lane96·Aug 12",
+        "priorityScore": 60,
+        "url": "https://twitter.com/Sam_Lane96·Aug 12/status/1955312558652760266"
+      },
+      {
+        "id": "1949139753095573566",
+        "text": "New banger startup listing live on @acquiredotcom. No-code AI chatbot SaaS built for speed, scale, a...",
+        "author": "agazdecki·Jul 26",
+        "priorityScore": 60,
+        "url": "https://twitter.com/agazdecki·Jul 26/status/1949139753095573566"
+      },
+      {
+        "id": "1958558278008586519",
+        "text": "We're open sourcing v2 of our Perplexity clone in 24 hours Ask any question and get AI-powered answe...",
+        "author": "ericciarla·Aug 21",
+        "priorityScore": 55,
+        "url": "https://twitter.com/ericciarla·Aug 21/status/1958558278008586519"
+      },
+      {
+        "id": "1957850628299837667",
+        "text": "What if you could watch a UI generate in real-time as you work with AI? Now you can, with Real Time ...",
+        "author": "skirano·Aug 19",
+        "priorityScore": 55,
+        "url": "https://twitter.com/skirano·Aug 19/status/1957850628299837667"
+      },
+      {
+        "id": "1957847823585820937",
+        "text": "Big update: we’re building an AI device that looks like jewelry, not another screen or plastic gadge...",
+        "author": "eleelenawa·Aug 19",
+        "priorityScore": 55,
+        "url": "https://twitter.com/eleelenawa·Aug 19/status/1957847823585820937"
+      },
+      {
+        "id": "1943686987795382577",
+        "text": "I think i cracked the code on how to make real looking AI UGC for mobile apps Concept for Flo app (h...",
+        "author": "MugoScales·Jul 11",
+        "priorityScore": 55,
+        "url": "https://twitter.com/MugoScales·Jul 11/status/1943686987795382577"
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "id": "1954879228031443077",
+    "text": "Claude Code pro tip: You can automatically send bash commands to the background (without using Ctrl+b) by setting these environment variables in .bashrc or .zshrc Been using this for months and thought it was common knowledge! Very useful for things like npm run dev etc",
+    "author": "Ian Nuttall",
+    "authorHandle": "iannuttall·Aug 11",
+    "timestamp": "2025-08-11T12:15:02.000Z",
+    "replyCount": "29",
+    "retweetCount": "83",
+    "likeCount": "1K",
+    "hasMedia": false,
+    "url": "https://twitter.com/iannuttall·Aug 11/status/1954879228031443077",
+    "extractedAt": "2025-08-25T11:42:03.213Z",
+    "textLength": 270,
+    "wordCount": 45
+  }
+]

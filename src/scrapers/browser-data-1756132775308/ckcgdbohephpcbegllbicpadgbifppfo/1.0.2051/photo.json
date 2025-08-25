@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "campaigns": [
+    {
+      "campaignId": "d762e6f5-fd49-4488-a36f-d4a84df6ac8a",
+      "logo": {
+        "imageUrl": "2a6a3a8e-3ce6-4a4c-a702-c14e26a55eaa/ec336361-2a85-45f3-ac77-882191d3fa8c.png",
+        "destinationUrl": "https://brave.com/wallet/#zcash",
+        "alt": "ZCash in Brave Wallet - Spend Unstoppable private money. Get Started",
+        "companyName": "ZCash"
+      },
+      "wallpapers": [
+        {
+          "imageUrl": "2a6a3a8e-3ce6-4a4c-a702-c14e26a55eaa/3167ef6d-6286-4c12-a003-04cd3315b702.jpg",
+          "creativeInstanceId": "256b1be4-4b45-453f-a9ee-6eaf5f361757",
+          "focalPoint": {
+            "x": 1280,
+            "y": 720
+          }
+        }
+      ]
+    }
+  ],
+  "campaigns2": [
+    {
+      "campaignId": "d762e6f5-fd49-4488-a36f-d4a84df6ac8a",
+      "logo": {
+        "imageUrl": "2a6a3a8e-3ce6-4a4c-a702-c14e26a55eaa/ec336361-2a85-45f3-ac77-882191d3fa8c.png",
+        "destinationUrl": "https://brave.com/wallet/#zcash",
+        "alt": "ZCash in Brave Wallet - Spend Unstoppable private money. Get Started",
+        "companyName": "ZCash"
+      },
+      "wallpapers": [
+        {
+          "imageUrl": "2a6a3a8e-3ce6-4a4c-a702-c14e26a55eaa/3167ef6d-6286-4c12-a003-04cd3315b702.jpg",
+          "creativeInstanceId": "256b1be4-4b45-453f-a9ee-6eaf5f361757",
+          "focalPoint": {
+            "x": 1280,
+            "y": 720
+          }
+        }
+      ]
+    }
+  ]
+}

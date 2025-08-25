@@ -1,0 +1,18 @@
+{
+  "projectName": "x-bookmarks-automation",
+  "tasksFile": "tasks.json",
+  "defaultStatus": "todo",
+  "priorities": ["high", "medium", "low"],
+  "categories": [
+    "scraper",
+    "api",
+    "security",
+    "testing",
+    "documentation",
+    "infrastructure"
+  ],
+  "ai": {
+    "model": "gpt-4",
+    "temperature": 0.2
+  }
+}

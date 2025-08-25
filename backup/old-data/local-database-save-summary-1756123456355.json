@@ -1,0 +1,63 @@
+{
+  "sessionId": "1756123456355",
+  "timestamp": "2025-08-25T12:04:17.858Z",
+  "totalProcessed": 510,
+  "saveResult": {
+    "savedCount": 510,
+    "errorCount": 0
+  },
+  "databaseStats": {
+    "totalBookmarks": 510,
+    "contentTypes": [
+      {
+        "content_type": "AI/ML",
+        "count": 253
+      },
+      {
+        "content_type": "General",
+        "count": 176
+      },
+      {
+        "content_type": "Programming",
+        "count": 57
+      },
+      {
+        "content_type": "Science",
+        "count": 11
+      },
+      {
+        "content_type": "Business",
+        "count": 7
+      },
+      {
+        "content_type": "Technology",
+        "count": 5
+      },
+      {
+        "content_type": "Finance",
+        "count": 1
+      }
+    ],
+    "averageEngagement": 0.8615686274509804,
+    "averagePriority": 30.127450980392158
+  },
+  "logs": [
+    "[2025-08-25T12:04:16.361Z] [INFO] 🚀 Starting local database save process...",
+    "[2025-08-25T12:04:16.364Z] [INFO] ✅ Database connection established",
+    "[2025-08-25T12:04:16.365Z] [INFO] 📄 Loading processed bookmarks from: processed-bookmarks-1756123232064",
+    "[2025-08-25T12:04:16.371Z] [INFO] 📖 Loaded 510 processed bookmarks",
+    "[2025-08-25T12:04:16.371Z] [INFO] 💾 Saving bookmarks to local database...",
+    "[2025-08-25T12:04:16.371Z] [INFO] 📦 Processing batch 1/11",
+    "[2025-08-25T12:04:16.528Z] [INFO] 📦 Processing batch 2/11",
+    "[2025-08-25T12:04:16.651Z] [INFO] 📦 Processing batch 3/11",
+    "[2025-08-25T12:04:16.775Z] [INFO] 📦 Processing batch 4/11",
+    "[2025-08-25T12:04:16.901Z] [INFO] 📦 Processing batch 5/11",
+    "[2025-08-25T12:04:17.025Z] [INFO] 📦 Processing batch 6/11",
+    "[2025-08-25T12:04:17.150Z] [INFO] 📦 Processing batch 7/11",
+    "[2025-08-25T12:04:17.365Z] [INFO] 📦 Processing batch 8/11",
+    "[2025-08-25T12:04:17.497Z] [INFO] 📦 Processing batch 9/11",
+    "[2025-08-25T12:04:17.622Z] [INFO] 📦 Processing batch 10/11",
+    "[2025-08-25T12:04:17.749Z] [INFO] 📦 Processing batch 11/11",
+    "[2025-08-25T12:04:17.855Z] [INFO] ✅ Database save complete: Successfully saved: 510, Errors: 0"
+  ]
+}

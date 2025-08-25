@@ -1,0 +1,183 @@
+{
+  "timestamp": "2025-08-25T22:02:58.525Z",
+  "error": "Password field not found after multiple attempts",
+  "stack": "Error: Password field not found after multiple attempts\n    at WebLoginScraper.handleManualLogin (file:///Users/Subho/CascadeProjects/x-bookmarks-automation/src/scrapers/web-login-scraper.js:305:23)\n    at async WebLoginScraper.run (file:///Users/Subho/CascadeProjects/x-bookmarks-automation/src/scrapers/web-login-scraper.js:589:18)\n    at async main (file:///Users/Subho/CascadeProjects/x-bookmarks-automation/src/scrapers/web-login-scraper.js:651:24)",
+  "sessionId": "1756159305181",
+  "logs": [
+    {
+      "timestamp": "2025-08-25T22:01:45.181Z",
+      "message": "🚀 Web Login Scraper initialized",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:01:45.182Z",
+      "message": "📋 Environment Status:",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:01:45.182Z",
+      "message": "   Supabase URL: ✅ Set",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:01:45.182Z",
+      "message": "   Supabase Key: ✅ Set",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:01:45.182Z",
+      "message": "   OpenAI API: ✅ Available",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:01:45.182Z",
+      "message": "   X Username: ✅ Set",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:01:45.182Z",
+      "message": "   X Password: ✅ Set",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:01:45.182Z",
+      "message": "🚀 Starting Web Login Scraper...",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:01:45.183Z",
+      "message": "🌐 Initializing browser...",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:01:46.180Z",
+      "message": "✅ Browser initialized successfully",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:01:46.181Z",
+      "message": "🔐 Starting manual login process...",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:01:49.493Z",
+      "message": "📸 Screenshot saved: web-scraper-login-page-2025-08-25T22-01-49-425Z.png",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:01:49.493Z",
+      "message": "👤 Entering username...",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:01:50.288Z",
+      "message": "➡️ Clicking Next button...",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:01:50.289Z",
+      "message": "🔍 Available buttons:",
+      "data": "[\n  {\n    \"text\": \"\",\n    \"tagName\": \"BUTTON\",\n    \"role\": \"button\",\n    \"data-testid\": \"app-bar-close\",\n    \"visible\": true\n  },\n  {\n    \"text\": \"Sign in with GoogleSign in with Google. Opens in new tab\",\n    \"tagName\": \"DIV\",\n    \"role\": \"button\",\n    \"data-testid\": null,\n    \"visible\": true\n  },\n  {\n    \"text\": \"Sign in with Apple\",\n    \"tagName\": \"BUTTON\",\n    \"role\": \"button\",\n    \"data-testid\": \"apple_sign_in_button\",\n    \"visible\": true\n  },\n  {\n    \"text\": \"Next\",\n    \"tagName\": \"BUTTON\",\n    \"role\": \"button\",\n    \"data-testid\": null,\n    \"visible\": true\n  },\n  {\n    \"text\": \"Forgot password?\",\n    \"tagName\": \"BUTTON\",\n    \"role\": \"button\",\n    \"data-testid\": null,\n    \"visible\": true\n  },\n  {\n    \"text\": \"Sign up\",\n    \"tagName\": \"BUTTON\",\n    \"role\": \"button\",\n    \"data-testid\": null,\n    \"visible\": true\n  }\n]"
+    },
+    {
+      "timestamp": "2025-08-25T22:01:50.323Z",
+      "message": "⏳ Waiting for page to update after clicking Next...",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:01:58.326Z",
+      "message": "🔐 Verification step detected - Twitter is asking for additional verification",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:01:58.326Z",
+      "message": "📱 This usually requires phone/email verification or CAPTCHA",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:01:58.326Z",
+      "message": "⏳ Waiting for verification page to load...",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:02:08.329Z",
+      "message": "📋 Verification page elements:",
+      "data": "{\n  \"inputs\": [\n    {\n      \"type\": \"text\",\n      \"placeholder\": \"\",\n      \"name\": \"text\",\n      \"id\": \"\",\n      \"data-testid\": \"ocfEnterTextTextInput\",\n      \"visible\": true\n    }\n  ],\n  \"buttons\": [\n    {\n      \"text\": \"\",\n      \"data-testid\": \"app-bar-close\",\n      \"visible\": true\n    },\n    {\n      \"text\": \"Next\",\n      \"data-testid\": \"ocfEnterTextNextButton\",\n      \"visible\": true\n    }\n  ],\n  \"divs\": [\n    {\n      \"text\": \"Enter your phone number or usernameThere was unusual login activity on your account. To help keep yo\",\n      \"data-testid\": null,\n      \"visible\": true\n    },\n    {\n      \"text\": \"Enter your phone number or usernameThere was unusual login activity on your account. To help keep yo\",\n      \"data-testid\": null,\n      \"visible\": true\n    },\n    {\n      \"text\": \"Enter your phone number or usernameThere was unusual login activity on your account. To help keep yo\",\n      \"data-testid\": null,\n      \"visible\": true\n    },\n    {\n      \"text\": \"Enter your phone number or usernameThere was unusual login activity on your account. To help keep yo\",\n      \"data-testid\": null,\n      \"visible\": true\n    },\n    {\n      \"text\": \"Enter your phone number or usernameThere was unusual login activity on your account. To help keep yo\",\n      \"data-testid\": null,\n      \"visible\": false\n    }\n  ]\n}"
+    },
+    {
+      "timestamp": "2025-08-25T22:02:08.329Z",
+      "message": "🔑 Found verification input: {\"type\":\"text\",\"placeholder\":\"\",\"name\":\"text\",\"id\":\"\",\"data-testid\":\"ocfEnterTextTextInput\",\"visible\":true}",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:02:08.329Z",
+      "message": "⚠️ Manual verification required - please complete the verification step in the browser",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:02:08.329Z",
+      "message": "📱 Enter your phone number or username in the input field and click Next",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:02:08.329Z",
+      "message": "⏳ Waiting for manual verification completion...",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:02:38.331Z",
+      "message": "🔄 Checking if verification is complete...",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:02:38.332Z",
+      "message": "🔑 Looking for password field after verification...",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:02:48.339Z",
+      "message": "❌ Password field not found with selector: input[type=\"password\"]",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:02:53.342Z",
+      "message": "❌ Password field not found with selector: input[name=\"password\"]",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:02:58.345Z",
+      "message": "❌ Password field not found with selector: input[autocomplete=\"current-password\"]",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:02:58.457Z",
+      "message": "📸 Screenshot saved: web-scraper-login-error-2025-08-25T22-02-58-346Z.png",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:02:58.459Z",
+      "message": "📋 Page elements after Next button:",
+      "data": "{\n  \"inputs\": [\n    {\n      \"type\": \"text\",\n      \"placeholder\": \"\",\n      \"name\": \"text\",\n      \"id\": \"\",\n      \"data-testid\": \"ocfEnterTextTextInput\",\n      \"visible\": true\n    }\n  ],\n  \"buttons\": [\n    {\n      \"text\": \"\",\n      \"data-testid\": \"app-bar-close\",\n      \"visible\": true\n    },\n    {\n      \"text\": \"Next\",\n      \"data-testid\": \"ocfEnterTextNextButton\",\n      \"visible\": true\n    }\n  ],\n  \"divs\": [\n    {\n      \"text\": \"Enter your phone number or usernameThere was unusual login activity on your account. To help keep yo\",\n      \"data-testid\": null,\n      \"visible\": true\n    },\n    {\n      \"text\": \"Enter your phone number or usernameThere was unusual login activity on your account. To help keep yo\",\n      \"data-testid\": null,\n      \"visible\": true\n    },\n    {\n      \"text\": \"Enter your phone number or usernameThere was unusual login activity on your account. To help keep yo\",\n      \"data-testid\": null,\n      \"visible\": true\n    },\n    {\n      \"text\": \"Enter your phone number or usernameThere was unusual login activity on your account. To help keep yo\",\n      \"data-testid\": null,\n      \"visible\": true\n    },\n    {\n      \"text\": \"Enter your phone number or usernameThere was unusual login activity on your account. To help keep yo\",\n      \"data-testid\": null,\n      \"visible\": false\n    }\n  ]\n}"
+    },
+    {
+      "timestamp": "2025-08-25T22:02:58.459Z",
+      "message": "❌ Login failed: Password field not found after multiple attempts",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:02:58.525Z",
+      "message": "📸 Screenshot saved: web-scraper-login-error-2025-08-25T22-02-58-460Z.png",
+      "data": null
+    },
+    {
+      "timestamp": "2025-08-25T22:02:58.525Z",
+      "message": "❌ Scraping failed: Password field not found after multiple attempts",
+      "data": null
+    }
+  ],
+  "screenshots": [
+    "/Users/Subho/CascadeProjects/x-bookmarks-automation/src/scrapers/web-scraper-login-page-2025-08-25T22-01-49-425Z.png",
+    "/Users/Subho/CascadeProjects/x-bookmarks-automation/src/scrapers/web-scraper-login-error-2025-08-25T22-02-58-346Z.png",
+    "/Users/Subho/CascadeProjects/x-bookmarks-automation/src/scrapers/web-scraper-login-error-2025-08-25T22-02-58-460Z.png"
+  ]
+}

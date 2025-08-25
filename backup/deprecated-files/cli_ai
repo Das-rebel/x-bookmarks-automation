@@ -1,0 +1,190 @@
+#!/bin/bash
+# Simple CLI for AI interactions using OpenAI API
+
+# Configuration
+MODEL="gpt-3.5-turbo"
+MAX_TOKENS=1000
+TEMPERATURE=0.7
+
+# Get API key from environment or use the provided one
+API_KEY=${OPENAI_API_KEY:-'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'}
+
+# Set the API endpoint
+API_URL="https://api.openai.com/v1/chat/completions"
+
+# Check if jq is installed
+if ! command -v jq &> /dev/null; then
+    echo "Error: jq is required but not installed. Please install it with 'brew install jq'"
+    exit 1
+fi
+
+# Check if curl is installed
+if ! command -v curl &> /dev/null; then
+    echo "Error: curl is required but not installed."
+    exit 1
+fi
+
+# Show help
+show_help() {
+    echo "AI Command Line Interface"
+    echo "Usage: $0 [options] 'Your prompt here'"
+    echo ""
+    echo "Options:"
+    echo "  -m, --model MODEL      Set the model to use (default: gpt-3.5-turbo)"
+    echo "  -t, --tokens NUM       Set max tokens (default: 1000)"
+    echo "  -c, --temperature NUM  Set temperature (0.0 to 2.0, default: 0.7)"
+    echo "  -h, --help             Show this help message"
+    echo ""
+    echo "Examples:"
+    echo "  $0 'Explain quantum computing in simple terms'"
+    echo "  $0 -m gpt-4 'Write a poem about artificial intelligence'"
+    echo "  $0 -t 500 -c 0.5 'Explain like I\'m five: How do computers work?'"
+}
+
+# Parse command line arguments
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -m|--model)
+            MODEL="$2"
+            shift 2
+            ;;
+        -t|--tokens)
+            MAX_TOKENS="$2"
+            shift 2
+            ;;
+        -c|--temperature)
+            TEMPERATURE="$2"
+            shift 2
+            ;;
+        -h|--help)
+            show_help
+            exit 0
+            ;;
+        --)
+            shift
+            break
+            ;;
+        *)
+            # First non-option argument is the prompt
+            if [[ -z "$PROMPT" ]]; then
+                PROMPT="$1"
+                shift
+            else
+                # If we already have a prompt, append the rest
+                PROMPT="$PROMPT $1"
+                shift
+            fi
+            ;;
+    esac
+done
+
+# Check if prompt is provided
+if [[ -z "$PROMPT" ]]; then
+    echo "Error: No prompt provided"
+    show_help
+    exit 1
+fi
+
+# Check if API key is set
+if [[ -z "$OPENAI_API_KEY" ]] || [[ "$OPENAI_API_KEY" == "your-api-key-here" ]]; then
+    echo "Error: OPENAI_API_KEY is not set"
+    echo "Please set your OpenAI API key as an environment variable or edit this script"
+    echo "Example: export OPENAI_API_KEY='your-api-key'"
+    exit 1
+fi
+
+# Debug information (can be enabled with DEBUG=1)
+if [[ "$DEBUG" == "1" ]]; then
+    echo "DEBUG: Model: $MODEL"
+    echo "DEBUG: Max tokens: $MAX_TOKENS"
+    echo "DEBUG: Temperature: $TEMPERATURE"
+    echo "DEBUG: Prompt: $PROMPT"
+fi
+
+# Create a temporary file for the JSON payload
+TEMP_JSON=$(mktemp)
+cat > "$TEMP_JSON" <<EOF
+{
+  "model": "$MODEL",
+  "messages": [
+    {
+      "role": "user",
+      "content": "$PROMPT"
+    }
+  ],
+  "max_tokens": $MAX_TOKENS,
+  "temperature": $TEMPERATURE
+}
+EOF
+
+# Call OpenAI API directly
+RESPONSE=$(curl -s -X POST "$API_URL" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $API_KEY" \
+  -d @"$TEMP_JSON")
+
+# Clean up the temporary file
+rm -f "$TEMP_JSON"
+
+# Debug output
+if [[ "$DEBUG" == "1" ]]; then
+    echo "DEBUG: Raw API response:"
+    echo "$RESPONSE" | jq .
+fi
+
+# Check for curl errors
+if [ $? -ne 0 ]; then
+    echo "Error: Failed to connect to OpenAI API"
+    exit 1
+fi
+
+# Check if response is empty
+if [ -z "$RESPONSE" ]; then
+    echo "Error: Empty response from API"
+    exit 1
+fi
+
+# Check if response is empty
+if [ -z "$RESPONSE" ]; then
+    echo "Error: Empty response from API"
+    exit 1
+fi
+
+# Debug raw response
+if [[ "$DEBUG" == "1" ]]; then
+    echo "DEBUG: Raw response:"
+    echo "$RESPONSE" | jq .
+fi
+
+# Check for API errors
+ERROR_MSG=$(echo "$RESPONSE" | jq -r '.error.message // empty')
+if [ -n "$ERROR_MSG" ]; then
+    echo "Error from OpenAI API: $ERROR_MSG"
+    exit 1
+fi
+
+# Extract and display the content using Python for better JSON handling
+python3 -c "
+import json, sys
+try:
+    data = json.loads('''$RESPONSE''')
+    if 'choices' in data and len(data['choices']) > 0:
+        print(data['choices'][0]['message']['content'])
+        
+        # Show usage info if available
+        if 'usage' in data:
+            usage = data['usage']
+            print('\n---')
+            print(f'Model: {data.get(\"model\", \"unknown\")}')
+            print(f'Prompt tokens: {usage.get(\"prompt_tokens\", 0)}')
+            print(f'Completion tokens: {usage.get(\"completion_tokens\", 0)}')
+            print(f'Total tokens: {usage.get(\"total_tokens\", 0)}')
+    else:
+        print(f'Error: {data.get(\"error\", {}).get(\"message\", \"Unknown error\")}', file=sys.stderr)
+        sys.exit(1)
+except Exception as e:
+    print(f'Error parsing response: {str(e)}', file=sys.stderr)
+    print('Raw response:', file=sys.stderr)
+    print('''$RESPONSE''', file=sys.stderr)
+    sys.exit(1)
+"

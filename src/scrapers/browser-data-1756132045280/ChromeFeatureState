@@ -1,0 +1,1 @@
+{"disable-features":"AcceptCHFrame,IsolateSandboxedIframes,MediaRouter,OptimizationHints,ProcessPerSiteUpToMainFrameThreshold,Translate,TranslateUI,VizDisplayCompositor","enable-features":"NetworkService,NetworkServiceLogging,PdfOopif","force-fieldtrial-params":"","force-fieldtrials":"*SeedFileTrial/Default"}
