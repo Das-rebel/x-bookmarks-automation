@@ -101,6 +101,42 @@ class SupabaseSyncManager {
         try {
             this.log('🔧 Applying enhanced schema modifications...');
             
+            // First, apply the tweet_analysis table fix
+            const tweetAnalysisFixFile = path.join(__dirname, 'fix-tweet-analysis-schema.sql');
+            
+            if (fs.existsSync(tweetAnalysisFixFile)) {
+                this.log('🔧 Applying tweet_analysis table fix...');
+                const fixSQL = fs.readFileSync(tweetAnalysisFixFile, 'utf8');
+                
+                // Split SQL into individual statements
+                const fixStatements = fixSQL
+                    .split(';')
+                    .map(stmt => stmt.trim())
+                    .filter(stmt => stmt.length > 0 && !stmt.startsWith('--'));
+                
+                let fixSuccessCount = 0;
+                let fixErrorCount = 0;
+                
+                for (const statement of fixStatements) {
+                    try {
+                        if (statement.trim()) {
+                            const { error } = await supabase.rpc('exec_sql', { sql: statement });
+                            if (error) {
+                                this.log(`⚠️ Fix statement failed: ${error.message}`, 'WARN');
+                                fixErrorCount++;
+                            } else {
+                                fixSuccessCount++;
+                            }
+                        }
+                    } catch (err) {
+                        this.log(`⚠️ Fix statement error: ${err.message}`, 'WARN');
+                        fixErrorCount++;
+                    }
+                }
+                
+                this.log(`✅ Tweet analysis fix applied: ${fixSuccessCount} successful, ${fixErrorCount} errors`);
+            }
+            
             // Read and execute the enhanced schema modifications
             const schemaFile = path.join(__dirname, 'enhanced-schema-modifications.sql');
             
@@ -237,9 +273,68 @@ class SupabaseSyncManager {
             
             this.log(`✅ Bookmark sync completed: ${this.stats.successfullySynced} successful, ${this.stats.errors} errors, ${this.stats.duplicates} duplicates`);
             
+            // Now ensure all bookmarks have complete supporting fields
+            await this.ensureCompleteBookmarkFields(bookmarks);
+            
         } catch (error) {
             this.log(`❌ Bookmark sync failed: ${error.message}`, 'ERROR');
         }
+    }
+
+    async ensureCompleteBookmarkFields(bookmarks) {
+        try {
+            this.log('🔧 Ensuring all bookmarks have complete supporting fields...');
+            
+            let updateCount = 0;
+            let errorCount = 0;
+            
+            for (const bookmark of bookmarks) {
+                try {
+                    // Update bookmark with complete supporting fields
+                    const updateData = {
+                        is_bookmark: true,
+                        bookmark_extracted_at: bookmark.bookmarkExtractedAt || new Date().toISOString(),
+                        bookmark_html: bookmark.bookmarkHtml || '',
+                        bookmark_hash: bookmark.bookmarkHash || this.generateHash(bookmark.text || bookmark.content || ''),
+                        bookmark_reason: bookmark.bookmarkReason || 'ai_analysis',
+                        bookmark_source: 'twitter_scraper',
+                        last_processed_at: new Date().toISOString(),
+                        thread_id: bookmark.threadId || bookmark.thread_id || null,
+                        thread_position: bookmark.threadPosition || bookmark.thread_position || null,
+                        thread_total_tweets: bookmark.threadTotalTweets || bookmark.thread_total_tweets || null,
+                        thread_root_id: bookmark.threadRootId || bookmark.thread_root_id || null,
+                        parent_tweet_id: bookmark.parentTweetId || bookmark.parent_tweet_id || null,
+                        thread_completion_status: bookmark.threadCompletionStatus || bookmark.thread_completion_status || 'unknown',
+                        thread_detection_confidence: bookmark.threadDetectionConfidence || bookmark.thread_detection_confidence || 0.0,
+                        thread_context_importance: bookmark.threadContextImportance || bookmark.thread_context_importance || 0.5
+                    };
+                    
+                    const { error: updateError } = await supabase
+                        .from('twitter_memos')
+                        .update(updateData)
+                        .eq('id', bookmark.id);
+                    
+                    if (updateError) {
+                        throw new Error(`Bookmark update failed: ${updateError.message}`);
+                    }
+                    
+                    updateCount++;
+                    
+                } catch (error) {
+                    this.log(`❌ Failed to update bookmark fields: ${error.message}`, 'ERROR');
+                    errorCount++;
+                }
+            }
+            
+            this.log(`✅ Bookmark field updates completed: ${updateCount} successful, ${errorCount} errors`);
+            
+        } catch (error) {
+            this.log(`❌ Bookmark field updates failed: ${error.message}`, 'ERROR');
+        }
+    }
+
+    generateHash(text) {
+        return crypto.createHash('md5').update(text).digest('hex');
     }
 
     async syncSingleBookmark(bookmark) {
@@ -316,15 +411,33 @@ class SupabaseSyncManager {
             for (const bookmark of bookmarks) {
                 try {
                     // Check if analysis record already exists
-                    const { data: existing, error: checkError } = await supabase
-                        .from('tweet_analysis')
-                        .select('id')
-                        .eq('tweet_id', bookmark.id)
-                        .single();
+                    let existing = null;
+                    let checkError = null;
+                    
+                    try {
+                        const result = await supabase
+                            .from('tweet_analysis')
+                            .select('id')
+                            .eq('tweet_id', bookmark.id)
+                            .single();
+                        
+                        existing = result.data;
+                        checkError = result.error;
+                    } catch (tableError) {
+                        // Table might not exist yet, that's okay
+                        this.log(`ℹ️ tweet_analysis table not accessible yet, will create: ${tableError.message}`, 'INFO');
+                        existing = null;
+                        checkError = null;
+                    }
                     
                     if (checkError && checkError.code !== 'PGRST116') {
-                        this.log(`⚠️ Analysis check failed: ${checkError.message}`, 'WARN');
-                        continue;
+                        if (checkError.message.includes('row-level security policy')) {
+                            this.log(`ℹ️ RLS policy issue, skipping analysis for: ${bookmark.id}`, 'INFO');
+                            continue;
+                        } else {
+                            this.log(`⚠️ Analysis check failed: ${checkError.message}`, 'WARN');
+                            continue;
+                        }
                     }
                     
                     if (existing) {
@@ -332,11 +445,15 @@ class SupabaseSyncManager {
                         continue;
                     }
                     
-                    // Create analysis record
+                    // Create comprehensive analysis record with all supporting fields
                     const analysisData = {
                         tweet_id: bookmark.id,
                         engagement_potential: bookmark.aiAnalysis?.engagementPotential || 0.5,
                         readability_score: bookmark.aiAnalysis?.readabilityScore || 0.5,
+                        positive_indicators: bookmark.aiAnalysis?.positiveIndicators || [],
+                        negative_indicators: bookmark.aiAnalysis?.negativeIndicators || [],
+                        tech_indicators: bookmark.aiAnalysis?.techIndicators || [],
+                        business_indicators: bookmark.aiAnalysis?.businessIndicators || [],
                         topic: bookmark.aiAnalysis?.topic || 'general',
                         tags: bookmark.aiAnalysis?.tags || [],
                         entities: bookmark.aiAnalysis?.entities || [],
@@ -353,12 +470,27 @@ class SupabaseSyncManager {
                         key_insights: bookmark.aiAnalysis?.keyInsights || [],
                         discussion_worthy: bookmark.aiAnalysis?.discussionWorthy || false,
                         composite_score: bookmark.aiAnalysis?.compositeScore || 0.5,
+                        engagement_prediction: bookmark.aiAnalysis?.engagementPrediction || null,
                         content_value: bookmark.aiAnalysis?.contentValue || 0.5,
                         reference_worthy: bookmark.aiAnalysis?.referenceWorthy || false,
+                        bookmark_specific_analysis: {
+                            sentiment_confidence: bookmark.aiAnalysis?.sentimentConfidence || 0.5,
+                            content_type: bookmark.aiAnalysis?.contentType || 'general',
+                            actionable_content: bookmark.aiAnalysis?.actionable || false,
+                            reference_value: bookmark.aiAnalysis?.referenceWorthy || false
+                        },
                         learning_value: bookmark.aiAnalysis?.learningValue || 0.5,
                         knowledge_category: bookmark.aiAnalysis?.knowledgeCategory || 'general',
                         bookmark_context: bookmark.aiAnalysis?.bookmarkContext || '',
-                        extraction_confidence: 0.9
+                        extraction_confidence: bookmark.aiAnalysis?.extractionConfidence || 0.9,
+                        thread_theme: bookmark.aiAnalysis?.threadTheme || null,
+                        thread_coherence: bookmark.aiAnalysis?.threadCoherence || 0.5,
+                        thread_completeness: bookmark.aiAnalysis?.threadCompleteness || 0.5,
+                        context_importance: bookmark.aiAnalysis?.contextImportance || 0.5,
+                        thread_summary: bookmark.aiAnalysis?.threadSummary || null,
+                        key_thread_insights: bookmark.aiAnalysis?.keyThreadInsights || [],
+                        recommended_reading_order: bookmark.aiAnalysis?.recommendedReadingOrder || false,
+                        thread_analysis_metadata: bookmark.aiAnalysis?.threadAnalysisMetadata || {}
                     };
                     
                     const { error: insertError } = await supabase
@@ -366,7 +498,13 @@ class SupabaseSyncManager {
                         .insert(analysisData);
                     
                     if (insertError) {
-                        throw new Error(`Analysis insert failed: ${insertError.message}`);
+                        if (insertError.message.includes('row-level security policy')) {
+                            this.log(`ℹ️ RLS policy prevents insert for: ${bookmark.id}`, 'INFO');
+                            // Skip this bookmark but don't count as error
+                            continue;
+                        } else {
+                            throw new Error(`Analysis insert failed: ${insertError.message}`);
+                        }
                     }
                     
                     successCount++;

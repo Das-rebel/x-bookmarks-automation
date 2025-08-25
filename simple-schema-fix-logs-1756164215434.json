@@ -1,0 +1,8 @@
+[
+  "[2025-08-25T23:23:35.215Z] [INFO] 🚀 Starting simple schema fix...",
+  "[2025-08-25T23:23:35.216Z] [INFO] 🔍 Testing access to tweet_analysis table...",
+  "[2025-08-25T23:23:35.376Z] [INFO] ✅ Table exists and is accessible",
+  "[2025-08-25T23:23:35.376Z] [INFO] 🧪 Testing analysis record insertion...",
+  "[2025-08-25T23:23:35.434Z] [ERROR] ❌ Analysis insert test failed: new row violates row-level security policy for table \"tweet_analysis\"",
+  "[2025-08-25T23:23:35.434Z] [INFO] ⚠️ Schema exists but analysis insert has issues"
+]

@@ -279,8 +279,8 @@ class WebLoginScraper {
                             await this.page.click('[data-testid="ocfEnterTextNextButton"]');
                             
                             this.log('⏳ Waiting for next verification screen to load...');
-                            await new Promise(resolve => setTimeout(resolve, 3000));
-                            
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    
                             // Check what's on the next screen
                             this.log('🔍 Checking next verification screen...');
                             const nextScreenState = await this.page.evaluate(() => {
@@ -352,7 +352,7 @@ class WebLoginScraper {
                                     inputSelector = `#${usernameInput.id}`;
                                 } else if (usernameInput.name) {
                                     inputSelector = `input[name="${usernameInput.name}"]`;
-                                } else {
+                } else {
                                     inputSelector = `input[type="${usernameInput.type}"]`;
                                 }
                                 
@@ -401,7 +401,7 @@ class WebLoginScraper {
                                     
                                                                 this.log('⏳ Waiting for password field to appear...');
                             await new Promise(resolve => setTimeout(resolve, 5000));
-                                } else {
+            } else {
                                     this.log('⚠️ No Next/Continue button found on username screen');
                                 }
                             } else {
@@ -409,7 +409,7 @@ class WebLoginScraper {
                             }
                             
                             this.log('🔄 Checking if verification is complete...');
-                        } catch (error) {
+        } catch (error) {
                             this.log(`❌ Automatic verification failed: ${error.message}`);
                             this.log('🔄 Retrying automatic verification...');
                             
@@ -436,7 +436,7 @@ class WebLoginScraper {
                     // Check if the verification page has changed
                     const currentPageState = await this.page.evaluate(() => {
                         const inputs = Array.from(document.querySelectorAll('input'));
-                        const buttons = Array.from(document.querySelectorAll('button, div[role="button"]'));
+                    const buttons = Array.from(document.querySelectorAll('button, div[role="button"]'));
                         return {
                             inputCount: inputs.length,
                             buttonCount: buttons.length,
@@ -457,7 +457,7 @@ class WebLoginScraper {
                         // Check again
                         const updatedPageState = await this.page.evaluate(() => {
                             const inputs = Array.from(document.querySelectorAll('input'));
-                            const buttons = Array.from(document.querySelectorAll('button, div[role="button"]'));
+                const buttons = Array.from(document.querySelectorAll('button, div[role="button"]'));
                             return {
                                 inputCount: inputs.length,
                                 buttonCount: buttons.length,
@@ -479,7 +479,7 @@ class WebLoginScraper {
                         }
                     }
                     
-                } else {
+            } else {
                     this.log('⚠️ No verification input found - this may require manual intervention');
                     this.log('⏳ Waiting for page to update...');
                     await new Promise(resolve => setTimeout(resolve, 15000));
@@ -625,7 +625,7 @@ class WebLoginScraper {
             if (isLoggedIn) {
                 this.log('✅ Login successful!');
                 await this.takeScreenshot('login-success');
-                return true;
+                        return true;
             } else {
                 this.log('❌ Login may have failed - checking for error messages...');
                 await this.takeScreenshot('login-failed');
@@ -645,13 +645,13 @@ class WebLoginScraper {
                 throw new Error(`Login failed: ${errorMessage}`);
                     }
                     
-                } catch (error) {
+        } catch (error) {
             this.log(`❌ Login failed: ${error.message}`);
             await this.takeScreenshot('login-error');
             throw error;
         }
     }
-
+    
     async navigateToBookmarks() {
         try {
             this.log('📚 Navigating to bookmarks page...');
@@ -671,7 +671,7 @@ class WebLoginScraper {
             throw error;
         }
     }
-
+    
     async extractBookmarks() {
         try {
             this.log('🔍 Starting bookmark extraction (ALL bookmarks - no limit)...');
@@ -732,10 +732,10 @@ class WebLoginScraper {
                 // Add new bookmarks
                 for (const bookmark of newBookmarks) {
                     if (!bookmarks.find(b => b.id === bookmark.id)) {
-                        bookmarks.push(bookmark);
+                            bookmarks.push(bookmark);
+                        }
                     }
-                }
-                
+                    
                 // Progress update with batch processing
                 if (bookmarks.length % this.config.progressUpdateInterval === 0) {
                     this.log(`📊 Progress: ${bookmarks.length} bookmarks extracted so far...`);
@@ -786,7 +786,7 @@ class WebLoginScraper {
                 // ULTRA-FAST scrolling with optimized loading
                 if (this.config.fastScrollMode) {
                     // Fast scroll with minimal delay
-                    await this.page.evaluate(() => {
+            await this.page.evaluate(() => {
                         // Use optimized scrolling for better performance
                         window.scrollTo({
                             top: document.body.scrollHeight,
@@ -802,7 +802,7 @@ class WebLoginScraper {
                     await new Promise(resolve => setTimeout(resolve, this.config.scrollDelay));
                 } else {
                     // Fallback to original scrolling
-                    await this.page.evaluate(() => {
+            await this.page.evaluate(() => {
                         window.scrollBy(0, 1000);
                     });
                     await new Promise(resolve => setTimeout(resolve, this.config.scrollDelay));
